@@ -10,5 +10,14 @@ namespace Particle\Filter;
 
 class Filter
 {
-
+    /**
+     * Filter the provided tat
+     *
+     * @param array $data
+     * @return array
+     */
+    public function filter(array $data)
+    {
+        return [];
+    }
 }
