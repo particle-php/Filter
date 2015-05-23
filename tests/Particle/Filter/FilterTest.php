@@ -15,23 +15,39 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
         $this->filter = new Filter();
     }
 
-    public function testReturnsValidatedValues()
+    public function testFilterValueResult()
     {
-        // @todo: enable this one once the rules are present
-        /*$this->filter->value('first_name')->trim()->lower()->ucfirst();
-        $this->filter->value('last_name')->trim()->lower()->ucfirst();
+        $this->filter->value('first_name')->trim();
 
         $result = $this->filter->filter([
-            'first_name' => ' RiCk ',
-            'last_name' => ' StAAIj   ',
+            'first_name' => ' rick ',
+            'last_name' => ' staaij ',
         ]);
 
         $expected = [
-            'first_name' => 'Rick',
-            'last_name' => 'Staaij',
+            'first_name' => 'rick',
+            'last_name' => ' staaij ',
         ];
 
-        $this->assertEquals($expected, $result);*/
+        $this->assertEquals($expected, $result);
+        $this->assertTrue(true);
+    }
+
+    public function testFilterAllResult()
+    {
+        $this->filter->all()->trim();
+
+        $result = $this->filter->filter([
+            'first_name' => ' rick ',
+            'last_name' => ' staaij ',
+        ]);
+
+        $expected = [
+            'first_name' => 'rick',
+            'last_name' => 'staaij',
+        ];
+
+        $this->assertEquals($expected, $result);
         $this->assertTrue(true);
     }
 }
