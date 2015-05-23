@@ -8,7 +8,53 @@
  */
 namespace Particle\Filter;
 
+/**
+ * Class Chain
+ *
+ * @package Particle\Filter
+ */
 class Chain
 {
+    /**
+     * @var Rule[]
+     */
+    protected $rules;
 
+    /**
+     * Add the trim rule to the chain
+     *
+     * @param string|null $characters
+     * @return $this
+     */
+    public function trim($characters = null)
+    {
+        return $this->addRule(new \Particle\Filter\Rule\Trim($characters));
+    }
+
+    /**
+     * @param mixed $value
+     * @return mixed
+     */
+    public function filter($value)
+    {
+        /** @var Rule $rule */
+        foreach ($this->rules as $rule) {
+            $value = $rule->filter($value);
+        }
+
+        return $value;
+    }
+
+    /**
+     * Add a new rule to the chain
+     *
+     * @param Rule $rule
+     * @return $this
+     */
+    protected function addRule(Rule $rule)
+    {
+        $this->rules[] = $rule;
+
+        return $this;
+    }
 }

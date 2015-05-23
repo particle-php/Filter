@@ -10,16 +10,35 @@ namespace Particle\Filter;
 
 class Filter
 {
-    protected $chain;
+    /**
+     * @var Chain[]
+     */
+    protected $chains = [];
 
+    /**
+     * @var Chain
+     */
+    protected $globalChain = null;
+
+    /**
+     * Set a filter for a value on a specific key
+     *
+     * @param string $key
+     * @return Chain
+     */
     public function value($key)
     {
-        // result chain for $key
+        return $this->getChain($key);
     }
 
+    /**
+     * Set a filter for all values off an array
+     *
+     * @return Chain
+     */
     public function all()
     {
-        // result chain for all
+        return $this->getChain(null);
     }
 
     /**
@@ -30,11 +49,49 @@ class Filter
      */
     public function filter(array $data)
     {
-        return [];
+        if ($this->globalChain !== null) {
+            foreach ($data as $key => $value) {
+                $data[$key] = $this->globalChain->filter($value);
+            }
+        }
+
+        foreach ($this->chains as $key => $chain) {
+            if (array_key_exists($key, $data)) {
+                $data[$key] = $chain->filter($data[$key]);
+            }
+        }
+
+        return $data;
     }
 
-    protected function getChain()
+    /**
+     * Get a filter rule chain for a key
+     *
+     * @param null|string $key
+     * @return Chain
+     */
+    protected function getChain($key)
     {
-        // Result chain
+        // If no key, set global chain
+        if ($key === null) {
+            if ($this->globalChain === null) {
+                $this->globalChain = $this->buildChain();
+            }
+            return $this->globalChain;
+        }
+
+        // Return chain for key
+        if (isset($this->chains[$key])) {
+            return $this->chains[$key];
+        }
+        return $this->chains[$key] = $this->buildChain();
+    }
+
+    /**
+     * @return Chain
+     */
+    protected function buildChain()
+    {
+        return new Chain();
     }
 }

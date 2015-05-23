@@ -13,5 +13,9 @@ namespace Particle\Filter;
  */
 abstract class Rule
 {
-
+    /**
+     * @param mixed $value
+     * @return mixed
+     */
+    abstract public function filter($value);
 }

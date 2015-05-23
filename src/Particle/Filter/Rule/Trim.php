@@ -10,7 +10,38 @@ namespace Particle\Filter\Rule;
 
 use Particle\Filter\Rule;
 
+/**
+ * Class Trim
+ *
+ * @package Particle\Filter\Rule
+ */
 class Trim extends Rule
 {
+    /**
+     * @var string|null
+     */
+    protected $characters;
 
+    /**
+     * @param null|string $characters
+     */
+    public function __construct($characters = null)
+    {
+        $this->characters = $characters;
+    }
+
+    /**
+     * Trim the value, if no characters to trim are given, use the PHP default
+     *
+     * @param mixed $value
+     * @return string
+     */
+    public function filter($value)
+    {
+        if ($this->characters === null) {
+            return trim($value);
+        }
+
+        return trim($value, $this->characters);
+    }
 }
