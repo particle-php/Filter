@@ -23,6 +23,8 @@ class Trim extends Rule
     protected $characters;
 
     /**
+     * Set characters to trim, if none are given, use the PHP default
+     *
      * @param null|string $characters
      */
     public function __construct($characters = null)

@@ -10,11 +10,17 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
      */
     protected $filter;
 
+    /**
+     * Prepare the filter
+     */
     public function setUp()
     {
         $this->filter = new Filter();
     }
 
+    /**
+     * Test if filter->value() works properly
+     */
     public function testFilterValueResult()
     {
         $this->filter->value('first_name')->trim();
@@ -33,6 +39,9 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue(true);
     }
 
+    /**
+     * Test if filter-all() works properly
+     */
     public function testFilterAllResult()
     {
         $this->filter->all()->trim();

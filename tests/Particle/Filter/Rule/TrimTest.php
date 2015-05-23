@@ -1,7 +1,6 @@
 <?php
 namespace Particle\Tests\Filter\Rule;
 
-use Particle\Filter\Rule\Trim;
 use Particle\Filter\Filter;
 
 class TrimTest extends \PHPUnit_Framework_TestCase

@@ -8,6 +8,11 @@
  */
 namespace Particle\Filter;
 
+/**
+ * Class Filter
+ *
+ * @package Particle\Filter
+ */
 class Filter
 {
     /**
@@ -88,6 +93,8 @@ class Filter
     }
 
     /**
+     * Build a new chain of filters
+     *
      * @return Chain
      */
     protected function buildChain()

@@ -32,6 +32,8 @@ class Chain
     }
 
     /**
+     * Execute all filters in the chain
+     *
      * @param mixed $value
      * @return mixed
      */
