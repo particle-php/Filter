@@ -10,6 +10,18 @@ namespace Particle\Filter;
 
 class Filter
 {
+    protected $chain;
+
+    public function value($key)
+    {
+        // result chain for $key
+    }
+
+    public function all()
+    {
+        // result chain for all
+    }
+
     /**
      * Filter the provided tat
      *
@@ -19,5 +31,10 @@ class Filter
     public function filter(array $data)
     {
         return [];
+    }
+
+    protected function getChain()
+    {
+        // Result chain
     }
 }

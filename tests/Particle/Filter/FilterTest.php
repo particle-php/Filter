@@ -1,5 +1,5 @@
 <?php
-namespace Particle\Tests;
+namespace Particle\Tests\Filter;
 
 use Particle\Filter\Filter;
 
@@ -15,21 +15,21 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
         $this->filter = new Filter();
     }
 
-    public function testReturnsValidatedValues()
+    /*public function testReturnsValidatedValues()
     {
-        //$this->filter->value('first_name')->trim()->lower()->ucfirst(); @todo
-        //$this->filter->value('last_name')->trim()->lower()->ucfirst(); @todo
+        $this->filter->value('first_name')->trim()->lower()->ucfirst();
+        $this->filter->value('last_name')->trim()->lower()->ucfirst();
 
-        $result = []; /*$this->filter->filter([ @todo
-            'first_name' => ' HeNk ',
-            'last_name' => ' banaan',
-        ]);*/
+        $result = $this->filter->filter([
+            'first_name' => ' RiCk ',
+            'last_name' => ' StAAIj   ',
+        ]);
 
-        $expected = []; /*[ @todo
-            'first_name' => 'Henk',
-            'last_name' => 'Banaan',
-        ];*/
+        $expected = [
+            'first_name' => 'Rick',
+            'last_name' => 'Staaij',
+        ];
 
         $this->assertEquals($expected, $result);
-    }
+    }*/
 }
