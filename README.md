@@ -27,8 +27,22 @@ var_dump($result); // array(1) { ["first_name"]=> string(4) "rick" }
 
 * Filter an array of values
 * Get a cleaned array after filtering
-* Included filters:
-    - Currently none yet
+
+Included filters:
+
+* trim
+* lower
+* upper
+* upperFirst
+* stripHtml
+* replace
+* regexReplace
+* int
+* bool
+* string
+* float
+* camelCase
+* underscore
 
 ===
 
