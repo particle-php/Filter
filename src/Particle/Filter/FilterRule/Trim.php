@@ -6,16 +6,16 @@
  * @copyright Copyright (c) 2005-2015 Particle (http://particle-php.com)
  * @license   https://github.com/particle-php/Filter/blob/master/LICENSE New BSD License
  */
-namespace Particle\Filter\Rule;
+namespace Particle\Filter\FilterRule;
 
-use Particle\Filter\Rule;
+use Particle\Filter\FilterRule;
 
 /**
  * Class Trim
  *
- * @package Particle\Filter\Rule
+ * @package Particle\Filter\FilterRule
  */
-class Trim extends Rule
+class Trim extends FilterRule
 {
     /**
      * @var string|null

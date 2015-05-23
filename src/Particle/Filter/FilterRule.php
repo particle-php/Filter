@@ -11,7 +11,7 @@ namespace Particle\Filter;
 /**
  * @package Particle\Filter
  */
-abstract class Rule
+abstract class FilterRule
 {
     /**
      * @param mixed $value

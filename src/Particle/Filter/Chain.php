@@ -16,7 +16,7 @@ namespace Particle\Filter;
 class Chain
 {
     /**
-     * @var Rule[]
+     * @var FilterRule[]
      */
     protected $rules;
 
@@ -28,7 +28,7 @@ class Chain
      */
     public function trim($characters = null)
     {
-        return $this->addRule(new \Particle\Filter\Rule\Trim($characters));
+        return $this->addRule(new \Particle\Filter\FilterRule\Trim($characters));
     }
 
     /**
@@ -39,7 +39,7 @@ class Chain
      */
     public function filter($value)
     {
-        /** @var Rule $rule */
+        /** @var FilterRule $rule */
         foreach ($this->rules as $rule) {
             $value = $rule->filter($value);
         }
@@ -50,10 +50,10 @@ class Chain
     /**
      * Add a new rule to the chain
      *
-     * @param Rule $rule
+     * @param FilterRule $rule
      * @return $this
      */
-    protected function addRule(Rule $rule)
+    protected function addRule(FilterRule $rule)
     {
         $this->rules[] = $rule;
 
