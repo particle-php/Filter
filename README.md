@@ -17,7 +17,7 @@ $f = new Particle\Filter;
 $f->value('first_name')->trim()->lower()->upperFirst();
 
 $result = $f->filter([
-    'first_name' => '  rick ',
+    'first_name' => '  RICK ',
 ]);
 
 var_dump($result); // array(1) { ["first_name"]=> string(4) "Rick" }
