@@ -1,5 +1,5 @@
 <?php
-namespace Particle\Tests;
+namespace Particle\Tests\Filter;
 
 use Particle\Filter\Filter;
 
@@ -10,25 +10,69 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
      */
     protected $filter;
 
+    /**
+     * Prepare the filter
+     */
     public function setUp()
     {
         $this->filter = new Filter();
     }
 
-    public function testReturnsValidatedValues()
+    /**
+     * Test if filter->value() works properly
+     */
+    public function testFilterValueResult()
     {
-        //$this->filter->value('first_name')->trim()->lower()->ucfirst(); @todo
-        //$this->filter->value('last_name')->trim()->lower()->ucfirst(); @todo
+        $this->filter->value('first_name')->trim();
 
-        $result = []; /*$this->filter->filter([ @todo
-            'first_name' => ' HeNk ',
-            'last_name' => ' banaan',
-        ]);*/
+        $result = $this->filter->filter([
+            'first_name' => ' rick ',
+            'last_name' => ' staaij ',
+        ]);
 
-        $expected = []; /*[ @todo
-            'first_name' => 'Henk',
-            'last_name' => 'Banaan',
-        ];*/
+        $expected = [
+            'first_name' => 'rick',
+            'last_name' => ' staaij ',
+        ];
+
+        $this->assertEquals($expected, $result);
+        $this->assertTrue(true);
+    }
+
+    /**
+     * Test if filter-all() works properly
+     */
+    public function testFilterAllResult()
+    {
+        $this->filter->all()->trim();
+
+        $result = $this->filter->filter([
+            'first_name' => ' rick ',
+            'last_name' => ' staaij ',
+        ]);
+
+        $expected = [
+            'first_name' => 'rick',
+            'last_name' => 'staaij',
+        ];
+
+        $this->assertEquals($expected, $result);
+    }
+
+    /**
+     * Test if combining multiple filters works
+     */
+    public function testMultipleFilters()
+    {
+        $this->filter->value('first_name')->trim()->lower()->upperFirst();
+
+        $result = $this->filter->filter([
+            'first_name' => ' RICK ',
+        ]);
+
+        $expected = [
+            'first_name' => 'Rick',
+        ];
 
         $this->assertEquals($expected, $result);
     }
