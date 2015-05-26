@@ -14,13 +14,13 @@
 ```php
 $f = new Particle\Filter;
 
-$f->value('first_name')->trim()->lower();
+$f->value('first_name')->trim()->lower()->upperFirst();
 
 $result = $f->filter([
-    'first_name' => '  Rick ',
+    'first_name' => '  rick ',
 ]);
 
-var_dump($result); // array(1) { ["first_name"]=> string(4) "rick" }
+var_dump($result); // array(1) { ["first_name"]=> string(4) "Rick" }
 ```
 
 ## Features
