@@ -57,6 +57,23 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
         ];
 
         $this->assertEquals($expected, $result);
-        $this->assertTrue(true);
+    }
+
+    /**
+     * Test if combining multiple filters works
+     */
+    public function testMultipleFilters()
+    {
+        $this->filter->value('first_name')->trim()->lower();
+
+        $result = $this->filter->filter([
+            'first_name' => ' RICK ',
+        ]);
+
+        $expected = [
+            'first_name' => 'rick',
+        ];
+
+        $this->assertEquals($expected, $result);
     }
 }

@@ -21,7 +21,7 @@ class Chain
     protected $rules;
 
     /**
-     * Add the trim rule to the chain
+     * Add the trim filter-rule to the chain
      *
      * @param string|null $characters
      * @return $this
@@ -29,6 +29,16 @@ class Chain
     public function trim($characters = null)
     {
         return $this->addRule(new \Particle\Filter\FilterRule\Trim($characters));
+    }
+
+    /**
+     * Add the lower filter-rule to the chain
+     *
+     * @return $this
+     */
+    public function lower()
+    {
+        return $this->addRule(new \Particle\Filter\FilterRule\Lower());
     }
 
     /**
