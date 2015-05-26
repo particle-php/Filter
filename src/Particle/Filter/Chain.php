@@ -42,6 +42,16 @@ class Chain
     }
 
     /**
+     * Add the upper filter-rule to the chain
+     *
+     * @return $this
+     */
+    public function upper()
+    {
+        return $this->addRule(new \Particle\Filter\FilterRule\Upper());
+    }
+
+    /**
      * Add the upper-first filter-rule to the chain
      *
      * @return $this
