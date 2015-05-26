@@ -28,7 +28,7 @@ class Chain
      */
     public function trim($characters = null)
     {
-        return $this->addRule(new \Particle\Filter\FilterRule\Trim($characters));
+        return $this->addRule(new FilterRule\Trim($characters));
     }
 
     /**
@@ -38,7 +38,7 @@ class Chain
      */
     public function lower()
     {
-        return $this->addRule(new \Particle\Filter\FilterRule\Lower());
+        return $this->addRule(new FilterRule\Lower());
     }
 
     /**
@@ -48,7 +48,7 @@ class Chain
      */
     public function upper()
     {
-        return $this->addRule(new \Particle\Filter\FilterRule\Upper());
+        return $this->addRule(new FilterRule\Upper());
     }
 
     /**
@@ -58,7 +58,7 @@ class Chain
      */
     public function upperFirst()
     {
-        return $this->addRule(new \Particle\Filter\FilterRule\UpperFirst());
+        return $this->addRule(new FilterRule\UpperFirst());
     }
 
     /**
