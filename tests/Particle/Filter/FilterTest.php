@@ -64,14 +64,14 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
      */
     public function testMultipleFilters()
     {
-        $this->filter->value('first_name')->trim()->lower();
+        $this->filter->value('first_name')->trim()->lower()->upperFirst();
 
         $result = $this->filter->filter([
             'first_name' => ' RICK ',
         ]);
 
         $expected = [
-            'first_name' => 'rick',
+            'first_name' => 'Rick',
         ];
 
         $this->assertEquals($expected, $result);

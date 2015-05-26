@@ -11,20 +11,20 @@ namespace Particle\Filter\FilterRule;
 use Particle\Filter\FilterRule;
 
 /**
- * Class Lower
+ * Class UpperFirst
  *
  * @package Particle\Filter\FilterRule
  */
-class Lower extends FilterRule
+class UpperFirst extends FilterRule
 {
     /**
-     * Lowercase the given value
+     * Uppercase the first character of the value
      *
      * @param mixed $value
      * @return string
      */
     public function filter($value)
     {
-        return strtolower($value);
+        return ucfirst($value);
     }
 }

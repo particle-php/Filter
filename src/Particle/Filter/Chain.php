@@ -42,6 +42,16 @@ class Chain
     }
 
     /**
+     * Add the upper-first filter-rule to the chain
+     *
+     * @return $this
+     */
+    public function upperFirst()
+    {
+        return $this->addRule(new \Particle\Filter\FilterRule\UpperFirst());
+    }
+
+    /**
      * Execute all filters in the chain
      *
      * @param mixed $value
