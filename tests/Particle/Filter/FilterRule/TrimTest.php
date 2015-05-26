@@ -22,10 +22,15 @@ class TrimTest extends \PHPUnit_Framework_TestCase
      * @dataProvider getTrimResults
      * @param string $value
      * @param string $filteredValue
+     * @param string|null $characters
      */
-    public function testTrimFilterRule($value, $filteredValue)
+    public function testTrimFilterRule($value, $filteredValue, $characters)
     {
-        $this->filter->value('test')->trim();
+        if ($characters === null) {
+            $this->filter->value('test')->trim();
+        } else {
+            $this->filter->value('test')->trim($characters);
+        }
 
         $result = $this->filter->filter([
             'test' => $value
@@ -40,13 +45,15 @@ class TrimTest extends \PHPUnit_Framework_TestCase
     public function getTrimResults()
     {
         return [
-            ['some value', 'some value'],
-            ['', ''],
-            [' abc', 'abc'],
-            ['abc ', 'abc'],
-            [' abc ', 'abc'],
-            ['   abc      ', 'abc'],
-            ['  !~! ', '!~!'],
+            ['', '', null],
+            ['', '', ''],
+            ['some value', 'some value', null],
+            [' abc', 'abc', null],
+            ['abc ', 'abc', null],
+            [' abc ', 'abc', null],
+            ['   abc      ', 'abc', null],
+            ['  !~! ', '!~!', null],
+            ['	 tabtab 	', ' tabtab ', "\t"],
         ];
     }
 }
