@@ -26,6 +26,13 @@ class Filter
     protected $globalChain = null;
 
     /**
+     * Construct the filter.
+     */
+    public function __construct()
+    {
+    }
+
+    /**
      * Set a filter for a value on a specific key
      *
      * @param string $key
