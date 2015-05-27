@@ -38,7 +38,7 @@ class Chain
      */
     public function lower()
     {
-        return $this->addRule(new FilterRule\Lower());
+        return $this->addRule(new FilterRule\Lower);
     }
 
     /**
@@ -48,7 +48,7 @@ class Chain
      */
     public function upper()
     {
-        return $this->addRule(new FilterRule\Upper());
+        return $this->addRule(new FilterRule\Upper);
     }
 
     /**
@@ -58,7 +58,7 @@ class Chain
      */
     public function upperFirst()
     {
-        return $this->addRule(new FilterRule\UpperFirst());
+        return $this->addRule(new FilterRule\UpperFirst);
     }
 
     /**
