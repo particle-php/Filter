@@ -21,6 +21,28 @@ class Chain
     protected $rules;
 
     /**
+     * Add the lower filter-rule to the chain
+     *
+     * @return $this
+     */
+    public function lower()
+    {
+        return $this->addRule(new FilterRule\Lower);
+    }
+
+    /**
+     * Add the replace filter-rule to the chain
+     *
+     * @param mixed $search
+     * @param mixed $replace
+     * @return $this
+     */
+    public function replace($search, $replace)
+    {
+        return $this->addRule(new FilterRule\Replace($search, $replace));
+    }
+
+    /**
      * Add the trim filter-rule to the chain
      *
      * @param string|null $characters
@@ -29,16 +51,6 @@ class Chain
     public function trim($characters = null)
     {
         return $this->addRule(new FilterRule\Trim($characters));
-    }
-
-    /**
-     * Add the lower filter-rule to the chain
-     *
-     * @return $this
-     */
-    public function lower()
-    {
-        return $this->addRule(new FilterRule\Lower);
     }
 
     /**
