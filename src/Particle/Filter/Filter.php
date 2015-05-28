@@ -86,10 +86,7 @@ class Filter
     {
         // If no key, set global chain
         if ($key === null) {
-            if ($this->globalChain === null) {
-                $this->globalChain = $this->buildChain();
-            }
-            return $this->globalChain;
+            return $this->getGlobalChain();
         }
 
         // Return chain for key
@@ -97,6 +94,19 @@ class Filter
             return $this->chains[$key];
         }
         return $this->chains[$key] = $this->buildChain();
+    }
+
+    /**
+     * Get the global chain for all values
+     *
+     * @return Chain
+     */
+    protected function getGlobalChain()
+    {
+        if ($this->globalChain === null) {
+            $this->globalChain = $this->buildChain();
+        }
+        return $this->globalChain;
     }
 
     /**
