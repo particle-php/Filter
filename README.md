@@ -15,12 +15,20 @@
 $f = new Particle\Filter;
 
 $f->value('first_name')->trim()->lower()->upperFirst();
+$f->value('newsletter')->bool();
 
 $result = $f->filter([
     'first_name' => '  RICK ',
+    'newsletter' => 'yes',
 ]);
 
-var_dump($result); // array(1) { ["first_name"]=> string(4) "Rick" }
+var_dump($result);
+/**
+ * array(2) {
+ *     ["first_name"]=> string(4) "Rick"
+ *     ["newsletter"]=> bool(true)
+ * } 
+ */
 ```
 
 ## Features
@@ -30,19 +38,22 @@ var_dump($result); // array(1) { ["first_name"]=> string(4) "Rick" }
 
 Included filters:
 
-* trim
+* append
+* bool
+* callable
+* camelCase
+* float
+* int
 * lower
+* prepend
+* regexReplace
+* replace
+* string
+* stripHtml
+* trim
+* underscore
 * upper
 * upperFirst
-* stripHtml
-* replace
-* regexReplace
-* int
-* bool
-* string
-* float
-* camelCase
-* underscore
 
 ===
 
