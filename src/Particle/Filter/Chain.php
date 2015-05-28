@@ -21,6 +21,16 @@ class Chain
     protected $rules;
 
     /**
+     * Add the bool filter-rule to the chain
+     *
+     * @return $this
+     */
+    public function bool()
+    {
+        return $this->addRule(new FilterRule\Bool);
+    }
+
+    /**
      * Add the lower filter-rule to the chain
      *
      * @return $this
