@@ -54,18 +54,31 @@ class Filter
     }
 
     /**
-     * Filter the provided tat
+     * Filter all set fields with a global chain
      *
      * @param array $data
      * @return array
      */
-    public function filter(array $data)
+    public function globalFilter(array $data)
     {
         if ($this->globalChain !== null) {
             foreach ($data as $key => $value) {
                 $data[$key] = $this->globalChain->filter($value);
             }
         }
+
+        return $data;
+    }
+
+    /**
+     * Filter the provided data
+     *
+     * @param array $data
+     * @return array
+     */
+    public function filter(array $data)
+    {
+        $data = $this->globalFilter($data);
 
         foreach ($this->chains as $key => $chain) {
             if (array_key_exists($key, $data)) {
