@@ -95,6 +95,16 @@ class Chain
     }
 
     /**
+     * Add string filter-rule to the chain
+     *
+     * @return $this
+     */
+    public function string()
+    {
+        return $this->addRule(new FilterRule\String);
+    }
+
+    /**
      * Add stripHtml filter-rule to the chain
      *
      * @param null|string $excludeTags
