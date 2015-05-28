@@ -21,7 +21,7 @@ class Chain
     protected $rules;
 
     /**
-     * Add the append filter-rule to the chain
+     * Add append filter-rule to the chain
      *
      * @param string $append
      * @return Chain
@@ -32,7 +32,7 @@ class Chain
     }
 
     /**
-     * Add the bool filter-rule to the chain
+     * Add bool filter-rule to the chain
      *
      * @return $this
      */
@@ -52,7 +52,17 @@ class Chain
     }
 
     /**
-     * Add the lower filter-rule to the chain
+     * Add int filter-rule to the chain
+     *
+     * @return $this
+     */
+    public function int()
+    {
+        return $this->addRule(new FilterRule\Int);
+    }
+
+    /**
+     * Add lower filter-rule to the chain
      *
      * @return $this
      */
@@ -62,7 +72,7 @@ class Chain
     }
 
     /**
-     * Add the prepend filter-rule to the chain
+     * Add prepend filter-rule to the chain
      *
      * @param string $prepend
      * @return Chain
@@ -73,7 +83,7 @@ class Chain
     }
 
     /**
-     * Add the replace filter-rule to the chain
+     * Add replace filter-rule to the chain
      *
      * @param mixed $search
      * @param mixed $replace
@@ -85,7 +95,7 @@ class Chain
     }
 
     /**
-     * Add the trim filter-rule to the chain
+     * Add trim filter-rule to the chain
      *
      * @param string|null $characters
      * @return $this
@@ -96,7 +106,7 @@ class Chain
     }
 
     /**
-     * Add the upper filter-rule to the chain
+     * Add upper filter-rule to the chain
      *
      * @return $this
      */
@@ -106,7 +116,7 @@ class Chain
     }
 
     /**
-     * Add the upper-first filter-rule to the chain
+     * Add upper-first filter-rule to the chain
      *
      * @return $this
      */
