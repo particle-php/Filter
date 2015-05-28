@@ -52,6 +52,16 @@ class Chain
     }
 
     /**
+     * Add float filter-rule to the chain
+     *
+     * @return $this
+     */
+    public function float()
+    {
+        return $this->addRule(new FilterRule\Float);
+    }
+
+    /**
      * Add int filter-rule to the chain
      *
      * @return $this

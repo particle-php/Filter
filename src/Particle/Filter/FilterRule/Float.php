@@ -11,20 +11,20 @@ namespace Particle\Filter\FilterRule;
 use Particle\Filter\FilterRule;
 
 /**
- * Class Int
+ * Class Float
  *
  * @package Particle\Filter\FilterRule
  */
-class Int extends FilterRule
+class Float extends FilterRule
 {
     /**
-     * Convert the value to an int
+     * Convert the value to a float
      *
      * @param mixed $value
-     * @return int
+     * @return float
      */
     public function filter($value)
     {
-        return intval($value);
+        return floatval($value);
     }
 }
