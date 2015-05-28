@@ -95,6 +95,17 @@ class Chain
     }
 
     /**
+     * Add stripHtml filter-rule to the chain
+     *
+     * @param null|string $excludeTags
+     * @return $this
+     */
+    public function stripHtml($excludeTags = null)
+    {
+        return $this->addRule(new FilterRule\StripHtml($excludeTags));
+    }
+
+    /**
      * Add trim filter-rule to the chain
      *
      * @param string|null $characters

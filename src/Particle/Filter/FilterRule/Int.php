@@ -18,7 +18,7 @@ use Particle\Filter\FilterRule;
 class Int extends FilterRule
 {
     /**
-     * Convert the value to a bool
+     * Convert the value to an int
      *
      * @param mixed $value
      * @return int

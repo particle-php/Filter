@@ -11,35 +11,35 @@ namespace Particle\Filter\FilterRule;
 use Particle\Filter\FilterRule;
 
 /**
- * Class Append
+ * Class StripHtml
  *
  * @package Particle\Filter\FilterRule
  */
-class Append extends FilterRule
+class StripHtml extends FilterRule
 {
     /**
      * @var string
      */
-    protected $append;
+    protected $excludeTags;
 
     /**
-     * Set text to append
+     * Set tags that wont be stripped
      *
-     * @param string $append
+     * @param string|null $excludeTags
      */
-    public function __construct($append)
+    public function __construct($excludeTags = null)
     {
-        $this->append = $append;
+        $this->excludeTags = $excludeTags;
     }
 
     /**
-     * Append the provided text to the given value
+     * Strip html tags from the value
      *
      * @param mixed $value
      * @return string
      */
     public function filter($value)
     {
-        return $value . $this->append;
+        return strip_tags($value, $this->excludeTags);
     }
 }

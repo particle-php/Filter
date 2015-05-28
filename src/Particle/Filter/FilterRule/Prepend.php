@@ -25,7 +25,7 @@ class Prepend extends FilterRule
     /**
      * Set text to prepend
      *
-     * @param $prepend
+     * @param string $prepend
      */
     public function __construct($prepend)
     {
