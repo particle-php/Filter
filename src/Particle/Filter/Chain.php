@@ -21,6 +21,17 @@ class Chain
     protected $rules;
 
     /**
+     * Add the append filter-rule to the chain
+     *
+     * @param string $append
+     * @return Chain
+     */
+    public function append($append)
+    {
+        return $this->addRule(new FilterRule\Append($append));
+    }
+
+    /**
      * Add the bool filter-rule to the chain
      *
      * @return $this
@@ -38,6 +49,17 @@ class Chain
     public function lower()
     {
         return $this->addRule(new FilterRule\Lower);
+    }
+
+    /**
+     * Add the prepend filter-rule to the chain
+     *
+     * @param string $prepend
+     * @return Chain
+     */
+    public function prepend($prepend)
+    {
+        return $this->addRule(new FilterRule\Prepend($prepend));
     }
 
     /**

@@ -20,8 +20,8 @@ class BoolTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @dataProvider getBoolResults
-     * @param string $value
-     * @param string $filteredValue
+     * @param mixed $value
+     * @param bool $filteredValue
      */
     public function testBoolFilterRule($value, $filteredValue)
     {

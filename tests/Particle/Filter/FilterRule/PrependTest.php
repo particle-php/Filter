@@ -3,7 +3,7 @@ namespace Particle\Tests\Filter\FilterRule;
 
 use Particle\Filter\Filter;
 
-class ReplaceTest extends \PHPUnit_Framework_TestCase
+class PrependTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @var Filter
@@ -19,15 +19,14 @@ class ReplaceTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @dataProvider getReplaceResults
+     * @dataProvider getPrependResults
      * @param string $value
-     * @param string $search
-     * @param string $replace
+     * @param string $prepend
      * @param string $filteredValue
      */
-    public function testReplaceFilterRule($value, $search, $replace, $filteredValue)
+    public function testPrependFilterRule($value, $prepend, $filteredValue)
     {
-        $this->filter->value('test')->replace($search, $replace);
+        $this->filter->value('test')->prepend($prepend);
 
         $result = $this->filter->filter([
             'test' => $value
@@ -39,13 +38,13 @@ class ReplaceTest extends \PHPUnit_Framework_TestCase
     /**
      * @return array
      */
-    public function getReplaceResults()
+    public function getPrependResults()
     {
         return [
-            ['', '', '', ''],
-            ['no spaces please', ' ', '-', 'no-spaces-please'],
-            ['ror', 'r', 'l', 'lol'],
-            ['no  spaces please', ['  ', ' '], '-', 'no-spaces-please'],
+            ['', '', ''],
+            ['world', 'hello ', 'hello world'],
+            ['!', '!', '!!'],
+            [null, null, ''],
         ];
     }
 }
