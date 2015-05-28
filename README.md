@@ -41,7 +41,6 @@ Included filters:
 * append
 * bool
 * callback
-* camelCase
 * float
 * int
 * lower
@@ -51,7 +50,6 @@ Included filters:
 * string
 * stripHtml
 * trim
-* underscore
 * upper
 * upperFirst
 
