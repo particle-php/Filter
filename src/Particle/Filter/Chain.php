@@ -95,6 +95,18 @@ class Chain
     /**
      * Add replace filter-rule to the chain
      *
+     * @param string $searchRegex
+     * @param string $replace
+     * @return $this
+     */
+    public function regexReplace($searchRegex, $replace)
+    {
+        return $this->addRule(new FilterRule\RegexReplace($searchRegex, $replace));
+    }
+
+    /**
+     * Add replace filter-rule to the chain
+     *
      * @param mixed $search
      * @param mixed $replace
      * @return $this
