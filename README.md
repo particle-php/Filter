@@ -40,7 +40,7 @@ Included filters:
 
 * append
 * bool
-* callable
+* callback
 * camelCase
 * float
 * int

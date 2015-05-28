@@ -42,6 +42,16 @@ class Chain
     }
 
     /**
+     * Add callback filter-rule to the chain
+     *
+     * @return $this
+     */
+    public function callback(callable $callable)
+    {
+        return $this->addRule(new FilterRule\Callback($callable));
+    }
+
+    /**
      * Add the lower filter-rule to the chain
      *
      * @return $this
