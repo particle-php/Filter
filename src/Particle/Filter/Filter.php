@@ -26,7 +26,7 @@ class Filter
     protected $globalChain = null;
 
     /**
-     * Construct the filter.
+     * Construct the filter
      */
     public function __construct()
     {
@@ -36,21 +36,46 @@ class Filter
      * Set a filter for a value on a specific key
      *
      * @param string $key
-     * @return Chain
+     * @return FilterResource
      */
     public function value($key)
     {
-        return $this->getChain($key);
+        return $this->getFilterResource($key);
+    }
+
+    /**
+     * Set a filter for a value on a specific key
+     *
+     * @param string[] $keys
+     * @return FilterResource
+     */
+    public function values(array $keys)
+    {
+        return $this->getFilterResource($keys);
     }
 
     /**
      * Set a filter for all values off an array
      *
-     * @return Chain
+     * @return FilterResource
      */
     public function all()
     {
-        return $this->getChain(null);
+        return $this->getFilterResource();
+    }
+
+    /**
+     * @param null|string|string[] $keys
+     * @return FilterResource
+     */
+    public function getFilterResource($keys = null)
+    {
+        return new FilterResource($this, $keys);
+    }
+
+    public function addFilterRule(FilterRule $rule, $key = null)
+    {
+        $this->getChain($key)->addRule($rule);
     }
 
     /**
