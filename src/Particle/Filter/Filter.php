@@ -77,7 +77,7 @@ class Filter
      * Set a filter rule on a chain
      *
      * @param FilterRule $rule
-     * @param null $key
+     * @param null|string $key
      */
     public function addFilterRule(FilterRule $rule, $key = null)
     {
