@@ -14,18 +14,20 @@
 ```php
 $f = new Particle\Filter;
 
-$f->value('first_name')->trim()->lower()->upperFirst();
+$f->values(['first_name', 'last_name'])->trim()->lower()->upperFirst();
 $f->value('newsletter')->bool();
 
 $result = $f->filter([
-    'first_name' => '  RICK ',
+    'first_name' => '  CHUCK ',
+    'first_name' => ' NORRIS  ',
     'newsletter' => 'yes',
 ]);
 
 var_dump($result);
 /**
- * array(2) {
- *     ["first_name"]=> string(4) "Rick"
+ * array(3) {
+ *     ["first_name"]=> string(5) "Chuck"
+ *     ["last_name"]=> string(6) "Norris"
  *     ["newsletter"]=> bool(true)
  * } 
  */

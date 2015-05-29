@@ -95,4 +95,24 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals($expected, $result);
     }
+
+    /**
+     * Test if you can filter for multiple keys
+     */
+    public function testMultipleFilterKeys()
+    {
+        $this->filter->values(['first_name', 'last_name'])->trim()->lower()->upperFirst();
+
+        $result = $this->filter->filter([
+            'first_name' => ' CHUCK ',
+            'last_name' => ' NORRIS ',
+        ]);
+
+        $expected = [
+            'first_name' => 'Chuck',
+            'last_name' => 'Norris',
+        ];
+
+        $this->assertEquals($expected, $result);
+    }
 }
