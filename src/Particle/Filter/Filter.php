@@ -44,7 +44,7 @@ class Filter
     }
 
     /**
-     * Set a filter for a value on a specific key
+     * Set a filter for the values on the given keys
      *
      * @param string[] $keys
      * @return FilterResource
@@ -73,6 +73,12 @@ class Filter
         return new FilterResource($this, $keys);
     }
 
+    /**
+     * Set a filter rule on a chain
+     *
+     * @param FilterRule $rule
+     * @param null $key
+     */
     public function addFilterRule(FilterRule $rule, $key = null)
     {
         $this->getChain($key)->addRule($rule);
