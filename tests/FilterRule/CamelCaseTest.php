@@ -39,16 +39,6 @@ class CamelCaseTest extends \PHPUnit_Framework_TestCase
      */
     public function getCamelCaseResults()
     {
-//        return [
-//            ['text is low', 'Text Is Low'],
-//            ['foo bar', 'Foo Bar'],
-//            ['fOo bAr', 'FOo BAr'],
-//            ['FOO BAR', 'FOO BAR'],
-//            ['', ''],
-//            ['lol', 'Lol'],
-//            ['l0l', 'L0l'],
-//            ['~!lolz!~', '~!lolz!~'],
-//        ];
         return [
             ['text is low', 'Text Is Low'],
             ['foo bar', 'Foo Bar'],
