@@ -1,9 +1,24 @@
 language: php
 
+matrix:
+  include:
+    - php: 5.3
+    - php: 5.4
+    - php: 5.5
+    - php: 5.6
+      env: SCRUTINIZER_REPORT=true
+    - php: 7.0
+
 php:
+  - 5.3
+  - 5.4
   - 5.5
+  - 5.6
+    env:
+  - 7.0
 
 before_script:
+  - composer self-update
   - composer install
   - phpenv rehash
 
@@ -11,6 +26,7 @@ script:
   - php vendor/bin/phpunit --coverage-clover=coverage.clover
   - php vendor/bin/phpcs -n --standard=PSR2 --ignore=vendor .
 
-after_script:
-  - wget https://scrutinizer-ci.com/ocular.phar
-  - php ocular.phar code-coverage:upload --format=php-clover coverage.clover
+after_script: >
+  [ "$SCRUTINIZER_REPORT" = true ]
+  && wget https://scrutinizer-ci.com/ocular.phar
+  && php ocular.phar code-coverage:upload --format=php-clover coverage.clover

@@ -52,7 +52,7 @@ class FilterResource
      */
     public function bool()
     {
-        return $this->addRule(new FilterRule\Bool);
+        return $this->addRule(new FilterRule\Boolean);
     }
 
     /**
@@ -72,7 +72,7 @@ class FilterResource
      */
     public function float()
     {
-        return $this->addRule(new FilterRule\Float);
+        return $this->addRule(new FilterRule\CastFloat);
     }
 
     /**
@@ -82,7 +82,7 @@ class FilterResource
      */
     public function int()
     {
-        return $this->addRule(new FilterRule\Int);
+        return $this->addRule(new FilterRule\CastInt);
     }
 
     /**
@@ -137,7 +137,7 @@ class FilterResource
      */
     public function string()
     {
-        return $this->addRule(new FilterRule\String);
+        return $this->addRule(new FilterRule\CastString);
     }
 
     /**
