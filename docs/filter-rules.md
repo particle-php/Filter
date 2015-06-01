@@ -1,9 +1,7 @@
-### Included filter-rules
+# Included filter-rules
 
 Particle\Filter tries to provide you the most common filters. An overview is listed below. If you want to add custom
 filters, take a look at the callback filter-rule, or check out "Extending the Filter" in the menu.
-
-## Filter rules
 
 * [append](#append)
 * [bool](#bool)
@@ -45,19 +43,49 @@ $result = $f->filter(['newsletter' => 'yes']);
 
 ## Callback
 
-@todo
+Callback allows you to quickly add a custom filter, as you can provide a closure that manipulates the value.
+
+```php
+$f = new Filter;
+$f->value('name')->callback(function($value) {
+    return '<strong>' . $value . '</strong>';
+});
+$result = $f->filter(['name' => 'Rick']);
+// array(1) { ["name"]=> string(21) "<strong>Rick</strong>"
+```
 
 ## Float
 
-@todo
+Make sure the value is a float.
+
+```php
+$f = new Filter;
+$f->value('value')->float();
+$result = $f->filter(['value' => '123.123']);
+// array(1) { ["value"]=> float(123.123) } 
+```
 
 ## Int
 
-@todo
+Make sure the value is a int.
+
+```php
+$f = new Filter;
+$f->value('value')->int();
+$result = $f->filter(['value' => '123.123']);
+// array(1) { ["value"]=> int(123) } 
+```
 
 ## Lower
 
-@todo
+Lowercase the full value.
+
+```php
+$f = new Filter;
+$f->value('name')->lower();
+$result = $f->filter(['name' => 'RICK']);
+// array(1) { ["name"]=> string(4) "rick"
+```
 
 ## Prepend
 
@@ -72,23 +100,76 @@ $result = $f->filter(['name' => 'Rick']);
 
 ## RegexReplace
 
-@todo
+Replace all matches with a replacement in the value.
+
+```php
+$f = new Filter;
+$f->value('value')->regexReplace('/[^a-zA-Z0-9\-]/', '');
+$result = $f->filter(['value' => '!!!l!#o?*l&&']);
+// array(1) { ["value"]=> string(3) "lol" }
+```
 
 ## Replace
 
-@todo
+Replace a needle for a replacement in the value.
+
+```php
+$f = new Filter;
+$f->value('value')->replace(' ', '-');
+$result = $f->filter(['name' => 'hello im rick']);
+// array(1) { ["name"]=> string(13) "hello-im-rick" }
+```
 
 ## String
 
-@todo
+Make sure the value is a string.
+
+```php
+$f = new Filter;
+$f->value('value')->string();
+$result = $f->filter(['value' => 50]);
+// array(1) { ["value"]=> string(2) "50" }
+```
 
 ## StripHtml
 
-@todo
+Strip all tags from the value.
+
+```php
+$f = new Filter;
+$f->value('name')->stripHtml();
+$result = $f->filter(['name' => '<p><strong>Rick</strong></p>']);
+// array(1) { ["name"]=> string(4) "Rick"
+```
+
+Exclude some tags:
+
+```php
+$f = new Filter;
+$f->value('name')->stripHtml('<strong>');
+$result = $f->filter(['name' => '<p><strong>Rick</strong></p>']);
+// array(1) { ["name"]=> string(21) "<strong>Rick</strong>"
+```
 
 ## Trim
 
-@todo
+Strip all 'white-space' characters from the beginning and end of the string.
+
+```php
+$f = new Filter;
+$f->value('name')->trim();
+$result = $f->filter(['name' => ' Rick ']);
+// array(1) { ["name"]=> string(4) "Rick"
+```
+
+You can also provide the specific characters that you want to strip.
+
+```php
+$f = new Filter;
+$f->value('name')->trim("\s");
+$result = $f->filter(['name' => ' Rick ']);
+// array(1) { ["name"]=> string(4) "Rick"
+```
 
 ## Upper
 

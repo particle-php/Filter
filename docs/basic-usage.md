@@ -47,6 +47,10 @@ If you want to target all values of the array, use `$f->all()` and add/chain the
 $f->all()->trim();
 ```
 
+## Chaining filter-rules
+
+Once you have selected the value(s) you want to filter, you can chain all wanted filter-rules
+
 ## Filtering the array
 
 Once you have specified what values of the array you want to target with what filters, you can simply call 

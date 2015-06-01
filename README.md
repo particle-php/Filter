@@ -37,23 +37,7 @@ var_dump($result);
 
 * Filter an array of values
 * Get a cleaned array after filtering
-
-Included filters:
-
-* append
-* bool
-* callback
-* float
-* int
-* lower
-* prepend
-* regexReplace
-* replace
-* string
-* stripHtml
-* trim
-* upper
-* upperFirst
+* [Quite some filter-rules are provided](http://filter.particle-php.com/en/latest/filter-rules/)
 
 ===
 
