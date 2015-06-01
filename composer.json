@@ -14,8 +14,8 @@
         "mockery/mockery": "0.9.*"
     },
     "autoload": {
-        "psr-0": {
-            "Particle\\Filter": "src/"
+        "psr-4": {
+            "Particle\\Filter\\": "src/"
         }
     }
 }
