@@ -183,6 +183,26 @@ class FilterResource
     }
 
     /**
+     * Add camel-case which is a combo of Lower + UpperWords
+     *
+     * @return $this
+     */
+    public function camelCase()
+    {
+        return $this->lower()->UpperWords();
+    }
+
+    /**
+     * Add upper-words filter-rule to the chain
+     *
+     * @return $this
+     */
+    public function upperWords()
+    {
+        return $this->addRule(new FilterRule\UpperWords());
+    }
+
+    /**
      * Add a new rule to the chain
      *
      * @param FilterRule $rule
