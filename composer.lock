@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "f4729cf4e6a9a08320a189bf1ca38861",
+    "hash": "cc14c4b2234c8c090fd0987fab7a2041",
     "packages": [],
     "packages-dev": [
         {
@@ -528,16 +528,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "4.6.6",
+            "version": "4.6.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "3afe303d873a4d64c62ef84de491b97b006fbdac"
+                "reference": "816d12536a7a032adc3b68737f82cfbbf98b79c1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/3afe303d873a4d64c62ef84de491b97b006fbdac",
-                "reference": "3afe303d873a4d64c62ef84de491b97b006fbdac",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/816d12536a7a032adc3b68737f82cfbbf98b79c1",
+                "reference": "816d12536a7a032adc3b68737f82cfbbf98b79c1",
                 "shasum": ""
             },
             "require": {
@@ -596,7 +596,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2015-04-29 15:18:52"
+            "time": "2015-05-29 06:00:03"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
