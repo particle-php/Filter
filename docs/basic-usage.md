@@ -49,7 +49,12 @@ $f->all()->trim();
 
 ## Chaining filter-rules
 
-Once you have selected the value(s) you want to filter, you can chain all wanted filter-rules
+Once you have selected the value(s) you want to filter, you can chain all wanted filter-rules. Your IDE will show you
+all the available filter-rules.
+
+```php
+$f->value('first_name')->trim()->lower()->upperFirst()->replace(' ', '-');
+```
 
 ## Filtering the array
 
