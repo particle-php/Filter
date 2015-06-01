@@ -3,4 +3,6 @@ theme: readthedocs
 pages:
 - [index.md, Home]
 - [installation.md, Installing]
-
+- [basic-usage.md, Basic usage]
+- [filter-rules.md, Filter-rules]
+- [extending.md, Extending the Filter]
