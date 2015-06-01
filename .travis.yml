@@ -9,14 +9,6 @@ matrix:
       env: SCRUTINIZER_REPORT=true
     - php: 7.0
 
-php:
-  - 5.3
-  - 5.4
-  - 5.5
-  - 5.6
-    env:
-  - 7.0
-
 before_script:
   - composer self-update
   - composer install
