@@ -1,0 +1,6 @@
+site_name: Particle Filter
+theme: readthedocs
+pages:
+- [index.md, Home]
+- [installation.md, Installing]
+
