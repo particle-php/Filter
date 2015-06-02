@@ -11,11 +11,11 @@ namespace Particle\Filter\FilterRule;
 use Particle\Filter\FilterRule;
 
 /**
- * Class String
+ * Class CastString
  *
  * @package Particle\Filter\FilterRule
  */
-class String extends FilterRule
+class CastString extends FilterRule
 {
     /**
      * Convert the value to a string

@@ -11,20 +11,20 @@ namespace Particle\Filter\FilterRule;
 use Particle\Filter\FilterRule;
 
 /**
- * Class Bool
+ * Class CastInt
  *
  * @package Particle\Filter\FilterRule
  */
-class Bool extends FilterRule
+class CastInt extends FilterRule
 {
     /**
-     * Convert the value to a bool
+     * Convert the value to an int
      *
      * @param mixed $value
-     * @return string
+     * @return int
      */
     public function filter($value)
     {
-        return filter_var($value, FILTER_VALIDATE_BOOLEAN);
+        return intval($value);
     }
 }
