@@ -52,7 +52,7 @@ class FilterResource
      */
     public function bool()
     {
-        return $this->addRule(new FilterRule\Boolean);
+        return $this->addRule(new FilterRule\CastBool);
     }
 
     /**
