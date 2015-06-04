@@ -40,7 +40,7 @@ class MyFilter extends Filter
 
     /**
      * {@inheritdoc}
-     * @return FilterResource
+     * @return MyFilterResource
      */
     public function getFilterResource($keys = null)
     {
