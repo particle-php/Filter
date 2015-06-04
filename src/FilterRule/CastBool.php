@@ -15,7 +15,7 @@ use Particle\Filter\FilterRule;
  *
  * @package Particle\Filter\FilterRule
  */
-class Boolean extends FilterRule
+class CastBool extends FilterRule
 {
     /**
      * Convert the value to a bool
