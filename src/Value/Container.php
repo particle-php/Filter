@@ -112,9 +112,6 @@ class Container
         $ref = &$this->values;
 
         foreach ($parts as $i => $part) {
-            /*if ($i < count($parts) - 1) {
-                $ref[$part] = [];
-            }*/
             $ref = &$ref[$part];
         }
 
