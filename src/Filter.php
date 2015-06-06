@@ -91,22 +91,6 @@ class Filter
         $this->getChain($key)->addRule($rule);
     }
 
-    protected function getArrayKey(array $a, $path, $default = null)
-    {
-        $current = $a;
-        $p = strtok($path, '.');
-
-        while ($p !== false) {
-            if (!isset($current[$p])) {
-                return $default;
-            }
-            $current = $current[$p];
-            $p = strtok('.');
-        }
-
-        return $current;
-    }
-
     /**
      * Filter all set fields with a global chain, recursively
      *
