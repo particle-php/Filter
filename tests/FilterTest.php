@@ -268,4 +268,27 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals($expected, $result);
     }
+
+
+    /**
+     * Test if the filter works if filtered for unused keys
+     */
+    public function testFilterForUnusedSubArrayKeys()
+    {
+        $this->filter->values(['user.first_name', 'user.last_name'])->trim()->lower()->upperFirst();
+
+        $result = $this->filter->filter([
+            'user' => [
+                'first_name' => '  CHUCK ',
+            ],
+        ]);
+
+        $expected = [
+            'user' => [
+                'first_name' => 'Chuck',
+            ],
+        ];
+
+        $this->assertEquals($expected, $result);
+    }
 }
