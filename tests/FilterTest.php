@@ -157,6 +157,32 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
     /**
      * Test if you can filter sub-arrays using dot notation
      */
+    public function testFilterAllWithSubArray()
+    {
+        $this->filter->all()->trim()->lower()->upperFirst();
+
+        $result = $this->filter->filter([
+            'username' => ' ChuckyChuck ',
+            'user' => [
+                'first_name' => ' CHUCK ',
+                'last_name' => ' NORRIS ',
+            ],
+        ]);
+
+        $expected = [
+            'username' => 'Chuckychuck',
+            'user' => [
+                'first_name' => 'Chuck',
+                'last_name' => 'Norris',
+            ],
+        ];
+
+        $this->assertEquals($expected, $result);
+    }
+
+    /**
+     * Test if you can filter sub-arrays using dot notation
+     */
     public function testFilterSubArray()
     {
         $this->filter->values([
