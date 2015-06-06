@@ -8,6 +8,8 @@
  */
 namespace Particle\Filter;
 
+use Particle\Filter\Value\Container;
+
 /**
  * Class Filter
  *
@@ -19,6 +21,11 @@ class Filter
      * @var Chain[]
      */
     protected $chains = [];
+
+    /**
+     * @var Container
+     */
+    protected $data = [];
 
     /**
      * @var Chain
@@ -84,21 +91,55 @@ class Filter
         $this->getChain($key)->addRule($rule);
     }
 
+    protected function getArrayKey(array $a, $path, $default = null)
+    {
+        $current = $a;
+        $p = strtok($path, '.');
+
+        while ($p !== false) {
+            if (!isset($current[$p])) {
+                return $default;
+            }
+            $current = $current[$p];
+            $p = strtok('.');
+        }
+
+        return $current;
+    }
+
     /**
-     * Filter all set fields with a global chain
+     * Filter all set fields with a global chain, recursively
      *
      * @param array $data
      * @return array
      */
-    public function globalFilter(array $data)
+    protected function filterGlobals(array $data)
     {
-        if ($this->globalChain !== null) {
-            foreach ($data as $key => $value) {
+        if ($this->globalChain === null) {
+            return $data;
+        }
+
+        foreach ($data as $key => $value) {
+            if (is_array($value)) {
+                $data[$key] = $this->filterGlobals($value);
+            } else {
                 $data[$key] = $this->globalChain->filter($value);
             }
         }
 
         return $data;
+    }
+
+    /**
+     * Filter all chains set
+     */
+    protected function filterChains()
+    {
+        foreach ($this->chains as $key => $chain) {
+            if ($this->data->has($key)) {
+                $this->data->set($key, $chain->filter($this->data->get($key)));
+            }
+        }
     }
 
     /**
@@ -109,15 +150,13 @@ class Filter
      */
     public function filter(array $data)
     {
-        $data = $this->globalFilter($data);
+        $data = $this->filterGlobals($data);
 
-        foreach ($this->chains as $key => $chain) {
-            if (array_key_exists($key, $data)) {
-                $data[$key] = $chain->filter($data[$key]);
-            }
-        }
+        $this->data = new Container($data);
 
-        return $data;
+        $this->filterChains();
+
+        return $this->data->getArrayCopy();
     }
 
     /**

@@ -241,4 +241,31 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals($expected, $result);
     }
+
+    /**
+     * Test if the README.md example actually works
+     */
+    public function testReadmeFilterExample()
+    {
+        $this->filter->values(['user.first_name', 'user.last_name'])->trim()->lower()->upperFirst();
+        $this->filter->value('newsletter')->bool();
+
+        $result = $this->filter->filter([
+            'user' => [
+                'first_name' => '  CHUCK ',
+                'last_name' => ' NORRIS  ',
+            ],
+            'newsletter' => 'yes',
+        ]);
+
+        $expected = [
+            'user' => [
+                'first_name' => 'Chuck',
+                'last_name' => 'Norris',
+            ],
+            'newsletter' => true
+        ];
+
+        $this->assertEquals($expected, $result);
+    }
 }
