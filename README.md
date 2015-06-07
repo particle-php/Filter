@@ -12,22 +12,26 @@
 ## Small usage example
 
 ```php
-$f = new Particle\Filter;
+$f = new Particle\Filter\Filter;
 
-$f->values(['first_name', 'last_name'])->trim()->lower()->upperFirst();
+$f->values(['user.first_name', 'user.last_name'])->trim()->lower()->upperFirst();
 $f->value('newsletter')->bool();
 
 $result = $f->filter([
-    'first_name' => '  CHUCK ',
-    'first_name' => ' NORRIS  ',
+    'user' => [
+        'first_name' => '  CHUCK ',
+        'last_name' => ' NORRIS  ',
+    ],
     'newsletter' => 'yes',
 ]);
 
 var_dump($result);
 /**
- * array(3) {
- *     ["first_name"]=> string(5) "Chuck"
- *     ["last_name"]=> string(6) "Norris"
+ * array(2) {
+ *     ["user"]=> array(2) {
+ *         ["first_name"]=> string(5) "Chuck"
+ *         ["last_name"]=> string(6) "Norris"
+ *     }
  *     ["newsletter"]=> bool(true)
  * } 
  */

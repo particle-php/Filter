@@ -115,4 +115,180 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals($expected, $result);
     }
+
+    /**
+     * Test if you can filter for multiple keys
+     */
+    public function testNoChaneWithoutFilterRules()
+    {
+        $this->filter->values(['first_name', 'last_name']);
+
+        $result = $this->filter->filter([
+            'first_name' => ' CHUCK ',
+            'last_name' => ' NORRIS ',
+        ]);
+
+        $expected = [
+            'first_name' => ' CHUCK ',
+            'last_name' => ' NORRIS ',
+        ];
+
+        $this->assertEquals($expected, $result);
+    }
+
+    /**
+     * Test if you can filter for multiple keys
+     */
+    public function testNoChaneByDefault()
+    {
+        $result = $this->filter->filter([
+            'first_name' => ' CHUCK ',
+            'last_name' => ' NORRIS ',
+        ]);
+
+        $expected = [
+            'first_name' => ' CHUCK ',
+            'last_name' => ' NORRIS ',
+        ];
+
+        $this->assertEquals($expected, $result);
+    }
+
+    /**
+     * Test if you can filter sub-arrays using dot notation
+     */
+    public function testFilterAllWithSubArray()
+    {
+        $this->filter->all()->trim()->lower()->upperFirst();
+
+        $result = $this->filter->filter([
+            'username' => ' ChuckyChuck ',
+            'user' => [
+                'first_name' => ' CHUCK ',
+                'last_name' => ' NORRIS ',
+            ],
+        ]);
+
+        $expected = [
+            'username' => 'Chuckychuck',
+            'user' => [
+                'first_name' => 'Chuck',
+                'last_name' => 'Norris',
+            ],
+        ];
+
+        $this->assertEquals($expected, $result);
+    }
+
+    /**
+     * Test if you can filter sub-arrays using dot notation
+     */
+    public function testFilterSubArray()
+    {
+        $this->filter->values([
+            'user.first_name',
+            'user.last_name'
+        ])->trim()->lower()->upperFirst();
+
+        $result = $this->filter->filter([
+            'user' => [
+                'first_name' => ' CHUCK ',
+                'last_name' => ' NORRIS ',
+            ],
+        ]);
+
+        $expected = [
+            'user' => [
+                'first_name' => 'Chuck',
+                'last_name' => 'Norris',
+            ],
+        ];
+
+        $this->assertEquals($expected, $result);
+    }
+
+    /**
+     * Test if you can filter sub sub sub arrays using dot notation
+     */
+    public function testFilterSubSubSubArray()
+    {
+        $this->filter->values([
+            'contract.details.user.first_name',
+            'contract.details.user.last_name'
+        ])->trim()->lower()->upperFirst();
+
+        $result = $this->filter->filter([
+            'contract' => [
+                'details' => [
+                    'user' => [
+                        'first_name' => ' CHUCK ',
+                        'last_name' => ' NORRIS ',
+                    ],
+                ],
+            ],
+        ]);
+
+        $expected = [
+            'contract' => [
+                'details' => [
+                    'user' => [
+                        'first_name' => 'Chuck',
+                        'last_name' => 'Norris',
+                    ],
+                ],
+            ],
+        ];
+
+        $this->assertEquals($expected, $result);
+    }
+
+    /**
+     * Test if the README.md example actually works
+     */
+    public function testReadmeFilterExample()
+    {
+        $this->filter->values(['user.first_name', 'user.last_name'])->trim()->lower()->upperFirst();
+        $this->filter->value('newsletter')->bool();
+
+        $result = $this->filter->filter([
+            'user' => [
+                'first_name' => '  CHUCK ',
+                'last_name' => ' NORRIS  ',
+            ],
+            'newsletter' => 'yes',
+        ]);
+
+        $expected = [
+            'user' => [
+                'first_name' => 'Chuck',
+                'last_name' => 'Norris',
+            ],
+            'newsletter' => true
+        ];
+
+        $this->assertEquals($expected, $result);
+    }
+
+
+    /**
+     * Test if the filter works if filtered for unused keys
+     */
+    public function testFilterForUnusedSubArrayKeys()
+    {
+        $this->filter->values(['user.first_name', 'user.last_name'])->trim()->lower()->upperFirst();
+
+        $result = $this->filter->filter([
+            'user' => [
+                'first_name' => '  CHUCK ',
+            ],
+        ]);
+
+        $expected = [
+            'user' => [
+                'first_name' => 'Chuck',
+            ],
+        ];
+
+        $this->assertEquals($expected, $result);
+    }
 }

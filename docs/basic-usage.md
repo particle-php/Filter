@@ -19,7 +19,8 @@ $f = new Filter;
 ## Selecting values to filter
 
 Particle\Filter can filter specific values by array key. You can filter on either one key, a set of keys or at all
-values in the provided data.
+values in the provided data. You can target sub-array values using dot-notation (for `$array['car']['engine']`
+you would use `car.engine`).
 
 ### Filter by key
 
