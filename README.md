@@ -12,7 +12,7 @@
 ## Small usage example
 
 ```php
-$f = new Particle\Filter;
+$f = new Particle\Filter\Filter;
 
 $f->values(['user.first_name', 'user.last_name'])->trim()->lower()->upperFirst();
 $f->value('newsletter')->bool();
