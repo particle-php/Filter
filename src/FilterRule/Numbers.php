@@ -25,6 +25,6 @@ class Numbers extends FilterRule
      */
     public function filter($value)
     {
-		return preg_replace('/\D/', '', $value);
+        return preg_replace('/\D/', '', $value);
     }
 }
