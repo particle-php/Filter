@@ -181,6 +181,16 @@ class FilterResource
     {
         return $this->addRule(new FilterRule\UpperFirst);
     }
+    
+    /**
+     * Add the numbers-rule to the chain
+     *
+     * @return $this
+     */
+    public function numbers()
+    {
+        return $this->addRule(new FilterRule\Numbers);
+    }
 
     /**
      * Add a new rule to the chain
