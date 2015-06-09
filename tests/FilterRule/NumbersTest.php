@@ -21,10 +21,9 @@ class NumbersTest extends \PHPUnit_Framework_TestCase
     /**
      * @dataProvider getNumbersResults
      * @param string $value
-     * @param string $excludeTags
      * @param string $filteredValue
      */
-    public function testStripHtmlFilterRule($value, $filteredValue)
+    public function testNumbersFilterRule($value, $filteredValue)
     {
         $this->filter->value('test')->numbers();
 
