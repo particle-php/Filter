@@ -184,7 +184,7 @@ class FilterResource
     
     /**
      * Add the numbers-rule to the chain
-     * 
+     *
      * @return $this
      */
     public function numbers()
