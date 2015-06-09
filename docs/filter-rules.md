@@ -17,6 +17,7 @@ filters, take a look at the callback filter-rule, or check out "Extending the Fi
 * [trim](#trim)
 * [upper](#upper)
 * [upperFirst](#upperfirst)
+* [numbers](#numbers)
 
 ## Append
 
@@ -191,4 +192,15 @@ $f = new Filter;
 $f->value('name')->upperFirst();
 $result = $f->filter(['name' => 'rick']);
 // array(1) { ["name"]=> string(4) "Rick"
+```
+
+## Numbers
+
+Filters everything but numbers out of the value
+
+```php
+$f = new Filter;
+$f->value('name')->numbers();
+$result = $f->filter(['name' => '1a2s3']);
+// array(1) { ["name"]=> string(3) "123"
 ```
