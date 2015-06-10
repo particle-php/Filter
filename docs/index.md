@@ -18,8 +18,8 @@ $f->value('newsletter')->bool();
 
 $result = $f->filter([
     'user' => [
-        'first_name' => '  CHUCK ',
-        'last_name' => ' NORRIS  ',
+        'first_name' => '  JOHN ',
+        'last_name' => ' DOE  ',
     ],
     'newsletter' => 'yes',
 ]);
@@ -28,8 +28,8 @@ var_dump($result);
 /**
  * array(2) {
  *     ["user"]=> array(2) {
- *         ["first_name"]=> string(5) "Chuck"
- *         ["last_name"]=> string(6) "Norris"
+ *         ["first_name"]=> string(4) "John"
+ *         ["last_name"]=> string(3) "Doe"
  *     }
  *     ["newsletter"]=> bool(true)
  * } 
