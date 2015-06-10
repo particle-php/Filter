@@ -26,13 +26,13 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
         $this->filter->value('first_name')->trim();
 
         $result = $this->filter->filter([
-            'first_name' => ' rick ',
-            'last_name' => ' staaij ',
+            'first_name' => ' john ',
+            'last_name' => ' doe ',
         ]);
 
         $expected = [
-            'first_name' => 'rick',
-            'last_name' => ' staaij ',
+            'first_name' => 'john',
+            'last_name' => ' doe ',
         ];
 
         $this->assertEquals($expected, $result);
@@ -47,13 +47,13 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
         $this->filter->all()->trim();
 
         $result = $this->filter->filter([
-            'first_name' => ' rick ',
-            'last_name' => ' staaij ',
+            'first_name' => ' john ',
+            'last_name' => ' doe ',
         ]);
 
         $expected = [
-            'first_name' => 'rick',
-            'last_name' => 'staaij',
+            'first_name' => 'john',
+            'last_name' => 'doe',
         ];
 
         $this->assertEquals($expected, $result);
@@ -67,11 +67,11 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
         $this->filter->value('first_name')->trim()->lower()->upperFirst();
 
         $result = $this->filter->filter([
-            'first_name' => ' RICK ',
+            'first_name' => ' JOHN ',
         ]);
 
         $expected = [
-            'first_name' => 'Rick',
+            'first_name' => 'John',
         ];
 
         $this->assertEquals($expected, $result);
@@ -86,11 +86,11 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
         $this->filter->value('first_name')->upperFirst();
 
         $result = $this->filter->filter([
-            'first_name' => ' RICK ',
+            'first_name' => ' JOHN ',
         ]);
 
         $expected = [
-            'first_name' => 'Rick',
+            'first_name' => 'John',
         ];
 
         $this->assertEquals($expected, $result);
@@ -104,13 +104,13 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
         $this->filter->values(['first_name', 'last_name'])->trim()->lower()->upperFirst();
 
         $result = $this->filter->filter([
-            'first_name' => ' CHUCK ',
-            'last_name' => ' NORRIS ',
+            'first_name' => ' JOHN ',
+            'last_name' => ' DOE ',
         ]);
 
         $expected = [
-            'first_name' => 'Chuck',
-            'last_name' => 'Norris',
+            'first_name' => 'John',
+            'last_name' => 'Doe',
         ];
 
         $this->assertEquals($expected, $result);
@@ -124,13 +124,13 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
         $this->filter->values(['first_name', 'last_name']);
 
         $result = $this->filter->filter([
-            'first_name' => ' CHUCK ',
-            'last_name' => ' NORRIS ',
+            'first_name' => ' JOHN ',
+            'last_name' => ' DOE ',
         ]);
 
         $expected = [
-            'first_name' => ' CHUCK ',
-            'last_name' => ' NORRIS ',
+            'first_name' => ' JOHN ',
+            'last_name' => ' DOE ',
         ];
 
         $this->assertEquals($expected, $result);
@@ -142,13 +142,13 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
     public function testNoChaneByDefault()
     {
         $result = $this->filter->filter([
-            'first_name' => ' CHUCK ',
-            'last_name' => ' NORRIS ',
+            'first_name' => ' JOHN ',
+            'last_name' => ' DOE ',
         ]);
 
         $expected = [
-            'first_name' => ' CHUCK ',
-            'last_name' => ' NORRIS ',
+            'first_name' => ' JOHN ',
+            'last_name' => ' DOE ',
         ];
 
         $this->assertEquals($expected, $result);
@@ -162,18 +162,18 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
         $this->filter->all()->trim()->lower()->upperFirst();
 
         $result = $this->filter->filter([
-            'username' => ' ChuckyChuck ',
+            'username' => ' JohnyJohn ',
             'user' => [
-                'first_name' => ' CHUCK ',
-                'last_name' => ' NORRIS ',
+                'first_name' => ' JOHN ',
+                'last_name' => ' DOE ',
             ],
         ]);
 
         $expected = [
-            'username' => 'Chuckychuck',
+            'username' => 'Johnyjohn',
             'user' => [
-                'first_name' => 'Chuck',
-                'last_name' => 'Norris',
+                'first_name' => 'John',
+                'last_name' => 'Doe',
             ],
         ];
 
@@ -192,15 +192,15 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
 
         $result = $this->filter->filter([
             'user' => [
-                'first_name' => ' CHUCK ',
-                'last_name' => ' NORRIS ',
+                'first_name' => ' JOHN ',
+                'last_name' => ' DOE ',
             ],
         ]);
 
         $expected = [
             'user' => [
-                'first_name' => 'Chuck',
-                'last_name' => 'Norris',
+                'first_name' => 'John',
+                'last_name' => 'Doe',
             ],
         ];
 
@@ -221,8 +221,8 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
             'contract' => [
                 'details' => [
                     'user' => [
-                        'first_name' => ' CHUCK ',
-                        'last_name' => ' NORRIS ',
+                        'first_name' => ' JOHN ',
+                        'last_name' => ' DOE ',
                     ],
                 ],
             ],
@@ -232,8 +232,8 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
             'contract' => [
                 'details' => [
                     'user' => [
-                        'first_name' => 'Chuck',
-                        'last_name' => 'Norris',
+                        'first_name' => 'John',
+                        'last_name' => 'Doe',
                     ],
                 ],
             ],
@@ -252,16 +252,16 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
 
         $result = $this->filter->filter([
             'user' => [
-                'first_name' => '  CHUCK ',
-                'last_name' => ' NORRIS  ',
+                'first_name' => '  JOHN ',
+                'last_name' => ' DOE  ',
             ],
             'newsletter' => 'yes',
         ]);
 
         $expected = [
             'user' => [
-                'first_name' => 'Chuck',
-                'last_name' => 'Norris',
+                'first_name' => 'John',
+                'last_name' => 'Doe',
             ],
             'newsletter' => true
         ];
@@ -279,13 +279,13 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
 
         $result = $this->filter->filter([
             'user' => [
-                'first_name' => '  CHUCK ',
+                'first_name' => '  JOHN ',
             ],
         ]);
 
         $expected = [
             'user' => [
-                'first_name' => 'Chuck',
+                'first_name' => 'John',
             ],
         ];
 
