@@ -139,7 +139,7 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
     /**
      * Test if you can filter for multiple keys
      */
-    public function testNoChaneByDefault()
+    public function testNoChangeByDefault()
     {
         $result = $this->filter->filter([
             'first_name' => ' JOHN ',
