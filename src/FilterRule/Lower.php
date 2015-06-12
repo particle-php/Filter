@@ -25,6 +25,6 @@ class Lower extends FilterRule
      */
     public function filter($value)
     {
-        return strtolower($value);
+        return mb_strtolower($value);
     }
 }

@@ -14,6 +14,19 @@ namespace Particle\Filter;
 abstract class FilterRule
 {
     /**
+     * @var string|null
+     */
+    protected $encodingFormat;
+
+    /**
+     * @param string|null $encodingFormat
+     */
+    public function setEncodingFormat($encodingFormat)
+    {
+        $this->encodingFormat = $encodingFormat;
+    }
+
+    /**
      * @param mixed $value
      * @return mixed
      */

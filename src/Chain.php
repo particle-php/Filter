@@ -40,10 +40,13 @@ class Chain
      * Add a new rule to the chain
      *
      * @param FilterRule $rule
+     * @param string|null $encodingFormat
      * @return $this
      */
-    public function addRule(FilterRule $rule)
+    public function addRule(FilterRule $rule, $encodingFormat)
     {
+        $rule->setEncodingFormat($encodingFormat);
+
         $this->rules[] = $rule;
 
         return $this;

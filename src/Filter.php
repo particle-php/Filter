@@ -28,6 +28,11 @@ class Filter
     protected $data = [];
 
     /**
+     * @var string|null
+     */
+    protected $encodingFormat = null;
+
+    /**
      * @var Chain
      */
     protected $globalChain = null;
@@ -81,6 +86,16 @@ class Filter
     }
 
     /**
+     * Set the encoding format for all string manipulating filter-rules
+     *
+     * @param $encodingFormat
+     */
+    public function setEncodingFormat($encodingFormat)
+    {
+        $this->encodingFormat = $encodingFormat;
+    }
+
+    /**
      * Set a filter rule on a chain
      *
      * @param FilterRule $rule
@@ -88,7 +103,7 @@ class Filter
      */
     public function addFilterRule(FilterRule $rule, $key = null)
     {
-        $this->getChain($key)->addRule($rule);
+        $this->getChain($key)->addRule($rule, $this->encodingFormat);
     }
 
     /**
@@ -121,7 +136,12 @@ class Filter
     {
         foreach ($this->chains as $key => $chain) {
             if ($this->data->has($key)) {
-                $this->data->set($key, $chain->filter($this->data->get($key)));
+                $this->data->set(
+                    $key,
+                    $chain->filter(
+                        $this->data->get($key)
+                    )
+                );
             }
         }
     }
