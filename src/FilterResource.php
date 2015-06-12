@@ -35,6 +35,16 @@ class FilterResource
     }
 
     /**
+     * Add the alphabetic numeric rule to the chain
+     *
+     * @return $this
+     */
+    public function alnum()
+    {
+        return $this->addRule(new FilterRule\Alnum);
+    }
+
+    /**
      * Add append filter-rule to the chain
      *
      * @param string $append
@@ -86,6 +96,16 @@ class FilterResource
     }
 
     /**
+     * Add the letters-rule to the chain
+     *
+     * @return $this
+     */
+    public function letters()
+    {
+        return $this->addRule(new FilterRule\Letters);
+    }
+
+    /**
      * Add lower filter-rule to the chain
      *
      * @return $this
@@ -93,6 +113,16 @@ class FilterResource
     public function lower()
     {
         return $this->addRule(new FilterRule\Lower);
+    }
+
+    /**
+     * Add the numbers-rule to the chain
+     *
+     * @return $this
+     */
+    public function numbers()
+    {
+        return $this->addRule(new FilterRule\Numbers);
     }
 
     /**

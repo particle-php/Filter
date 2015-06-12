@@ -8,9 +8,13 @@ matrix:
       env: SCRUTINIZER_REPORT=true
     - php: 7.0
 
-before_script:
+before_install:
   - composer self-update
+
+install:
   - composer install
+
+before_script:
   - phpenv rehash
 
 script:

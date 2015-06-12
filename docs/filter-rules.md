@@ -3,12 +3,15 @@
 Particle\Filter tries to provide you the most common filters. An overview is listed below. If you want to add custom
 filters, take a look at the callback filter-rule, or check out "Extending the Filter" in the menu.
 
+* [alnum](#alnum)
 * [append](#append)
 * [bool](#bool)
 * [callback](#callback)
 * [float](#float)
 * [int](#int)
+* [letters](#letters)
 * [lower](#lower)
+* [numbers](#numbers)
 * [prepend](#prepend)
 * [regexReplace](#regexreplace)
 * [replace](#replace)
@@ -18,6 +21,17 @@ filters, take a look at the callback filter-rule, or check out "Extending the Fi
 * [upper](#upper)
 * [upperFirst](#upperfirst)
 
+## Alnum
+
+Filters everything but alphabetic numeric characters out of the value
+
+```php
+$f = new Filter;
+$f->value('name')->alnum();
+$result = $f->filter(['name' => '1!23-abc?']);
+// array(1) { ["name"]=> string(6) "123abc"
+```
+
 ## Append
 
 Appends a value to the end of the provided value.
@@ -25,8 +39,8 @@ Appends a value to the end of the provided value.
 ```php
 $f = new Filter;
 $f->value('name')->append(' is your name.');
-$result = $f->filter(['name' => 'Rick']);
-// array(1) { ["name"]=> string(18) "Rick is your name."
+$result = $f->filter(['name' => 'John']);
+// array(1) { ["name"]=> string(18) "John is your name."
 ```
 
 ## Bool
@@ -50,8 +64,8 @@ $f = new Filter;
 $f->value('name')->callback(function($value) {
     return '<strong>' . $value . '</strong>';
 });
-$result = $f->filter(['name' => 'Rick']);
-// array(1) { ["name"]=> string(21) "<strong>Rick</strong>"
+$result = $f->filter(['name' => 'John']);
+// array(1) { ["name"]=> string(21) "<strong>John</strong>"
 ```
 
 ## Float
@@ -76,6 +90,17 @@ $result = $f->filter(['value' => '123.123']);
 // array(1) { ["value"]=> int(123) } 
 ```
 
+## Letters
+
+Filters everything but letters out of the value
+
+```php
+$f = new Filter;
+$f->value('name')->letters();
+$result = $f->filter(['name' => 'john99!']);
+// array(1) { ["name"]=> string(4) "john"
+```
+
 ## Lower
 
 Lowercase the full value.
@@ -83,8 +108,19 @@ Lowercase the full value.
 ```php
 $f = new Filter;
 $f->value('name')->lower();
-$result = $f->filter(['name' => 'RICK']);
-// array(1) { ["name"]=> string(4) "rick"
+$result = $f->filter(['name' => 'JOHN']);
+// array(1) { ["name"]=> string(4) "john"
+```
+
+## Numbers
+
+Filters everything but numbers out of the value
+
+```php
+$f = new Filter;
+$f->value('name')->numbers();
+$result = $f->filter(['name' => '1a2s3']);
+// array(1) { ["name"]=> string(3) "123"
 ```
 
 ## Prepend
@@ -94,8 +130,8 @@ Appends a value to the end of the provided value.
 ```php
 $f = new Filter;
 $f->value('name')->prepend('Hello ');
-$result = $f->filter(['name' => 'Rick']);
-// array(1) { ["name"]=> string(10) "Hello Rick"
+$result = $f->filter(['name' => 'John']);
+// array(1) { ["name"]=> string(10) "Hello John"
 ```
 
 ## RegexReplace
@@ -116,8 +152,8 @@ Replace a needle for a replacement in the value.
 ```php
 $f = new Filter;
 $f->value('value')->replace(' ', '-');
-$result = $f->filter(['name' => 'hello im rick']);
-// array(1) { ["name"]=> string(13) "hello-im-rick" }
+$result = $f->filter(['name' => 'hello im john']);
+// array(1) { ["name"]=> string(13) "hello-im-john" }
 ```
 
 ## String
@@ -138,8 +174,8 @@ Strip all tags from the value.
 ```php
 $f = new Filter;
 $f->value('name')->stripHtml();
-$result = $f->filter(['name' => '<p><strong>Rick</strong></p>']);
-// array(1) { ["name"]=> string(4) "Rick"
+$result = $f->filter(['name' => '<p><strong>John</strong></p>']);
+// array(1) { ["name"]=> string(4) "John"
 ```
 
 Exclude some tags:
@@ -147,8 +183,8 @@ Exclude some tags:
 ```php
 $f = new Filter;
 $f->value('name')->stripHtml('<strong>');
-$result = $f->filter(['name' => '<p><strong>Rick</strong></p>']);
-// array(1) { ["name"]=> string(21) "<strong>Rick</strong>"
+$result = $f->filter(['name' => '<p><strong>John</strong></p>']);
+// array(1) { ["name"]=> string(21) "<strong>John</strong>"
 ```
 
 ## Trim
@@ -158,8 +194,8 @@ Strip all 'white-space' characters from the beginning and end of the string.
 ```php
 $f = new Filter;
 $f->value('name')->trim();
-$result = $f->filter(['name' => ' Rick ']);
-// array(1) { ["name"]=> string(4) "Rick"
+$result = $f->filter(['name' => ' John ']);
+// array(1) { ["name"]=> string(4) "John"
 ```
 
 You can also provide the specific characters that you want to strip.
@@ -167,8 +203,8 @@ You can also provide the specific characters that you want to strip.
 ```php
 $f = new Filter;
 $f->value('name')->trim("\s");
-$result = $f->filter(['name' => ' Rick ']);
-// array(1) { ["name"]=> string(4) "Rick"
+$result = $f->filter(['name' => ' John ']);
+// array(1) { ["name"]=> string(4) "John"
 ```
 
 ## Upper
@@ -178,8 +214,8 @@ Uppercase the full value.
 ```php
 $f = new Filter;
 $f->value('name')->upper();
-$result = $f->filter(['name' => 'rick']);
-// array(1) { ["name"]=> string(4) "RICK"
+$result = $f->filter(['name' => 'john']);
+// array(1) { ["name"]=> string(4) "JOHN"
 ```
 
 ## UpperFirst
@@ -189,6 +225,6 @@ Uppercase the first character of the value.
 ```php
 $f = new Filter;
 $f->value('name')->upperFirst();
-$result = $f->filter(['name' => 'rick']);
-// array(1) { ["name"]=> string(4) "Rick"
+$result = $f->filter(['name' => 'john']);
+// array(1) { ["name"]=> string(4) "John"
 ```
