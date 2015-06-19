@@ -35,6 +35,27 @@ class LowerTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @dataProvider getLowerResults
+     * @param string $value
+     * @param string $filteredValue
+     */
+    public function testLowerFilterRuleMultiByte($value, $filteredValue)
+    {
+        $value = mb_convert_encoding($value, 'utf-16', 'utf-8');
+        $filteredValue = mb_convert_encoding($filteredValue, 'utf-16', 'utf-8');
+
+        $this->filter->setEncodingFormat('utf-8');
+
+        $this->filter->value('test')->lower();
+
+        $result = $this->filter->filter([
+            'test' => $value
+        ]);
+
+        $this->assertEquals($result['test'], $filteredValue);
+    }
+
+    /**
      * @return array
      */
     public function getLowerResults()

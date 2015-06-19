@@ -18,14 +18,14 @@ use Particle\Filter\Value\Container;
 class Filter
 {
     /**
-     * @var Chain[]
+     * @var array<string, Chain>
      */
     protected $chains = [];
 
     /**
      * @var Container
      */
-    protected $data = [];
+    protected $data;
 
     /**
      * @var string|null
@@ -86,9 +86,11 @@ class Filter
     }
 
     /**
-     * Set the encoding format for all string manipulating filter-rules
+     * Set the encoding format for all string manipulating filter-rules.
+     * Note: You should set the encoding format before you add filter-rules to your filter, otherwise the
+     * encoding format would not be set on the values added before the encoding format was set.
      *
-     * @param $encodingFormat
+     * @param string $encodingFormat
      */
     public function setEncodingFormat($encodingFormat)
     {

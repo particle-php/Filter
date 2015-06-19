@@ -25,6 +25,10 @@ class Lower extends FilterRule
      */
     public function filter($value)
     {
-        return mb_strtolower($value);
+        if ($this->encodingFormat !== null) {
+            return mb_strtolower($value, $this->encodingFormat);
+        }
+
+        return strtolower($value);
     }
 }
