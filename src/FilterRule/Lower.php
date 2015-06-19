@@ -29,6 +29,6 @@ class Lower extends FilterRule
             return mb_strtolower($value, $this->encodingFormat);
         }
 
-        return strtolower($value);
+        return mb_strtolower($value);
     }
 }
