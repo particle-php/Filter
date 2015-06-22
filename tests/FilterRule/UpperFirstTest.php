@@ -22,9 +22,14 @@ class UpperFirstTest extends \PHPUnit_Framework_TestCase
      * @dataProvider getUpperFirstResults
      * @param string $value
      * @param string $filteredValue
+     * @param string|null $encodingFormat
      */
-    public function testUpperFirstFilterRule($value, $filteredValue)
+    public function testUpperFirstFilterRule($value, $filteredValue, $encodingFormat)
     {
+        if ($encodingFormat !== null) {
+            $this->filter->setEncodingFormat($encodingFormat);
+        }
+
         $this->filter->value('test')->upperFirst();
 
         $result = $this->filter->filter([
@@ -40,11 +45,12 @@ class UpperFirstTest extends \PHPUnit_Framework_TestCase
     public function getUpperFirstResults()
     {
         return [
-            ['text is low', 'Text is low'],
-            ['', ''],
-            ['lol', 'Lol'],
-            ['l0l', 'L0l'],
-            ['~!lolz!~', '~!lolz!~'],
+            ['', '', null],
+            ['text is low', 'Text is low', null],
+            ['l0l', 'L0l', null],
+            ['~!lolz!~', '~!lolz!~', null],
+            ['çon est tombé', 'Çon est tombé', 'utf-8'],
+            ['τάχιστη αλώπηξ βαφής ψημένη γη', 'Τάχιστη αλώπηξ βαφής ψημένη γη', 'utf-8'],
         ];
     }
 }

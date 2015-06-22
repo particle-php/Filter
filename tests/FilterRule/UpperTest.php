@@ -45,9 +45,8 @@ class UpperTest extends \PHPUnit_Framework_TestCase
     public function getUpperResults()
     {
         return [
-            ['text is up', 'TEXT IS UP', null],
             ['', '', null],
-            ['lol', 'LOL', null],
+            ['text is up', 'TEXT IS UP', null],
             ['l0l', 'L0L', null],
             ['~!LoLz!~', '~!LOLZ!~', null],
             ['ce garçon est tombé', 'CE GARÇON EST TOMBÉ', 'utf-8'],
