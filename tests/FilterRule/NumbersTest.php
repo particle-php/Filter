@@ -31,7 +31,7 @@ class NumbersTest extends \PHPUnit_Framework_TestCase
             'test' => $value
         ]);
 
-        $this->assertEquals($result['test'], $filteredValue);
+        $this->assertEquals($filteredValue, $result['test']);
     }
 
     /**
