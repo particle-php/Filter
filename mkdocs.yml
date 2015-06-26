@@ -6,3 +6,4 @@ pages:
 - [basic-usage.md, Basic usage]
 - [filter-rules.md, Filter-rules]
 - [extending.md, Extending the Filter]
+- [multibyte-encoding.md, Multibyte encoding]
