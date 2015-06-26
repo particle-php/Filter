@@ -33,7 +33,7 @@ class ReplaceTest extends \PHPUnit_Framework_TestCase
             'test' => $value
         ]);
 
-        $this->assertEquals($result['test'], $filteredValue);
+        $this->assertEquals($filteredValue, $result['test']);
     }
 
     /**
@@ -46,6 +46,7 @@ class ReplaceTest extends \PHPUnit_Framework_TestCase
             ['no spaces please', ' ', '-', 'no-spaces-please'],
             ['ror', 'r', 'l', 'lol'],
             ['no  spaces please', ['  ', ' '], '-', 'no-spaces-please'],
+            ['漢字はユニコード', 'は', 'Foo', '漢字Fooユニコード'],
         ];
     }
 }

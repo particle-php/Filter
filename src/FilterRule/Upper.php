@@ -25,6 +25,10 @@ class Upper extends FilterRule
      */
     public function filter($value)
     {
-        return strtoupper($value);
+        if ($this->encodingFormat !== null) {
+            return mb_strtoupper($value, $this->encodingFormat);
+        }
+
+        return mb_strtoupper($value);
     }
 }

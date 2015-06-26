@@ -3,7 +3,7 @@ namespace Particle\Tests\Filter\FilterRule;
 
 use Particle\Filter\Filter;
 
-class RegexReplaceTest extends \PHPUnit_Framework_TestCase
+class EncodeTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @var Filter
@@ -21,13 +21,13 @@ class RegexReplaceTest extends \PHPUnit_Framework_TestCase
     /**
      * @dataProvider getRegexReplaceResults
      * @param string $value
-     * @param string $searchRegex
-     * @param string $replace
+     * @param string|null $toFormat
+     * @param string|null $fromFormat
      * @param string $filteredValue
      */
-    public function testRegexReplaceFilterRule($value, $searchRegex, $replace, $filteredValue)
+    public function testRegexReplaceFilterRule($value, $toFormat, $fromFormat, $filteredValue)
     {
-        $this->filter->value('test')->regexReplace($searchRegex, $replace);
+        $this->filter->value('test')->encode($toFormat, $fromFormat);
 
         $result = $this->filter->filter([
             'test' => $value
@@ -42,8 +42,11 @@ class RegexReplaceTest extends \PHPUnit_Framework_TestCase
     public function getRegexReplaceResults()
     {
         return [
-            ['!!!l!#o?*l&&', '/[^a-zA-Z0-9\-]/', '', 'lol'],
-            ['no spaces please', '/[\s]/', '-', 'no-spaces-please'],
+            ['', null, null, ''],
+            ['hello', 'UTF-8', null, 'hello'],
+            ['hello', 'Base64', null, 'aGVsbG8='],
+            ['hello', 'Base64', 'UTF-8', 'aGVsbG8='],
+            ['aGVsbG8=', 'UTF-8', 'Base64', 'hello'],
         ];
     }
 }

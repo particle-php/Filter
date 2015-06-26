@@ -22,16 +22,21 @@ class LowerTest extends \PHPUnit_Framework_TestCase
      * @dataProvider getLowerResults
      * @param string $value
      * @param string $filteredValue
+     * @param string|null $encodingFormat
      */
-    public function testLowerFilterRule($value, $filteredValue)
+    public function testLowerFilterRule($value, $filteredValue, $encodingFormat)
     {
+        if ($encodingFormat !== null) {
+            $this->filter->setEncodingFormat($encodingFormat);
+        }
+
         $this->filter->value('test')->lower();
 
         $result = $this->filter->filter([
             'test' => $value
         ]);
 
-        $this->assertEquals($result['test'], $filteredValue);
+        $this->assertEquals($filteredValue, $result['test']);
     }
 
     /**
@@ -40,11 +45,13 @@ class LowerTest extends \PHPUnit_Framework_TestCase
     public function getLowerResults()
     {
         return [
-            ['text is low', 'text is low'],
-            ['', ''],
-            ['LOL', 'lol'],
-            ['L0L', 'l0l'],
-            ['~!LoLz!~', '~!lolz!~'],
+            ['text is low', 'text is low', null],
+            ['', '', null],
+            ['LOL', 'lol', null],
+            ['L0L', 'l0l', null],
+            ['~!LoLz!~', '~!lolz!~', null],
+            ['CE GARÇON EST TOMBÉ', 'ce garçon est tombé', 'utf-8'],
+            ['Τάχιστη αλώπηξ βαφής ψημένη γη', 'τάχιστη αλώπηξ βαφής ψημένη γη', 'utf-8'],
         ];
     }
 }

@@ -7,6 +7,7 @@ filters, take a look at the callback filter-rule, or check out "Extending the Fi
 * [append](#append)
 * [bool](#bool)
 * [callback](#callback)
+* [encode](#encode)
 * [float](#float)
 * [int](#int)
 * [letters](#letters)
@@ -67,6 +68,20 @@ $f->value('name')->callback(function($value) {
 $result = $f->filter(['name' => 'John']);
 // array(1) { ["name"]=> string(21) "<strong>John</strong>"
 ```
+
+## Encode
+
+Makes sure that the given value is in a specific encoding format.
+
+```php
+$f = new Filter;
+$f->value('text')->encode('Base64', 'UTF-8');
+$result = $f->filter(['text' => 'hello']);
+// array(1) { ["text"]=> string(8) "aGVsbG8="
+```
+
+if `$f->setEncodingFormat()` is set, you don't need to provide any parameters as the value encoding format will
+be set to that.
 
 ## Float
 

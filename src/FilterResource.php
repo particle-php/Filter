@@ -35,7 +35,7 @@ class FilterResource
     }
 
     /**
-     * Add the alphabetic numeric rule to the chain
+     * Results rule that returns alphabetic numeric characters from the value
      *
      * @return $this
      */
@@ -45,7 +45,7 @@ class FilterResource
     }
 
     /**
-     * Add append filter-rule to the chain
+     * Results rule that returns the value appended with a given value
      *
      * @param string $append
      * @return Chain
@@ -56,7 +56,7 @@ class FilterResource
     }
 
     /**
-     * Add bool filter-rule to the chain
+     * Results rule that returns a casted boolean
      *
      * @return $this
      */
@@ -66,8 +66,9 @@ class FilterResource
     }
 
     /**
-     * Add callback filter-rule to the chain
+     * Returns rule that returns a value modified by a callable closure
      *
+     * @param callable $callable
      * @return $this
      */
     public function callback(callable $callable)
@@ -76,7 +77,19 @@ class FilterResource
     }
 
     /**
-     * Add float filter-rule to the chain
+     * Returns rule that returns an value in a specific encoding format
+     *
+     * @param string|null $toEncodingFormat
+     * @param string|null $fromEncodingFormat
+     * @return FilterResource
+     */
+    public function encode($toEncodingFormat = null, $fromEncodingFormat = null)
+    {
+        return $this->addRule(new FilterRule\Encode($toEncodingFormat, $fromEncodingFormat));
+    }
+
+    /**
+     * Returns rule that results a casted float
      *
      * @return $this
      */
@@ -86,7 +99,7 @@ class FilterResource
     }
 
     /**
-     * Add int filter-rule to the chain
+     * Returns rule that results a casted int
      *
      * @return $this
      */
@@ -96,7 +109,7 @@ class FilterResource
     }
 
     /**
-     * Add the letters-rule to the chain
+     * Returns rule that results all letters of a value
      *
      * @return $this
      */
@@ -106,7 +119,7 @@ class FilterResource
     }
 
     /**
-     * Add lower filter-rule to the chain
+     * Returns rule that results a lower-cased value
      *
      * @return $this
      */
@@ -116,7 +129,7 @@ class FilterResource
     }
 
     /**
-     * Add the numbers-rule to the chain
+     * Returns rule that results all numbers of a value
      *
      * @return $this
      */
@@ -126,7 +139,7 @@ class FilterResource
     }
 
     /**
-     * Add prepend filter-rule to the chain
+     * Results rule that returns the value prepended with a given value
      *
      * @param string $prepend
      * @return Chain
@@ -137,7 +150,7 @@ class FilterResource
     }
 
     /**
-     * Add replace filter-rule to the chain
+     * Results rule that returns a value with replacements by a regex
      *
      * @param string $searchRegex
      * @param string $replace
@@ -149,7 +162,7 @@ class FilterResource
     }
 
     /**
-     * Add replace filter-rule to the chain
+     * Results rule that returns a value with replacements
      *
      * @param mixed $search
      * @param mixed $replace
@@ -161,7 +174,7 @@ class FilterResource
     }
 
     /**
-     * Add string filter-rule to the chain
+     * Returns rule that results a casted string
      *
      * @return $this
      */
@@ -171,7 +184,7 @@ class FilterResource
     }
 
     /**
-     * Add stripHtml filter-rule to the chain
+     * Results rule that results a html-stripped value
      *
      * @param null|string $excludeTags
      * @return $this
@@ -182,7 +195,7 @@ class FilterResource
     }
 
     /**
-     * Add trim filter-rule to the chain
+     * Returns rule that results a trimmed value
      *
      * @param string|null $characters
      * @return $this
@@ -193,7 +206,7 @@ class FilterResource
     }
 
     /**
-     * Add upper filter-rule to the chain
+     * Results rule that returns an upper-cased value
      *
      * @return $this
      */
@@ -203,7 +216,7 @@ class FilterResource
     }
 
     /**
-     * Add upper-first filter-rule to the chain
+     * Returns rule that results a value starting with a upper-cased character
      *
      * @return $this
      */

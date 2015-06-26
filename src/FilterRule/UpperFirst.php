@@ -25,6 +25,14 @@ class UpperFirst extends FilterRule
      */
     public function filter($value)
     {
-        return ucfirst($value);
+        if ($this->encodingFormat !== null) {
+            $firstChar = mb_substr($value, 0, 1, $this->encodingFormat);
+            $rest = mb_substr($value, 1, null, $this->encodingFormat);
+            return mb_strtoupper($firstChar, $this->encodingFormat) . $rest;
+        }
+
+        $firstChar = mb_substr($value, 0, 1);
+        $rest = mb_substr($value, 1);
+        return mb_strtoupper($firstChar) . $rest;
     }
 }
