@@ -9,35 +9,13 @@ Overwriting the Filter itself is quite simple:
 ```php
 use Particle\Filter\Filter;
 
+/**
+ * @method MyFilterResource value()
+ * @method MyFilterResource values()
+ * @method MyFilterResource all()
+ */
 class MyFilter extends Filter
 {
-    /**
-     * {@inheritdoc}
-     * @return MyFilterResource
-     */
-    public function value($key)
-    {
-        return $this->getFilterResource($key);
-    }
-
-    /**
-     * {@inheritdoc}
-     * @return MyFilterResource
-     */
-    public function values(array $keys)
-    {
-        return $this->getFilterResource($keys);
-    }
-
-    /**
-     * {@inheritdoc}
-     * @return MyFilterResource
-     */
-    public function all()
-    {
-        return $this->getFilterResource();
-    }
-
     /**
      * {@inheritdoc}
      * @return MyFilterResource
