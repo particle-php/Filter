@@ -129,6 +129,16 @@ class FilterResource
     }
 
     /**
+     * Returns rule that results a value starting with a lower-cased character
+     *
+     * @return $this
+     */
+    public function lowerFirst()
+    {
+        return $this->addRule(new FilterRule\LowerFirst);
+    }
+
+    /**
      * Returns rule that results all numbers of a value
      *
      * @return $this

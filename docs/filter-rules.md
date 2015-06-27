@@ -12,6 +12,7 @@ filters, take a look at the callback filter-rule, or check out "Extending the Fi
 * [int](#int)
 * [letters](#letters)
 * [lower](#lower)
+* [lowerFirst](#lowerfirst)
 * [numbers](#numbers)
 * [prepend](#prepend)
 * [regexReplace](#regexreplace)
@@ -125,6 +126,17 @@ $f = new Filter;
 $f->value('name')->lower();
 $result = $f->filter(['name' => 'JOHN']);
 // array(1) { ["name"]=> string(4) "john"
+```
+
+## LowerFirst
+
+Lowercase the first character of the value.
+
+```php
+$f = new Filter;
+$f->value('name')->lowerFirst();
+$result = $f->filter(['name' => 'FooBar']);
+// array(1) { ["name"]=> string(4) "fooBar"
 ```
 
 ## Numbers
