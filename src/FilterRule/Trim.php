@@ -40,6 +40,10 @@ class Trim extends FilterRule
      */
     public function filter($value)
     {
+        if (is_null($value)) {
+            return $value;
+        }
+
         if ($this->characters === null) {
             return trim($value);
         }
