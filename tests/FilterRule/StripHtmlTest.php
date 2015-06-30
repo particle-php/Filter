@@ -32,7 +32,7 @@ class StripHtmlTest extends \PHPUnit_Framework_TestCase
             'test' => $value
         ]);
 
-        $this->assertEquals($filteredValue, $result['test']);
+        $this->assertSame($filteredValue, $result['test']);
     }
 
     /**
@@ -44,6 +44,7 @@ class StripHtmlTest extends \PHPUnit_Framework_TestCase
             ['', '', ''],
             ['<p><strong>t</strong>ext</p>', null, 'text'],
             ['<p><strong>t</strong>ext</p>', '<p>', '<p>text</p>'],
+            [null, null, null],
         ];
     }
 }

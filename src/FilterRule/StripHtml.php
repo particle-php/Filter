@@ -40,6 +40,10 @@ class StripHtml extends FilterRule
      */
     public function filter($value)
     {
+        if ($value === null) {
+            return $value;
+        }
+
         return strip_tags($value, $this->excludeTags);
     }
 }

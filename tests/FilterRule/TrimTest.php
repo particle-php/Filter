@@ -36,7 +36,7 @@ class TrimTest extends \PHPUnit_Framework_TestCase
             'test' => $value
         ]);
 
-        $this->assertEquals($filteredValue, $result['test']);
+        $this->assertSame($filteredValue, $result['test']);
     }
 
     /**
@@ -54,6 +54,7 @@ class TrimTest extends \PHPUnit_Framework_TestCase
             ['   abc      ', 'abc', null],
             ['  !~! ', '!~!', null],
             ['	 tabtab 	', ' tabtab ', "\t"],
+            [null, null, null],
         ];
     }
 }
