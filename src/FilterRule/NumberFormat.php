@@ -41,7 +41,7 @@ class NumberFormat extends FilterRule
      */
     public function __construct($decimals, $decimalPoint, $thousandSeperator)
     {
-        $this->decimals = $decimals;
+        $this->decimals = intval($decimals);
         $this->decimalPoint = $decimalPoint;
         $this->thousandSeperator = $thousandSeperator;
     }
