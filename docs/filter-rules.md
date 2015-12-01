@@ -12,6 +12,7 @@ filters, take a look at the callback filter-rule, or check out "Extending the Fi
 * [int](#int)
 * [letters](#letters)
 * [lower](#lower)
+* [numberFormat](numberformat)
 * [numbers](#numbers)
 * [prepend](#prepend)
 * [regexReplace](#regexreplace)
@@ -126,6 +127,25 @@ $f->value('name')->lower();
 $result = $f->filter(['name' => 'JOHN']);
 // array(1) { ["name"]=> string(4) "john"
 ```
+
+## NumberFormat
+
+Formats the numbers according to the configuration
+
+```php
+$f = new Filter;
+$f->all()->numberFormat(2, '.', '');
+$result = $f->filter([
+    'price' => 5,
+    'discount' => 2.92847,
+]);
+/**
+ * array(2) {
+ *     ["price"]=> string(4) "5.00"
+ *     ["discount"]=> string(4) "2.93"
+ * } 
+ */
+ ```
 
 ## Numbers
 
