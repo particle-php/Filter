@@ -134,7 +134,7 @@ class FilterResource
      * @param int $decimals
      * @param string $decimalPoint
      * @param string $thousandSeperator
-     * @return FilterResource
+     * @return $this
      */
     public function numberFormat($decimals, $decimalPoint, $thousandSeperator)
     {
