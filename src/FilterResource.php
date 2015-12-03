@@ -129,6 +129,19 @@ class FilterResource
     }
 
     /**
+     * Returns rule that formats numbers
+     *
+     * @param int $decimals
+     * @param string $decimalPoint
+     * @param string $thousandSeperator
+     * @return $this
+     */
+    public function numberFormat($decimals, $decimalPoint, $thousandSeperator)
+    {
+        return $this->addRule(new FilterRule\NumberFormat($decimals, $decimalPoint, $thousandSeperator));
+    }
+
+    /**
      * Returns rule that results all numbers of a value
      *
      * @return $this
