@@ -19,11 +19,24 @@ abstract class FilterRule
     protected $encodingFormat;
 
     /**
+     * @var bool
+     */
+    protected $allowEmpty = false;
+
+    /**
      * @param string|null $encodingFormat
      */
     public function setEncodingFormat($encodingFormat)
     {
         $this->encodingFormat = $encodingFormat;
+    }
+
+    /**
+     * @return bool
+     */
+    public function allowEmpty()
+    {
+        return $this->allowEmpty;
     }
 
     /**
