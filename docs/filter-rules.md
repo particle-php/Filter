@@ -7,6 +7,7 @@ filters, take a look at the callback filter-rule, or check out "Extending the Fi
 * [append](#append)
 * [bool](#bool)
 * [callback](#callback)
+* [defaults](#defaults)
 * [encode](#encode)
 * [float](#float)
 * [int](#int)
@@ -68,6 +69,17 @@ $f->value('name')->callback(function($value) {
 });
 $result = $f->filter(['name' => 'John']);
 // array(1) { ["name"]=> string(21) "<strong>John</strong>"
+```
+
+## Defaults
+
+When there is no data present for a given value key, you can default to a given value.
+
+```php
+$f = new Filter;
+$f->value('name')->defaults('Annonymous');
+$result = $f->filter([]); // Note: no name is given
+// array(1) { ["name"]=> string(10) "Annonymous"
 ```
 
 ## Encode
