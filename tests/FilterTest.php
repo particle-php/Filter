@@ -291,4 +291,16 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals($expected, $result);
     }
+
+    /**
+     * Make sure that a default is set after multiple filter rules are set
+     */
+    public function testDefaultIsSetAfterOtherFilterRules()
+    {
+        $this->filter->value('test')->trim()->lower()->defaults('test');
+
+        $result = $this->filter->filter([]);
+
+        $this->assertEquals(['test' => 'test'], $result);
+    }
 }

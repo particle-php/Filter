@@ -77,6 +77,17 @@ class FilterResource
     }
 
     /**
+     * Returns rule that defaults a given value if the data key was not provided
+     *
+     * @param mixed $defaultValue
+     * @return $this
+     */
+    public function defaults($defaultValue)
+    {
+        return $this->addRule(new FilterRule\Defaults($defaultValue));
+    }
+
+    /**
      * Returns rule that returns an value in a specific encoding format
      *
      * @param string|null $toEncodingFormat
