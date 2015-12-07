@@ -37,11 +37,21 @@ var_dump($result);
  */
 ```
 
-## Features
+## Functional features
 
-* Filter an array of values
-* Get a cleaned array after filtering
-* [Quite some filter-rules are provided](http://filter.particle-php.com/en/latest/filter-rules/)
+- Filter an array of values
+- Get a cleaned array after filtering
+- [A large set of available filters](http://filter.particle-php.com/en/latest/filter-rules/)
+- Ability to set default values if nothing is provided
+- Ability to extend the filter to add your own custom filter rules
+
+## Non functional features
+
+- Easy to write (IDE auto-completion for easy development)
+- Easy to read (improves peer review)
+- Fully documented: [filter.particle-php.com](http://filter.particle-php.com)
+- Fully tested: [Scrutinizer](https://scrutinizer-ci.com/g/particle-php/Filter/?branch=master)
+- Zero dependencies
 
 ===
 
