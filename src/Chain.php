@@ -31,7 +31,7 @@ class Chain
     {
         /** @var FilterRule $rule */
         foreach ($this->rules as $rule) {
-            if ($isSet || !$isSet && $rule->allowedNotSet()) {
+            if ($isSet || $rule->allowedNotSet()) {
                 $value = $rule->filter($value);
                 $isSet = true;
             }
