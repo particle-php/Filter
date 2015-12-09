@@ -41,7 +41,7 @@ class CallbackTest extends \PHPUnit_Framework_TestCase
      */
     public function testAllowNotSetCallback()
     {
-        $this->filter->value('test')->callback(function() {
+        $this->filter->value('test')->callback(function () {
             $result = implode('.', range(1, 3));
             return $result;
         }, true);
