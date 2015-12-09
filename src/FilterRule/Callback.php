@@ -25,11 +25,13 @@ class Callback extends FilterRule
     /**
      * Set callable closure
      *
-     * @param $callable
+     * @param callable $callable
+     * @param bool $allowNotSet
      */
-    public function __construct($callable)
+    public function __construct(callable $callable, $allowNotSet = false)
     {
         $this->callable = $callable;
+        $this->allowNotSet = $allowNotSet;
     }
 
     /**

@@ -21,7 +21,7 @@ abstract class FilterRule
     /**
      * @var bool
      */
-    protected $allowEmpty = false;
+    protected $allowNotSet = false;
 
     /**
      * @param string|null $encodingFormat
@@ -34,9 +34,9 @@ abstract class FilterRule
     /**
      * @return bool
      */
-    public function allowEmpty()
+    public function allowedNotSet()
     {
-        return $this->allowEmpty;
+        return $this->allowNotSet;
     }
 
     /**

@@ -134,7 +134,7 @@ class Filter
             if (is_array($value)) {
                 $data[$key] = $this->filterGlobals($value);
             } else {
-                $filterResult = $this->globalChain->filter(false, $value);
+                $filterResult = $this->globalChain->filter(true, $value);
                 $data[$key] = $filterResult->getFilteredValue();
             }
         }
@@ -152,10 +152,10 @@ class Filter
     protected function getFilterResult($key, Chain $chain)
     {
         if ($this->data->has($key)) {
-            return $chain->filter(false, $this->data->get($key));
+            return $chain->filter(true, $this->data->get($key));
         }
 
-        return $chain->filter(true);
+        return $chain->filter(false);
     }
 
     /**

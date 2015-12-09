@@ -23,20 +23,21 @@ class Chain
     /**
      * Execute all filters in the chain
      *
-     * @param bool $isEmpty
+     * @param bool $isSet
      * @param mixed $value
      * @return FilterResult
      */
-    public function filter($isEmpty, $value = null)
+    public function filter($isSet, $value = null)
     {
         /** @var FilterRule $rule */
         foreach ($this->rules as $rule) {
-            if (!$isEmpty || $isEmpty && $rule->allowEmpty()) {
+            if ($isSet || !$isSet && $rule->allowedNotSet()) {
                 $value = $rule->filter($value);
+                $isSet = true;
             }
         }
 
-        return new FilterResult($value === null, $value);
+        return new FilterResult($isSet, $value);
     }
 
     /**

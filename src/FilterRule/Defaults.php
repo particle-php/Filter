@@ -22,7 +22,7 @@ class Defaults extends FilterRule
      *
      * @var bool
      */
-    protected $allowEmpty = true;
+    protected $allowNotSet = true;
 
     /**
      * @var mixed

@@ -59,6 +59,7 @@ class DefaultsTest extends \PHPUnit_Framework_TestCase
             [''],
             [0],
             ['John'],
+            [null],
             [1000],
             [true],
         ];

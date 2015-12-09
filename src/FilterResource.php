@@ -69,11 +69,12 @@ class FilterResource
      * Returns rule that returns a value modified by a callable closure
      *
      * @param callable $callable
+     * @param bool $allowNotSet
      * @return $this
      */
-    public function callback(callable $callable)
+    public function callback(callable $callable, $allowNotSet = false)
     {
-        return $this->addRule(new FilterRule\Callback($callable));
+        return $this->addRule(new FilterRule\Callback($callable, $allowNotSet));
     }
 
     /**
