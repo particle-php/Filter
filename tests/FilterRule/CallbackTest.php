@@ -69,6 +69,25 @@ class CallbackTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * Test if the callback can build values using other data provided in the filter data
+     *
+     * @dataProvider getMultiValueCallbackResults
+     * @param array $values
+     * @param callable $callable
+     * @param mixed $filteredValue
+     */
+    public function testAccessFilterValuesInCallback($values, callable $callable, $filteredValue)
+    {
+        $this->filter->value('test')->callback($callable);
+
+        $result = $this->filter->filter($values);
+
+        $this->assertEquals([
+            'test' => $filteredValue,
+        ], $result);
+    }
+
+    /**
      * @return array
      */
     public function getCallbackResults()
@@ -87,6 +106,36 @@ class CallbackTest extends \PHPUnit_Framework_TestCase
                     return $value * 2;
                 },
                 198,
+            ],
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function getMultiValueCallbackResults()
+    {
+        return [
+            [
+                [
+                    'gender' => 'Sir',
+                    'test' => 'John',
+                    'last_name' => 'Doe',
+                ],
+                function ($value, $filterValues) {
+                    return implode(' ', [$filterValues['gender'], $value, $filterValues['last_name']]);
+                },
+                'Sir John Doe',
+            ],
+            [
+                [
+                    'multiplier' => 10,
+                    'test' => 50,
+                ],
+                function ($value, $filterValues) {
+                    return $value * $filterValues['multiplier'];
+                },
+                500,
             ],
         ];
     }
