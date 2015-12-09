@@ -62,9 +62,13 @@ $result = $f->filter(['newsletter' => 'yes']);
 
 Callback allows you to quickly add a custom filter, as you can provide a closure that manipulates the value.
 
+The callable function will receive two parameters from the callback rule. First `$value`, holding the
+currently filtered value for the current key. And second `$filterData`, holding all the data that is being
+filtered by the filter.
+
 ```php
 $f = new Filter;
-$f->value('name')->callback(function($value) {
+$f->value('name')->callback(function($value, $filterData) {
     return '<strong>' . $value . '</strong>';
 });
 $result = $f->filter(['name' => 'John']);
@@ -76,7 +80,7 @@ Callback can also be used if a value is not set in the filter data. Make sure yo
 
 ```php
 $f = new Filter;
-$f->value('year')->callback(function() {
+$f->value('year')->callback(function($value, $filterData) {
     return date('Y');
 }, true);
 $result = $f->filter([]); // note that no year is set

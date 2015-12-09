@@ -42,6 +42,6 @@ class Callback extends FilterRule
      */
     public function filter($value)
     {
-        return call_user_func($this->callable, $value);
+        return call_user_func($this->callable, $value, $this->getFilterData());
     }
 }

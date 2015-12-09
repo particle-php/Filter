@@ -82,9 +82,8 @@ class CallbackTest extends \PHPUnit_Framework_TestCase
 
         $result = $this->filter->filter($values);
 
-        $this->assertEquals([
-            'test' => $filteredValue,
-        ], $result);
+        $values['test'] = $filteredValue;
+        $this->assertEquals($values, $result);
     }
 
     /**
