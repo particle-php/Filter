@@ -145,12 +145,12 @@ class FilterResource
      *
      * @param int $decimals
      * @param string $decimalPoint
-     * @param string $thousandSeperator
+     * @param string $thousandSeparator
      * @return $this
      */
-    public function numberFormat($decimals, $decimalPoint, $thousandSeperator)
+    public function numberFormat($decimals, $decimalPoint, $thousandSeparator)
     {
-        return $this->addRule(new FilterRule\NumberFormat($decimals, $decimalPoint, $thousandSeperator));
+        return $this->addRule(new FilterRule\NumberFormat($decimals, $decimalPoint, $thousandSeparator));
     }
 
     /**
