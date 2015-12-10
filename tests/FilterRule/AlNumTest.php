@@ -3,7 +3,7 @@ namespace Particle\Tests\Filter\FilterRule;
 
 use Particle\Filter\Filter;
 
-class AlnumTest extends \PHPUnit_Framework_TestCase
+class AlNumTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @var Filter
