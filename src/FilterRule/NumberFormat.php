@@ -30,20 +30,20 @@ class NumberFormat extends FilterRule
     /**
      * @var string
      */
-    protected $thousandSeperator;
+    protected $thousandSeparator;
 
     /**
      * Set required params for replacement
      *
-     * @param int $decimals
+     * @param int    $decimals
      * @param string $decimalPoint
-     * @param string $thousandSeperator
+     * @param string $thousandSeparator
      */
-    public function __construct($decimals, $decimalPoint, $thousandSeperator)
+    public function __construct($decimals, $decimalPoint, $thousandSeparator)
     {
         $this->decimals = intval($decimals);
         $this->decimalPoint = $decimalPoint;
-        $this->thousandSeperator = $thousandSeperator;
+        $this->thousandSeparator = $thousandSeparator;
     }
 
     /**
@@ -57,6 +57,6 @@ class NumberFormat extends FilterRule
         if (empty($value)) {
             return $value;
         }
-        return number_format(floatval($value), $this->decimals, $this->decimalPoint, $this->thousandSeperator);
+        return number_format(floatval($value), $this->decimals, $this->decimalPoint, $this->thousandSeparator);
     }
 }
