@@ -41,7 +41,7 @@ class FilterResource
      */
     public function alnum()
     {
-        return $this->addRule(new FilterRule\Alnum);
+        return $this->addRule(new FilterRule\AlNum);
     }
 
     /**
