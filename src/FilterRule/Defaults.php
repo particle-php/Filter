@@ -11,37 +11,40 @@ namespace Particle\Filter\FilterRule;
 use Particle\Filter\FilterRule;
 
 /**
- * Class Callback
+ * Class Defaults
  *
  * @package Particle\Filter\FilterRule
  */
-class Callback extends FilterRule
+class Defaults extends FilterRule
 {
     /**
-     * @var callable
+     * Allows a default value to be set if no data key was provided
+     *
+     * @var bool
      */
-    protected $callable;
+    protected $allowNotSet = true;
 
     /**
-     * Set callable closure
-     *
-     * @param callable $callable
-     * @param bool $allowNotSet
+     * @var mixed
      */
-    public function __construct(callable $callable, $allowNotSet = false)
+    protected $defaultValue;
+
+    /**
+     * @param mixed $defaultValue
+     */
+    public function __construct($defaultValue)
     {
-        $this->callable = $callable;
-        $this->allowNotSet = $allowNotSet;
+        $this->defaultValue = $defaultValue;
     }
 
     /**
-     * Execute the callable and provide a callback for the given value
+     * Return a default value if no value was provided
      *
      * @param mixed $value
-     * @return mixed
+     * @return string
      */
     public function filter($value)
     {
-        return call_user_func($this->callable, $value);
+        return $value === null ? $this->defaultValue : $value;
     }
 }

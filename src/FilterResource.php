@@ -69,11 +69,23 @@ class FilterResource
      * Returns rule that returns a value modified by a callable closure
      *
      * @param callable $callable
+     * @param bool $allowNotSet
      * @return $this
      */
-    public function callback(callable $callable)
+    public function callback(callable $callable, $allowNotSet = false)
     {
-        return $this->addRule(new FilterRule\Callback($callable));
+        return $this->addRule(new FilterRule\Callback($callable, $allowNotSet));
+    }
+
+    /**
+     * Returns rule that defaults a given value if the data key was not provided
+     *
+     * @param mixed $defaultValue
+     * @return $this
+     */
+    public function defaults($defaultValue)
+    {
+        return $this->addRule(new FilterRule\Defaults($defaultValue));
     }
 
     /**
@@ -133,12 +145,12 @@ class FilterResource
      *
      * @param int $decimals
      * @param string $decimalPoint
-     * @param string $thousandSeperator
+     * @param string $thousandSeparator
      * @return $this
      */
-    public function numberFormat($decimals, $decimalPoint, $thousandSeperator)
+    public function numberFormat($decimals, $decimalPoint, $thousandSeparator)
     {
-        return $this->addRule(new FilterRule\NumberFormat($decimals, $decimalPoint, $thousandSeperator));
+        return $this->addRule(new FilterRule\NumberFormat($decimals, $decimalPoint, $thousandSeparator));
     }
 
     /**

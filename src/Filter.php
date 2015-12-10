@@ -102,6 +102,23 @@ class Filter
     }
 
     /**
+     * Filter the provided data
+     *
+     * @param array $data
+     * @return array
+     */
+    public function filter(array $data)
+    {
+        $data = $this->filterGlobals($data);
+
+        $this->data = new Container($data);
+
+        $this->filterChains();
+
+        return $this->data->getArrayCopy();
+    }
+
+    /**
      * Filter all set fields with a global chain, recursively
      *
      * @param array $data
@@ -117,11 +134,28 @@ class Filter
             if (is_array($value)) {
                 $data[$key] = $this->filterGlobals($value);
             } else {
-                $data[$key] = $this->globalChain->filter($value);
+                $filterResult = $this->globalChain->filter(true, $value);
+                $data[$key] = $filterResult->getFilteredValue();
             }
         }
 
         return $data;
+    }
+
+    /**
+     * Get the filter result from a chain
+     *
+     * @param string $key
+     * @param Chain $chain
+     * @return FilterResult
+     */
+    protected function getFilterResult($key, Chain $chain)
+    {
+        if ($this->data->has($key)) {
+            return $chain->filter(true, $this->data->get($key));
+        }
+
+        return $chain->filter(false);
     }
 
     /**
@@ -130,32 +164,14 @@ class Filter
     protected function filterChains()
     {
         foreach ($this->chains as $key => $chain) {
-            if ($this->data->has($key)) {
+            $filterResult = $this->getFilterResult($key, $chain);
+            if ($filterResult->isNotEmpty()) {
                 $this->data->set(
                     $key,
-                    $chain->filter(
-                        $this->data->get($key)
-                    )
+                    $filterResult->getFilteredValue()
                 );
             }
         }
-    }
-
-    /**
-     * Filter the provided data
-     *
-     * @param array $data
-     * @return array
-     */
-    public function filter(array $data)
-    {
-        $data = $this->filterGlobals($data);
-
-        $this->data = new Container($data);
-
-        $this->filterChains();
-
-        return $this->data->getArrayCopy();
     }
 
     /**

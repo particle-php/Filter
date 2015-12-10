@@ -23,17 +23,21 @@ class Chain
     /**
      * Execute all filters in the chain
      *
+     * @param bool $isSet
      * @param mixed $value
-     * @return mixed
+     * @return FilterResult
      */
-    public function filter($value)
+    public function filter($isSet, $value = null)
     {
         /** @var FilterRule $rule */
         foreach ($this->rules as $rule) {
-            $value = $rule->filter($value);
+            if ($isSet || $rule->allowedNotSet()) {
+                $value = $rule->filter($value);
+                $isSet = true;
+            }
         }
 
-        return $value;
+        return new FilterResult($isSet, $value);
     }
 
     /**
