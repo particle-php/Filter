@@ -24,11 +24,32 @@ abstract class FilterRule
     protected $allowNotSet = false;
 
     /**
+     * @var array|null
+     */
+    protected $filterData;
+
+    /**
      * @param string|null $encodingFormat
      */
     public function setEncodingFormat($encodingFormat)
     {
         $this->encodingFormat = $encodingFormat;
+    }
+
+    /**
+     * @param array|null $filterData
+     */
+    public function setFilterData($filterData)
+    {
+        $this->filterData = $filterData;
+    }
+
+    /**
+     * @return array|null
+     */
+    public function getFilterData()
+    {
+        return $this->filterData;
     }
 
     /**

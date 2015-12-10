@@ -25,12 +25,14 @@ class Chain
      *
      * @param bool $isSet
      * @param mixed $value
+     * @param array|null $filterData
      * @return FilterResult
      */
-    public function filter($isSet, $value = null)
+    public function filter($isSet, $value = null, $filterData = null)
     {
         /** @var FilterRule $rule */
         foreach ($this->rules as $rule) {
+            $rule->setFilterData($filterData);
             if ($isSet || $rule->allowedNotSet()) {
                 $value = $rule->filter($value);
                 $isSet = true;
