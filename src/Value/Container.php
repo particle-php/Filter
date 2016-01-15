@@ -53,8 +53,7 @@ class Container
     {
         return $this->traverse($key, true);
     }
-
-
+    
     /**
      * Removes a value from the container
      *
