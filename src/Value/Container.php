@@ -62,7 +62,14 @@ class Container
      */
     public function remove($key)
     {
-        // @todo
+        $value = &$this->values;
+        foreach (explode('.', $key) as $part) {
+            if (!array_key_exists($part, $value)) {
+                return;
+            }
+            $value = &$value[$part];
+        }
+        unset($value); // @todo: no worky worky
     }
 
     /**

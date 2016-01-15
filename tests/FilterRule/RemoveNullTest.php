@@ -18,44 +18,48 @@ class RemoveNullTest extends \PHPUnit_Framework_TestCase
         $this->filter = new Filter();
     }
 
-//    /**
-//     * Test if a provided value gets unset completely
-//     */
-//    public function testKeyGetsRemovedWithUnset()
-//    {
-//        $this->filter->value('test')->removeNull();
-//
-//        $result = $this->filter->filter([
-//            'test' => 'test',
-//            'test2' => 'test',
-//        ]);
-//
-//        $this->assertEquals(['test2' => 'test'], $result);
-//    }
-//
-//    /**
-//     * Test that unset values remain unset
-//     */
-//    public function testUnsetOnNotExistingKey()
-//    {
-//        $this->filter->value('test')->removeNull();
-//
-//        $result = $this->filter->filter([]);
-//
-//        $this->assertEquals([], $result);
-//    }
-//
-//    /**
-//     * Test that unset values remain unset with other filter values
-//     */
-//    public function testUnsetOnNotExistingKeyWithValues()
-//    {
-//        $this->filter->value('test')->removeNull();
-//
-//        $result = $this->filter->filter(['test2' => 'test']);
-//
-//        $this->assertEquals(['test2' => 'test'], $result);
-//    }
+    /**
+     * Test if a provided value gets unset completely
+     */
+    public function testKeyGetsRemovedWithUnset()
+    {
+        $this->filter->value('test')->removeNull();
 
-    // @todo: add tests
+        $result = $this->filter->filter([
+            'test' => null,
+            'test2' => 'test',
+        ]);
+
+        $this->assertEquals(['test2' => 'test'], $result);
+    }
+
+    /**
+     * @dataProvider getNotNullValues
+     * @param string $value
+     */
+    public function testNumbersFilterRule($value)
+    {
+        $this->filter->value('test')->removeNull();
+
+        $result = $this->filter->filter([
+            'test' => $value,
+        ]);
+
+        $this->assertEquals([
+            'test' => $value,
+        ], $result);
+    }
+
+    /**
+     * @return array
+     */
+    public function getNotNullValues()
+    {
+        return [
+            [''],
+            [false],
+            [0],
+            [1],
+        ];
+    }
 }
