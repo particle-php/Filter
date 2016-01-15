@@ -8,6 +8,7 @@
  */
 namespace Particle\Filter\FilterRule;
 
+use Particle\Filter\FilterResult;
 use Particle\Filter\FilterRule;
 
 /**
@@ -25,6 +26,6 @@ class Letters extends FilterRule
      */
     public function filter($value)
     {
-        return preg_replace('/[^\pL]/', '', $value);
+        return new FilterResult(true, preg_replace('/[^\pL]/', '', $value));
     }
 }

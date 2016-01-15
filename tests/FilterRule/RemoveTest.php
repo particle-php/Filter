@@ -3,7 +3,7 @@ namespace Particle\Tests\Filter\FilterRule;
 
 use Particle\Filter\Filter;
 
-class UnsetTest extends \PHPUnit_Framework_TestCase
+class RemoveTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @var Filter
@@ -21,9 +21,9 @@ class UnsetTest extends \PHPUnit_Framework_TestCase
     /**
      * Test if a provided value gets unset completely
      */
-    public function testKeyGetsRemovedWithUnset()
+    public function testKeyGetsRemoved()
     {
-        $this->filter->value('test')->unset();
+        $this->filter->value('test')->remove();
 
         $result = $this->filter->filter([
             'test' => 'test',
@@ -36,9 +36,9 @@ class UnsetTest extends \PHPUnit_Framework_TestCase
     /**
      * Test that unset values remain unset
      */
-    public function testUnsetOnNotExistingKey()
+    public function testRemoveOnNotExistingKey()
     {
-        $this->filter->value('test')->unset();
+        $this->filter->value('test')->remove();
 
         $result = $this->filter->filter([]);
 
@@ -48,9 +48,9 @@ class UnsetTest extends \PHPUnit_Framework_TestCase
     /**
      * Test that unset values remain unset with other filter values
      */
-    public function testUnsetOnNotExistingKeyWithValues()
+    public function testRemoveOnNotExistingKeyWithValues()
     {
-        $this->filter->value('test')->unset();
+        $this->filter->value('test')->remove();
 
         $result = $this->filter->filter(['test2' => 'test']);
 

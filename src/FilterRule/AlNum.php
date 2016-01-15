@@ -8,6 +8,7 @@
  */
 namespace Particle\Filter\FilterRule;
 
+use Particle\Filter\FilterResult;
 use Particle\Filter\FilterRule;
 
 /**
@@ -25,6 +26,6 @@ class AlNum extends FilterRule
      */
     public function filter($value)
     {
-        return preg_replace('/\W|_/', '', $value);
+        return new FilterResult(true, preg_replace('/\W|_/', '', $value));
     }
 }

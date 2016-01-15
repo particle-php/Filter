@@ -135,7 +135,11 @@ class Filter
                 $data[$key] = $this->filterGlobals($value);
             } else {
                 $filterResult = $this->globalChain->filter(true, $value, $data);
-                $data[$key] = $filterResult->getFilteredValue();
+                if ($filterResult->isNotEmpty()) {
+                    $data[$key] = $filterResult->getFilteredValue();
+                } else {
+                    unset($data[$key]);
+                }
             }
         }
 
@@ -170,6 +174,8 @@ class Filter
                     $key,
                     $filterResult->getFilteredValue()
                 );
+            } else {
+                $this->data->remove($key);
             }
         }
     }

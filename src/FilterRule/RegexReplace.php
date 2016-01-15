@@ -8,6 +8,7 @@
  */
 namespace Particle\Filter\FilterRule;
 
+use Particle\Filter\FilterResult;
 use Particle\Filter\FilterRule;
 
 /**
@@ -47,6 +48,6 @@ class RegexReplace extends FilterRule
      */
     public function filter($value)
     {
-        return preg_replace($this->searchRegex, $this->replace, $value);
+        return new FilterResult(true, preg_replace($this->searchRegex, $this->replace, $value));
     }
 }

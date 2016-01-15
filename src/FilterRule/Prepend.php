@@ -8,6 +8,7 @@
  */
 namespace Particle\Filter\FilterRule;
 
+use Particle\Filter\FilterResult;
 use Particle\Filter\FilterRule;
 
 /**
@@ -40,6 +41,6 @@ class Prepend extends FilterRule
      */
     public function filter($value)
     {
-        return $this->prepend . $value;
+        return new FilterResult(true, $this->prepend . $value);
     }
 }

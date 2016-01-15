@@ -8,6 +8,7 @@
  */
 namespace Particle\Filter\FilterRule;
 
+use Particle\Filter\FilterResult;
 use Particle\Filter\FilterRule;
 
 /**
@@ -55,8 +56,12 @@ class NumberFormat extends FilterRule
     public function filter($value)
     {
         if (empty($value)) {
-            return $value;
+            return new FilterResult(true, $value);
         }
-        return number_format(floatval($value), $this->decimals, $this->decimalPoint, $this->thousandSeparator);
+
+        return new FilterResult(
+            true,
+            number_format(floatval($value), $this->decimals, $this->decimalPoint, $this->thousandSeparator)
+        );
     }
 }

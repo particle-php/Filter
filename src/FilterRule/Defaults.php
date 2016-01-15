@@ -8,6 +8,7 @@
  */
 namespace Particle\Filter\FilterRule;
 
+use Particle\Filter\FilterResult;
 use Particle\Filter\FilterRule;
 
 /**
@@ -45,6 +46,6 @@ class Defaults extends FilterRule
      */
     public function filter($value)
     {
-        return $value === null ? $this->defaultValue : $value;
+        return new FilterResult(true, $value === null ? $this->defaultValue : $value);
     }
 }

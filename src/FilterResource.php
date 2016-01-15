@@ -187,6 +187,26 @@ class FilterResource
     }
 
     /**
+     * Results rule that returns an empty result so it can be removed
+     *
+     * @return $this
+     */
+    public function remove()
+    {
+        return $this->addRule(new FilterRule\Remove);
+    }
+
+    /**
+     * Results rule that returns an empty result when the value is null so it can be removed
+     *
+     * @return $this
+     */
+    public function removeNull()
+    {
+        return $this->addRule(new FilterRule\RemoveNull);
+    }
+
+    /**
      * Results rule that returns a value with replacements
      *
      * @param mixed $search

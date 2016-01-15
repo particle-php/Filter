@@ -54,6 +54,17 @@ class Container
         return $this->traverse($key, true);
     }
 
+
+    /**
+     * Removes a value from the container
+     *
+     * @param string $key
+     */
+    public function remove($key)
+    {
+        // @todo
+    }
+
     /**
      * Set the value of $key to $value.
      *

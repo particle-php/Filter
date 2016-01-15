@@ -8,6 +8,7 @@
  */
 namespace Particle\Filter\FilterRule;
 
+use Particle\Filter\FilterResult;
 use Particle\Filter\FilterRule;
 
 /**
@@ -41,13 +42,13 @@ class Trim extends FilterRule
     public function filter($value)
     {
         if ($value === null) {
-            return $value;
+            return new FilterResult(true, $value);
         }
 
         if ($this->characters === null) {
-            return trim($value);
+            return new FilterResult(true, trim($value));
         }
 
-        return trim($value, $this->characters);
+        return new FilterResult(true, trim($value, $this->characters));
     }
 }

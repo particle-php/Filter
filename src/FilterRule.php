@@ -62,7 +62,7 @@ abstract class FilterRule
 
     /**
      * @param mixed $value
-     * @return mixed
+     * @return FilterResult
      */
     abstract public function filter($value);
 }

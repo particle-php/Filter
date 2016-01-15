@@ -16,7 +16,7 @@ class FilterResult
     /**
      * @var bool
      */
-    protected $isSet;
+    protected $isNotEmpty;
 
     /**
      * @var mixed
@@ -24,12 +24,12 @@ class FilterResult
     protected $filteredValue;
 
     /**
-     * @param bool $isSet
+     * @param bool $isNotEmpty
      * @param null|mixed $filteredValue
      */
-    public function __construct($isSet, $filteredValue = null)
+    public function __construct($isNotEmpty, $filteredValue = null)
     {
-        $this->isSet = $isSet;
+        $this->isNotEmpty = $isNotEmpty;
         $this->filteredValue = $filteredValue;
     }
 
@@ -40,7 +40,7 @@ class FilterResult
      */
     public function isNotEmpty()
     {
-        return $this->isSet;
+        return $this->isNotEmpty;
     }
 
     /**

@@ -8,6 +8,7 @@
  */
 namespace Particle\Filter\FilterRule;
 
+use Particle\Filter\FilterResult;
 use Particle\Filter\FilterRule;
 
 /**
@@ -47,6 +48,6 @@ class Replace extends FilterRule
      */
     public function filter($value)
     {
-        return str_replace($this->search, $this->replace, $value);
+        return new FilterResult(true, str_replace($this->search, $this->replace, $value));
     }
 }

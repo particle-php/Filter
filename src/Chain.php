@@ -23,23 +23,24 @@ class Chain
     /**
      * Execute all filters in the chain
      *
-     * @param bool $isSet
+     * @param bool $isNotEmpty
      * @param mixed $value
      * @param array|null $filterData
      * @return FilterResult
      */
-    public function filter($isSet, $value = null, $filterData = null)
+    public function filter($isNotEmpty, $value = null, $filterData = null)
     {
         /** @var FilterRule $rule */
         foreach ($this->rules as $rule) {
             $rule->setFilterData($filterData);
-            if ($isSet || $rule->allowedNotSet()) {
-                $value = $rule->filter($value);
-                $isSet = true;
+            if ($isNotEmpty || $rule->allowedNotSet()) {
+                $filterResult = $rule->filter($value);
+                $isNotEmpty = $filterResult->isNotEmpty();
+                $value = $filterResult->getFilteredValue();
             }
         }
 
-        return new FilterResult($isSet, $value);
+        return new FilterResult($isNotEmpty, $value);
     }
 
     /**

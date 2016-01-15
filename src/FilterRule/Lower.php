@@ -8,6 +8,7 @@
  */
 namespace Particle\Filter\FilterRule;
 
+use Particle\Filter\FilterResult;
 use Particle\Filter\FilterRule;
 
 /**
@@ -26,9 +27,9 @@ class Lower extends FilterRule
     public function filter($value)
     {
         if ($this->encodingFormat !== null) {
-            return mb_strtolower($value, $this->encodingFormat);
+            return new FilterResult(true, mb_strtolower($value, $this->encodingFormat));
         }
 
-        return mb_strtolower($value);
+        return new FilterResult(true, mb_strtolower($value));
     }
 }

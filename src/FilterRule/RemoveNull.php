@@ -12,35 +12,24 @@ use Particle\Filter\FilterResult;
 use Particle\Filter\FilterRule;
 
 /**
- * Class Append
+ * Class RemoveNull
  *
  * @package Particle\Filter\FilterRule
  */
-class Append extends FilterRule
+class RemoveNull extends FilterRule
 {
     /**
-     * @var string
-     */
-    protected $append;
-
-    /**
-     * Set text to append
-     *
-     * @param string $append
-     */
-    public function __construct($append)
-    {
-        $this->append = $append;
-    }
-
-    /**
-     * Append the provided text to the given value
+     * Returns an empty filter result if the value is null so the value can be removed.
      *
      * @param mixed $value
      * @return string
      */
     public function filter($value)
     {
-        return new FilterResult(true, $value . $this->append);
+        if ($value === null) {
+            return new FilterResult(false);
+        } else {
+            return new FilterResult(true, $value);
+        }
     }
 }
