@@ -53,7 +53,7 @@ class Container
     {
         return $this->traverse($key, true);
     }
-    
+
     /**
      * Removes a value from the container
      *
@@ -62,13 +62,16 @@ class Container
     public function remove($key)
     {
         $value = &$this->values;
-        foreach (explode('.', $key) as $part) {
+        $exploded = explode('.', $key);
+
+        foreach ($exploded as $i => $part) {
             if (!array_key_exists($part, $value)) {
                 return;
             }
-            $value = &$value[$part];
+            if ($i === count($exploded) - 1) {
+                unset($value[$key]);
+            }
         }
-        unset($value); // @todo: no worky worky
     }
 
     /**
