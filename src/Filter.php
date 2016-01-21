@@ -143,7 +143,7 @@ class Filter
             }
         }
 
-        return $data;
+        return array_filter($data);
     }
 
     /**

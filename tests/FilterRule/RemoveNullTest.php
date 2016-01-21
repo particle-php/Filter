@@ -21,7 +21,7 @@ class RemoveNullTest extends \PHPUnit_Framework_TestCase
     /**
      * Test if a provided value gets unset completely
      */
-    public function testKeyGetsRemovedWithUnset()
+    public function testKeyGetsRemoved()
     {
         $this->filter->value('test')->removeNull();
 
@@ -31,6 +31,24 @@ class RemoveNullTest extends \PHPUnit_Framework_TestCase
         ]);
 
         $this->assertEquals(['test2' => 'test'], $result);
+    }
+
+    /**
+     * Test if a provided value gets unset completely
+     */
+    public function testRemoveNullOnAllValues()
+    {
+        $this->filter->all()->removeNull();
+
+        $result = $this->filter->filter([
+            'test' => null,
+            'test2' => 'test',
+            'test3' => null,
+            'test4' => 'test',
+            'test5' => null,
+        ]);
+
+        $this->assertEquals(['test2' => 'test', 'test4' => 'test'], $result);
     }
 
     /**

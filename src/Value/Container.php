@@ -55,38 +55,13 @@ class Container
     }
 
     /**
-     * @param array $keyParts
-     * @param array $values
-     */
-    private function removeRecursive(array $keyParts, array &$values)
-    {
-        $key = $keyParts[0];
-        // check if the first part of the key exists on the array
-        if (array_key_exists($key, $values)) {
-            // Is the part a new array?
-            if (is_array($values[$key])) {
-                // Recursively check the next part of the key on the found sub array
-                $this->removeRecursive(array_splice($keyParts, 1), $values[$key]);
-                // unset self if the removed child clears this array
-                if (count($values[$key]) === 0) {
-                    unset($values[$key]);
-                }
-                return;
-            }
-            // Key is value, unset
-            unset($values[$key]);
-        }
-    }
-
-    /**
      * Removes a value from the container
      *
      * @param string $key
      */
     public function remove($key)
     {
-        $values = &$this->values;
-        $this->removeRecursive(explode('.', $key), $values);
+        $this->removeRecursive(explode('.', $key), $this->values);
     }
 
     /**
@@ -152,5 +127,27 @@ class Container
 
         $ref = $value;
         return $this;
+    }
+
+    /**
+     * @param array $keyParts
+     * @param array $values
+     */
+    private function removeRecursive(array $keyParts, array &$values)
+    {
+        $key = $keyParts[0];
+        if (array_key_exists($key, $values)) {
+            if (is_array($values[$key])) {
+                $this->removeRecursive(array_splice($keyParts, 1), $values[$key]);
+
+                // unset self if the removed child clears this array
+                if (count($values[$key]) === 0) {
+                    unset($values[$key]);
+                }
+                return;
+            }
+            // Key is value, unset
+            unset($values[$key]);
+        }
     }
 }
