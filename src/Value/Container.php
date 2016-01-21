@@ -58,18 +58,27 @@ class Container
      * Removes a value from the container
      *
      * @param string $key
+     * @param array|null $values
      */
-    public function remove($key)
+    public function remove($key, &$values = null)
     {
-        $value = &$this->values;
-        $exploded = explode('.', $key);
-
-        foreach ($exploded as $i => $part) {
-            if (!array_key_exists($part, $value)) {
-                return;
-            }
-            if ($i === count($exploded) - 1) {
-                unset($value[$key]);
+        if ($values === null) {
+            $values = &$this->values;
+        }
+        $keyParts = explode('.', $key);
+        // check if the first part of the key exists on the array
+        if (array_key_exists($keyParts[0], $values)) {
+            // Is the part a new array?
+            if (is_array($values[$keyParts[0]])) {
+                // Recursively check the next part of the key on the found sub array
+                $this->remove(implode('.', array_splice($keyParts, 1)), $values[$keyParts[0]]);
+                // unset self if the removed child clears this array
+                if (count($values[$keyParts[0]]) === 0) {
+                    unset($values[$keyParts[0]]);
+                }
+            // Key is value, unset
+            } else {
+                unset($values[$keyParts[0]]);
             }
         }
     }
