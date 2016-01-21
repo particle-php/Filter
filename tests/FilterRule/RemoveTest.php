@@ -53,6 +53,33 @@ class RemoveTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * Test if a provided value gets unset completely
+     */
+    public function testMultipleMultiDimensionalKeyGetsRemoved()
+    {
+        $this->filter->values([
+            'test.test.test',
+            'test.test2',
+            'test.test3.test'
+        ])->remove();
+
+        $result = $this->filter->filter([
+            'test' => [
+                'test' => [
+                    'test' => 'test',
+                ],
+                'test2' => 'test',
+                'test3' => [
+                    'test' => 'test',
+                ],
+            ],
+            'test2' => 'test',
+        ]);
+
+        $this->assertEquals(['test2' => 'test'], $result);
+    }
+
+    /**
      * Test that unset values remain unset
      */
     public function testRemoveOnNotExistingKey()

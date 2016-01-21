@@ -66,20 +66,21 @@ class Container
             $values = &$this->values;
         }
         $keyParts = explode('.', $key);
+        $key = $keyParts[0];
         // check if the first part of the key exists on the array
-        if (array_key_exists($keyParts[0], $values)) {
+        if (array_key_exists($key, $values)) {
             // Is the part a new array?
-            if (is_array($values[$keyParts[0]])) {
+            if (is_array($values[$key])) {
                 // Recursively check the next part of the key on the found sub array
-                $this->remove(implode('.', array_splice($keyParts, 1)), $values[$keyParts[0]]);
+                $this->remove(implode('.', array_splice($keyParts, 1)), $values[$key]);
                 // unset self if the removed child clears this array
-                if (count($values[$keyParts[0]]) === 0) {
-                    unset($values[$keyParts[0]]);
+                if (count($values[$key]) === 0) {
+                    unset($values[$key]);
                 }
-            // Key is value, unset
-            } else {
-                unset($values[$keyParts[0]]);
+                return;
             }
+            // Key is value, unset
+            unset($values[$key]);
         }
     }
 
