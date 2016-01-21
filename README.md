@@ -17,13 +17,16 @@ $f = new Particle\Filter\Filter;
 $f->values(['user.first_name', 'user.last_name'])->trim()->lower()->upperFirst();
 $f->value('newsletter')->bool();
 $f->value('created_at')->defaults(date('Y-m-d'));
+$f->all()->removeNull();
 
 $result = $f->filter([
     'user' => [
         'first_name' => '  JOHN ',
+        'middle_name' => null,
         'last_name' => ' DOE  ',
     ],
     'newsletter' => 'yes',
+    'referral' => null,
 ]);
 
 var_dump($result);
