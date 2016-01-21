@@ -22,7 +22,7 @@ $filter = new Filter;
 $filter->all()->trim();
 $filter->value('first_name')->upperFirst();
 
-$filter->filter([
+$result = $filter->filter([
     // data to filter
 ]);
 ```

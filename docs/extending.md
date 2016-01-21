@@ -61,7 +61,7 @@ class Grumpify extends FilterRule
 }
 ```
 
-Note that filter function in a FilterRule should return a FilterResult.
+Note that filter function in a FilterRule must return a FilterResult.
 
 All that's left is actually using your own filter:
 
