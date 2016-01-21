@@ -50,15 +50,18 @@ in the default filter, so we have to build it:
 
 ```php
 use Particle\Filter\FilterRule;
+use Particle\Filter\FilterResult;
 
 class Grumpify extends FilterRule
 {
     public function filter($value)
     {
-        return 'I hate ' . $value . '!';
+        return new FilterResult(true, 'I hate ' . $value . '!');
     }
 }
 ```
+
+Note that filter function in a FilterRule should return a FilterResult.
 
 All that's left is actually using your own filter:
 
