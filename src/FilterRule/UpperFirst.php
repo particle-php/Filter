@@ -8,7 +8,6 @@
  */
 namespace Particle\Filter\FilterRule;
 
-use Particle\Filter\FilterResult;
 use Particle\Filter\FilterRule;
 
 /**
@@ -29,12 +28,12 @@ class UpperFirst extends FilterRule
         if ($this->encodingFormat !== null) {
             $firstChar = mb_substr($value, 0, 1, $this->encodingFormat);
             $rest = mb_substr($value, 1, null, $this->encodingFormat);
-            return new FilterResult(true, mb_strtoupper($firstChar, $this->encodingFormat) . $rest);
+            return mb_strtoupper($firstChar, $this->encodingFormat) . $rest;
         }
 
         $firstChar = mb_substr($value, 0, 1);
         $rest = mb_substr($value, 1);
 
-        return new FilterResult(true, mb_strtoupper($firstChar) . $rest);
+        return mb_strtoupper($firstChar) . $rest;
     }
 }

@@ -8,7 +8,6 @@
  */
 namespace Particle\Filter\FilterRule;
 
-use Particle\Filter\FilterResult;
 use Particle\Filter\FilterRule;
 
 /**
@@ -43,6 +42,6 @@ class Callback extends FilterRule
      */
     public function filter($value)
     {
-        return new FilterResult(true, call_user_func($this->callable, $value, $this->getFilterData()));
+        return call_user_func($this->callable, $value, $this->getFilterData());
     }
 }

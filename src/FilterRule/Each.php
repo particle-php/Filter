@@ -9,7 +9,6 @@
 namespace Particle\Filter\FilterRule;
 
 use Particle\Filter\Filter;
-use Particle\Filter\FilterResult;
 use Particle\Filter\FilterRule;
 
 /**
@@ -46,7 +45,7 @@ class Each extends FilterRule
             }
         }
 
-        return new FilterResult(true, $values);
+        return $values;
     }
 
     /**

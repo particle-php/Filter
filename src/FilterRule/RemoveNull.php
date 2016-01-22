@@ -8,7 +8,6 @@
  */
 namespace Particle\Filter\FilterRule;
 
-use Particle\Filter\FilterResult;
 use Particle\Filter\FilterRule;
 
 /**
@@ -27,9 +26,9 @@ class RemoveNull extends FilterRule
     public function filter($value)
     {
         if ($value === null) {
-            return new FilterResult(false);
-        } else {
-            return new FilterResult(true, $value);
+            return $this->setEmpty();
         }
+
+        return $value;
     }
 }

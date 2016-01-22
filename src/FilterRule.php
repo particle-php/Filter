@@ -24,6 +24,11 @@ abstract class FilterRule
     protected $allowNotSet = false;
 
     /**
+     * @var bool
+     */
+    protected $isEmpty = false;
+
+    /**
      * @var array|null
      */
     protected $filterData;
@@ -34,6 +39,25 @@ abstract class FilterRule
     public function setEncodingFormat($encodingFormat)
     {
         $this->encodingFormat = $encodingFormat;
+    }
+
+    /**
+     * Set the value to empty
+     *
+     * @return null
+     */
+    protected function setEmpty()
+    {
+        $this->isEmpty = true;
+        return null;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isEmpty()
+    {
+        return $this->isEmpty;
     }
 
     /**

@@ -8,7 +8,6 @@
  */
 namespace Particle\Filter\FilterRule;
 
-use Particle\Filter\FilterResult;
 use Particle\Filter\FilterRule;
 
 /**
@@ -27,9 +26,9 @@ class Upper extends FilterRule
     public function filter($value)
     {
         if ($this->encodingFormat !== null) {
-            return new FilterResult(true, mb_strtoupper($value, $this->encodingFormat));
+            return mb_strtoupper($value, $this->encodingFormat);
         }
 
-        return new FilterResult(true, mb_strtoupper($value));
+        return mb_strtoupper($value);
     }
 }

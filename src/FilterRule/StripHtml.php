@@ -8,7 +8,6 @@
  */
 namespace Particle\Filter\FilterRule;
 
-use Particle\Filter\FilterResult;
 use Particle\Filter\FilterRule;
 
 /**
@@ -42,9 +41,9 @@ class StripHtml extends FilterRule
     public function filter($value)
     {
         if ($value === null) {
-            return new FilterResult(true, $value);
+            return $value;
         }
 
-        return new FilterResult(true, strip_tags($value, $this->excludeTags));
+        return strip_tags($value, $this->excludeTags);
     }
 }

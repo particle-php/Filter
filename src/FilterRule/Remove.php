@@ -8,7 +8,6 @@
  */
 namespace Particle\Filter\FilterRule;
 
-use Particle\Filter\FilterResult;
 use Particle\Filter\FilterRule;
 
 /**
@@ -26,6 +25,6 @@ class Remove extends FilterRule
      */
     public function filter($value)
     {
-        return new FilterResult(false);
+        return $this->setEmpty();
     }
 }

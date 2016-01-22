@@ -37,17 +37,12 @@ class Chain
         foreach ($this->rules as $rule) {
             $rule->setFilterData($filterData);
             if ($isNotEmpty || $rule->allowedNotSet()) {
-                $filterResult = $rule->filter($value);
+                $value = $rule->filter($value);
+                $isNotEmpty = true;
 
-                if (!$filterResult instanceof FilterResult) {
-                    throw new ExpectFilterResultException(
-                        'A FilterResult object must be returned by the FilterRule->filter function.'
-                        . ' Got another value from ' . get_class($rule)
-                    );
+                if ($value === null && $rule->isEmpty()) {
+                    $isNotEmpty = false;
                 }
-
-                $isNotEmpty = $filterResult->isNotEmpty();
-                $value = $filterResult->getFilteredValue();
             }
         }
 

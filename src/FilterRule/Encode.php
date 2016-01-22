@@ -8,7 +8,6 @@
  */
 namespace Particle\Filter\FilterRule;
 
-use Particle\Filter\FilterResult;
 use Particle\Filter\FilterRule;
 
 /**
@@ -51,13 +50,13 @@ class Encode extends FilterRule
     public function filter($value)
     {
         if ($this->toEncoding === null) {
-            return new FilterResult(true, $value);
+            return $value;
         }
 
         if ($this->fromEncoding === null) {
-            return new FilterResult(true, mb_convert_encoding($value, $this->toEncoding));
+            return mb_convert_encoding($value, $this->toEncoding);
         }
 
-        return new FilterResult(true, mb_convert_encoding($value, $this->toEncoding, $this->fromEncoding));
+        return mb_convert_encoding($value, $this->toEncoding, $this->fromEncoding);
     }
 }
