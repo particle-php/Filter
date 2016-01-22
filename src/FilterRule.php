@@ -55,9 +55,9 @@ abstract class FilterRule
     /**
      * @return bool
      */
-    public function isEmpty()
+    public function isNotEmpty()
     {
-        return $this->isEmpty;
+        return !$this->isEmpty;
     }
 
     /**

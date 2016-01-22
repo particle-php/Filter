@@ -36,13 +36,10 @@ class Chain
         /** @var FilterRule $rule */
         foreach ($this->rules as $rule) {
             $rule->setFilterData($filterData);
+
             if ($isSet || $rule->allowedNotSet()) {
                 $value = $rule->filter($value);
-                $isSet = true;
-
-                if ($value === null && $rule->isEmpty()) {
-                    $isSet = false;
-                }
+                $isSet = $value !== null || $rule->isNotEmpty();
             }
         }
 
