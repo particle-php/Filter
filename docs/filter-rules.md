@@ -8,6 +8,7 @@ filters, take a look at the callback filter-rule, or check out "Extending the Fi
 * [bool](#bool)()
 * [callback](#callback)($callable, $allowNotSet = false)
 * [defaults](#defaults)($defaultValue)
+* [each](#each)($callable)
 * [encode](#encode)($toEncodingFormat = null, $fromEncodingFormat = null)
 * [float](#float)()
 * [int](#int)()
@@ -17,6 +18,8 @@ filters, take a look at the callback filter-rule, or check out "Extending the Fi
 * [numbers](#numbers)()
 * [prepend](#prepend)($prepend)
 * [regexReplace](#regexreplace)($searchRegex, $replace)
+* [remove](#remove)()
+* [removeNull](#removenull)()
 * [replace](#replace)($search, $replace)
 * [string](#string)()
 * [stripHtml](#striphtml)($excludeTags = null)
@@ -232,6 +235,28 @@ $f = new Filter;
 $f->value('value')->regexReplace('/[^a-zA-Z0-9\-]/', '');
 $result = $f->filter(['value' => '!!!l!#o?*l&&']);
 // array(1) { ["value"]=> string(3) "lol" }
+```
+
+## Remove
+
+This rule makes sure a key gets removed from your resulting array.
+
+```php
+$f = new Filter;
+$f->value('value')->remove();
+$result = $f->filter(['value' => 'hello']);
+// array(0) {}
+```
+
+## RemoveNull
+
+This rule makes sure a key gets removed from your resulting array when the value is null.
+
+```php
+$f = new Filter;
+$f->values(['value1', 'value2'])->removeNull();
+$result = $f->filter(['value1' => 'hello', 'value2' => null]);
+// array(1) { ["value1"]=> string(5) "hello" }
 ```
 
 ## Replace

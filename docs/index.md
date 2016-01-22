@@ -15,23 +15,28 @@ $f = new Particle\Filter\Filter;
 
 $f->values(['user.first_name', 'user.last_name'])->trim()->lower()->upperFirst();
 $f->value('newsletter')->bool();
+$f->value('created_at')->defaults(date('Y-m-d'));
+$f->all()->removeNull();
 
 $result = $f->filter([
     'user' => [
         'first_name' => '  JOHN ',
+        'middle_name' => null,
         'last_name' => ' DOE  ',
     ],
     'newsletter' => 'yes',
+    'referral' => null,
 ]);
 
 var_dump($result);
 /**
- * array(2) {
+ * array(3) {
  *     ["user"]=> array(2) {
  *         ["first_name"]=> string(4) "John"
  *         ["last_name"]=> string(3) "Doe"
  *     }
  *     ["newsletter"]=> bool(true)
+ *     ["created_at"]=> string(10) "2015-12-10"
  * } 
  */
 ```

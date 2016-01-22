@@ -57,6 +57,7 @@ class NumberFormat extends FilterRule
         if (empty($value)) {
             return $value;
         }
+
         return number_format(floatval($value), $this->decimals, $this->decimalPoint, $this->thousandSeparator);
     }
 }

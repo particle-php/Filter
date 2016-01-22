@@ -39,12 +39,10 @@ class Each extends FilterRule
      */
     public function filter($values)
     {
-        if (!is_array($values)) {
-            return $values;
-        }
-
-        foreach ($values as $key => $value) {
-            $values[$key] = $this->filterValue($value);
+        if (is_array($values)) {
+            foreach ($values as $key => $value) {
+                $values[$key] = $this->filterValue($value);
+            }
         }
 
         return $values;

@@ -24,6 +24,11 @@ abstract class FilterRule
     protected $allowNotSet = false;
 
     /**
+     * @var bool
+     */
+    protected $isEmpty = false;
+
+    /**
      * @var array|null
      */
     protected $filterData;
@@ -37,11 +42,33 @@ abstract class FilterRule
     }
 
     /**
+     * Set the value to empty
+     *
+     * @return null
+     */
+    protected function setEmpty()
+    {
+        $this->isEmpty = true;
+        return null;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isNotEmpty()
+    {
+        return !$this->isEmpty;
+    }
+
+    /**
      * @param array|null $filterData
      */
     public function setFilterData($filterData)
     {
         $this->filterData = $filterData;
+
+        // Make sure that the value is not empty by default
+        $this->isEmpty = false;
     }
 
     /**

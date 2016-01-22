@@ -8,6 +8,8 @@
  */
 namespace Particle\Filter;
 
+use Particle\Filter\Exception\ExpectFilterResultException;
+
 /**
  * Class Chain
  *
@@ -27,15 +29,17 @@ class Chain
      * @param mixed $value
      * @param array|null $filterData
      * @return FilterResult
+     * @throws ExpectFilterResultException
      */
     public function filter($isSet, $value = null, $filterData = null)
     {
         /** @var FilterRule $rule */
         foreach ($this->rules as $rule) {
             $rule->setFilterData($filterData);
+
             if ($isSet || $rule->allowedNotSet()) {
                 $value = $rule->filter($value);
-                $isSet = true;
+                $isSet = $rule->isNotEmpty();
             }
         }
 

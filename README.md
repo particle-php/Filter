@@ -17,13 +17,16 @@ $f = new Particle\Filter\Filter;
 $f->values(['user.first_name', 'user.last_name'])->trim()->lower()->upperFirst();
 $f->value('newsletter')->bool();
 $f->value('created_at')->defaults(date('Y-m-d'));
+$f->all()->removeNull();
 
 $result = $f->filter([
     'user' => [
         'first_name' => '  JOHN ',
+        'middle_name' => null,
         'last_name' => ' DOE  ',
     ],
     'newsletter' => 'yes',
+    'referral' => null,
 ]);
 
 var_dump($result);
@@ -46,6 +49,7 @@ var_dump($result);
 - [A large set of available filters](http://filter.particle-php.com/en/latest/filter-rules/)
 - Ability to set default values if nothing is provided
 - Ability to filter nested, repeated arrays
+- Ability to remove (empty) values
 - Ability to extend the filter to add your own custom filter rules
 
 ## Non functional features

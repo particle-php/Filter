@@ -109,7 +109,7 @@ class Filter
      */
     public function filter(array $data)
     {
-        $data = $this->filterGlobals($data);
+        $data = $this->filterArrayWithGlobalChain($data);
 
         $this->data = new Container($data);
 
@@ -124,21 +124,40 @@ class Filter
      * @param array $data
      * @return array
      */
-    protected function filterGlobals(array $data)
+    protected function filterArrayWithGlobalChain(array $data)
     {
         if ($this->globalChain === null) {
             return $data;
         }
 
         foreach ($data as $key => $value) {
-            if (is_array($value)) {
-                $data[$key] = $this->filterGlobals($value);
-            } else {
-                $filterResult = $this->globalChain->filter(true, $value, $data);
-                $data[$key] = $filterResult->getFilteredValue();
-            }
+            $data = $this->filterValueWithGlobalChain($value, $key, $data);
         }
 
+        return array_filter($data);
+    }
+
+    /**
+     * Filters a value with the global chain
+     *
+     * @param mixed $value
+     * @param string $key
+     * @param array $data
+     * @return array
+     */
+    protected function filterValueWithGlobalChain($value, $key, $data)
+    {
+        if (is_array($value)) {
+            $data[$key] = $this->filterArrayWithGlobalChain($value);
+            return $data;
+        }
+
+        $filterResult = $this->globalChain->filter(true, $value, $data);
+        if ($filterResult->isNotEmpty()) {
+            $data[$key] = $filterResult->getFilteredValue();
+        } else {
+            unset($data[$key]);
+        }
         return $data;
     }
 
@@ -170,6 +189,8 @@ class Filter
                     $key,
                     $filterResult->getFilteredValue()
                 );
+            } else {
+                $this->data->remove($key);
             }
         }
     }

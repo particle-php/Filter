@@ -303,4 +303,27 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals(['test' => 'test'], $result);
     }
+
+    /**
+     * Test that all values get properly unset when a remove null is fired over all values
+     */
+    public function testRemoveNullOnAllMultidimensionalValues()
+    {
+        $this->filter->all()->removeNull();
+
+        $result = $this->filter->filter([
+            'test' => null,
+            'test2' => 'test',
+            'test3' => null,
+            'test4' => 'test',
+            'test5' => [
+                'test' => [
+                    'test' => null,
+                ],
+                'test2' => null,
+            ],
+        ]);
+
+        $this->assertEquals(['test2' => 'test', 'test4' => 'test'], $result);
+    }
 }

@@ -55,6 +55,16 @@ class Container
     }
 
     /**
+     * Removes a value from the container
+     *
+     * @param string $key
+     */
+    public function remove($key)
+    {
+        $this->removeRecursive(explode('.', $key), $this->values);
+    }
+
+    /**
      * Set the value of $key to $value.
      *
      * @param string $key
@@ -117,5 +127,29 @@ class Container
 
         $ref = $value;
         return $this;
+    }
+
+    /**
+     * @param array $keyParts
+     * @param array $values
+     */
+    private function removeRecursive(array $keyParts, array &$values)
+    {
+        $key = $keyParts[0];
+        if (!array_key_exists($key, $values)) {
+            return;
+        }
+
+        if (!is_array($values[$key])) {
+            unset($values[$key]);
+            return;
+        }
+
+        $this->removeRecursive(array_splice($keyParts, 1), $values[$key]);
+
+        // unset self if the removed child clears this array
+        if (count($values[$key]) === 0) {
+            unset($values[$key]);
+        }
     }
 }
