@@ -8,7 +8,7 @@
  */
 namespace Particle\Filter;
 
-use Exception;
+use Particle\Filter\Exception\ExpectFilterResultException;
 
 /**
  * Class Chain
@@ -29,7 +29,7 @@ class Chain
      * @param mixed $value
      * @param array|null $filterData
      * @return FilterResult
-     * @throws Exception
+     * @throws ExpectFilterResultException
      */
     public function filter($isNotEmpty, $value = null, $filterData = null)
     {
@@ -40,9 +40,9 @@ class Chain
                 $filterResult = $rule->filter($value);
 
                 if (!$filterResult instanceof FilterResult) {
-                    throw new Exception(
+                    throw new ExpectFilterResultException(
                         'A FilterResult object must be returned by the FilterRule->filter function.'
-                        . ' got another value from ' . get_class($rule)
+                        . ' Got another value from ' . get_class($rule)
                     );
                 }
 
