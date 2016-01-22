@@ -25,28 +25,28 @@ class Chain
     /**
      * Execute all filters in the chain
      *
-     * @param bool $isNotEmpty
+     * @param bool $isSet
      * @param mixed $value
      * @param array|null $filterData
      * @return FilterResult
      * @throws ExpectFilterResultException
      */
-    public function filter($isNotEmpty, $value = null, $filterData = null)
+    public function filter($isSet, $value = null, $filterData = null)
     {
         /** @var FilterRule $rule */
         foreach ($this->rules as $rule) {
             $rule->setFilterData($filterData);
-            if ($isNotEmpty || $rule->allowedNotSet()) {
+            if ($isSet || $rule->allowedNotSet()) {
                 $value = $rule->filter($value);
-                $isNotEmpty = true;
+                $isSet = true;
 
                 if ($value === null && $rule->isEmpty()) {
-                    $isNotEmpty = false;
+                    $isSet = false;
                 }
             }
         }
 
-        return new FilterResult($isNotEmpty, $value);
+        return new FilterResult($isSet, $value);
     }
 
     /**
