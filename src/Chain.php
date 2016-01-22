@@ -7,6 +7,7 @@
  * @license   https://github.com/particle-php/Filter/blob/master/LICENSE New BSD License
  */
 namespace Particle\Filter;
+use Exception;
 
 /**
  * Class Chain
@@ -27,6 +28,7 @@ class Chain
      * @param mixed $value
      * @param array|null $filterData
      * @return FilterResult
+     * @throws Exception
      */
     public function filter($isNotEmpty, $value = null, $filterData = null)
     {
@@ -35,6 +37,14 @@ class Chain
             $rule->setFilterData($filterData);
             if ($isNotEmpty || $rule->allowedNotSet()) {
                 $filterResult = $rule->filter($value);
+
+                if (!$filterResult instanceof FilterResult) {
+                    throw new Exception(
+                        'A FilterResult object must be returned by the FilterRule->filter function.'
+                        . ' got another value from ' . get_class($rule)
+                    );
+                }
+
                 $isNotEmpty = $filterResult->isNotEmpty();
                 $value = $filterResult->getFilteredValue();
             }
