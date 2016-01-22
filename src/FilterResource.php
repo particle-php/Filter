@@ -89,11 +89,22 @@ class FilterResource
     }
 
     /**
+     * Returns rule that can filter repeated nested arrays
+     *
+     * @param callable $callable
+     * @return $this
+     */
+    public function each(callable $callable)
+    {
+        return $this->addRule(new FilterRule\Each($callable));
+    }
+
+    /**
      * Returns rule that returns an value in a specific encoding format
      *
      * @param string|null $toEncodingFormat
      * @param string|null $fromEncodingFormat
-     * @return FilterResource
+     * @return $this
      */
     public function encode($toEncodingFormat = null, $fromEncodingFormat = null)
     {
