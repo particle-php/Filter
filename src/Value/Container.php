@@ -136,17 +136,19 @@ class Container
     private function removeRecursive(array $keyParts, array &$values)
     {
         $key = $keyParts[0];
-        if (array_key_exists($key, $values)) {
-            if (is_array($values[$key])) {
-                $this->removeRecursive(array_splice($keyParts, 1), $values[$key]);
+        if (!array_key_exists($key, $values)) {
+            return;
+        }
 
-                // unset self if the removed child clears this array
-                if (count($values[$key]) === 0) {
-                    unset($values[$key]);
-                }
-                return;
-            }
-            // Key is value, unset
+        if (!is_array($values[$key])) {
+            unset($values[$key]);
+            return;
+        }
+
+        $this->removeRecursive(array_splice($keyParts, 1), $values[$key]);
+
+        // unset self if the removed child clears this array
+        if (count($values[$key]) === 0) {
             unset($values[$key]);
         }
     }
