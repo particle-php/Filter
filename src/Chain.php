@@ -7,6 +7,7 @@
  * @license   https://github.com/particle-php/Filter/blob/master/LICENSE New BSD License
  */
 namespace Particle\Filter;
+
 use Exception;
 
 /**
