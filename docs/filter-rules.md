@@ -8,6 +8,7 @@ filters, take a look at the callback filter-rule, or check out "Extending the Fi
 * [bool](#bool)()
 * [callback](#callback)($callable, $allowNotSet = false)
 * [defaults](#defaults)($defaultValue)
+* [each](#each)($callable)
 * [encode](#encode)($toEncodingFormat = null, $fromEncodingFormat = null)
 * [float](#float)()
 * [int](#int)()
