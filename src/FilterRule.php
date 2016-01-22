@@ -86,7 +86,7 @@ abstract class FilterRule
 
     /**
      * @param mixed $value
-     * @return FilterResult
+     * @return mixed
      */
     abstract public function filter($value);
 }
