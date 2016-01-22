@@ -9,6 +9,7 @@
 namespace Particle\Filter\FilterRule;
 
 use Particle\Filter\Filter;
+use Particle\Filter\FilterResult;
 use Particle\Filter\FilterRule;
 
 /**
@@ -39,15 +40,13 @@ class Each extends FilterRule
      */
     public function filter($values)
     {
-        if (!is_array($values)) {
-            return $values;
+        if (is_array($values)) {
+            foreach ($values as $key => $value) {
+                $values[$key] = $this->filterValue($value);
+            }
         }
 
-        foreach ($values as $key => $value) {
-            $values[$key] = $this->filterValue($value);
-        }
-
-        return $values;
+        return new FilterResult(true, $values);
     }
 
     /**
