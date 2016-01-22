@@ -45,6 +45,7 @@ var_dump($result);
 - Get a cleaned array after filtering
 - [A large set of available filters](http://filter.particle-php.com/en/latest/filter-rules/)
 - Ability to set default values if nothing is provided
+- Ability to filter nested, repeated arrays
 - Ability to extend the filter to add your own custom filter rules
 
 ## Non functional features

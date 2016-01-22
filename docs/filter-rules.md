@@ -98,6 +98,32 @@ $result = $f->filter([]); // Note: no name is given
 // array(1) { ["name"]=> string(10) "Annonymous" }
 ```
 
+## Each
+
+Filter nested repeated arrays, using a provided Filter instance in a closure.
+Note that the values in the array must be arrays too, else the filter can't apply a new filter on each element.
+
+```php
+$f = new Filter;
+$f->value('names')->each(function (Filter $filter) {
+    $filter->value('name')->upperFirst();
+});
+$result = $f->filter([
+    'names' => [
+        ['name' => 'john'],
+        ['name' => 'rick'],
+    ],
+]);
+/**
+ * array(1) {
+ *     ["names"]=> array(2) {
+ *         array(1) { ["name"]=> string(4) "John" }
+ *         array(1) { ["name"]=> string(4) "Rick" }
+ *     }
+ * }
+ */
+```
+
 ## Encode
 
 Makes sure that the given value is in a specific encoding format.
@@ -173,7 +199,7 @@ $result = $f->filter([
  *     ["discount"]=> string(4) "2.93"
  * } 
  */
- ```
+```
 
 ## Numbers
 
