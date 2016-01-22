@@ -39,7 +39,7 @@ class Chain
 
             if ($isSet || $rule->allowedNotSet()) {
                 $value = $rule->filter($value);
-                $isSet = $value !== null || $rule->isNotEmpty();
+                $isSet = $rule->isNotEmpty();
             }
         }
 

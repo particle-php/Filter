@@ -66,6 +66,9 @@ abstract class FilterRule
     public function setFilterData($filterData)
     {
         $this->filterData = $filterData;
+
+        // Make sure that the value is not empty by default
+        $this->isEmpty = false;
     }
 
     /**
