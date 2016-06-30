@@ -230,6 +230,14 @@ class FilterResource
     }
 
     /**
+     * @param type $fieldToSlugFrom
+     */
+    public function slug($fieldToSlugFrom = null)
+    {
+        return $this->addRule(new FilterRule\Slug($fieldToSlugFrom));
+    }
+
+    /**
      * Returns rule that results a casted string
      *
      * @return $this

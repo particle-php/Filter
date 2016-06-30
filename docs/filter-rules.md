@@ -21,6 +21,7 @@ filters, take a look at the callback filter-rule, or check out "Extending the Fi
 * [remove](#remove)()
 * [removeNull](#removenull)()
 * [replace](#replace)($search, $replace)
+* [slug](#slug)($fieldToSlugFrom)
 * [string](#string)()
 * [stripHtml](#striphtml)($excludeTags = null)
 * [trim](#trim)($characters = null)
@@ -149,7 +150,7 @@ Make sure the value is a float.
 $f = new Filter;
 $f->value('value')->float();
 $result = $f->filter(['value' => '123.123']);
-// array(1) { ["value"]=> float(123.123) } 
+// array(1) { ["value"]=> float(123.123) }
 ```
 
 ## Int
@@ -160,7 +161,7 @@ Make sure the value is a int.
 $f = new Filter;
 $f->value('value')->int();
 $result = $f->filter(['value' => '123.123']);
-// array(1) { ["value"]=> int(123) } 
+// array(1) { ["value"]=> int(123) }
 ```
 
 ## Letters
@@ -200,7 +201,7 @@ $result = $f->filter([
  * array(2) {
  *     ["price"]=> string(4) "5.00"
  *     ["discount"]=> string(4) "2.93"
- * } 
+ * }
  */
 ```
 
@@ -269,6 +270,36 @@ $f->value('value')->replace(' ', '-');
 $result = $f->filter(['name' => 'hello im john']);
 // array(1) { ["name"]=> string(13) "hello-im-john" }
 ```
+
+## Slug
+
+Slugs the value of the field or the value of another one for use in an URL.
+
+```php
+$f = new Filter;
+$f->value('slug')->slug();
+$result = $f->filter(['slug' => 'Slug this !']);
+// array(1) { ["slug"]=> string(9) "slug-this" }
+```
+
+Here we'll slug the value from another field.
+
+```php
+$f = new Filter;
+$f->value('slug')->slug('title');
+$result = $f->filter(['title' => 'Slug this title !', 'slug' => '']);
+// array(2) { ["title"]=> string(17) "Slug this title !" ["slug"]=> string(15) "slug-this-title" }
+```
+
+If you don't set an empty `slug` value, nothing will be done as the field hasn't been set. If you don't want to provide it everytime, you can default the value to an empty string before calling slug.
+
+```php
+$f = new Filter;
+$f->value('slug')->defaults('')->slug('title');
+$result = $f->filter(['title' => 'Slug this title !']);
+// array(2) { ["title"]=> string(17) "Slug this title !" ["slug"]=> string(15) "slug-this-title" }
+```
+
 
 ## String
 
