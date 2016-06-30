@@ -230,6 +230,8 @@ class FilterResource
     }
 
     /**
+     * Results that returns a value slugged
+     *
      * @param type $fieldToSlugFrom
      */
     public function slug($fieldToSlugFrom = null)

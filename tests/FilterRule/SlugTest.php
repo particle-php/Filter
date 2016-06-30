@@ -22,6 +22,8 @@ class SlugTest extends \PHPUnit_Framework_TestCase
      * @dataProvider getSlugResults
      * @param string $value
      * @param string $filteredValue
+     * @param string $field
+     * @param string $fieldValue
      */
     public function testSlugFilterRule($value, $filteredValue, $field, $fieldValue)
     {
