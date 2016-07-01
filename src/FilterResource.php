@@ -78,6 +78,18 @@ class FilterResource
     }
 
     /**
+     * Results rule that returns the cut value
+     *
+     * @param int      $start
+     * @param int|null $length
+     * @return Chain
+     */
+    public function cut($start, $length = null)
+    {
+        return $this->addRule(new FilterRule\Cut($start, $length));
+    }
+
+    /**
      * Returns rule that defaults a given value if the data key was not provided
      *
      * @param mixed $defaultValue
