@@ -18,6 +18,13 @@ use Particle\Filter\FilterRule;
 class Slug extends FilterRule
 {
     /**
+     * Allows a default value to be set if no data key was provided
+     *
+     * @var bool
+     */
+    protected $allowNotSet = true;
+
+    /**
      * @var string
      */
     private $fieldToSlugFrom;
@@ -44,7 +51,11 @@ class Slug extends FilterRule
     public function filter($value)
     {
         if (empty($value) && isset($this->filterData[$this->fieldToSlugFrom])) {
-            $value =  $this->filterData[$this->fieldToSlugFrom];
+            $value = $this->filterData[$this->fieldToSlugFrom];
+        }
+
+        if (is_null($value)) {
+            return;
         }
 
         $value = transliterator_transliterate($this->transliterator, $value);
