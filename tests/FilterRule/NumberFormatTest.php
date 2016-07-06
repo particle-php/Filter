@@ -23,7 +23,7 @@ class NumberFormatTest extends \PHPUnit_Framework_TestCase
      * @param string $value
      * @param string $filteredValue
      */
-    public function testNumbersFilterRuleWithTwoDecimalsAndDotAsDecimalSeperator($value, $filteredValue)
+    public function testNumbersFilterRuleWithTwoDecimalsAndDotAsDecimalSeparator($value, $filteredValue)
     {
         $this->filter->value('test')->numberFormat(2, '.', '');
 
@@ -39,7 +39,7 @@ class NumberFormatTest extends \PHPUnit_Framework_TestCase
      * @param string $value
      * @param string $filteredValue
      */
-    public function testNumbersFilterRuleWithThreeDecimalsAndCommaAsDecimalSeperator($value, $filteredValue)
+    public function testNumbersFilterRuleWithThreeDecimalsAndCommaAsDecimalSeparator($value, $filteredValue)
     {
         $this->filter->value('test')->numberFormat(3, ',', '');
 
@@ -51,11 +51,11 @@ class NumberFormatTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @dataProvider getThousandSeperatorResult
+     * @dataProvider getThousandSeparatorResult
      * @param string $value
      * @param string $filteredValue
      */
-    public function testWithThousandSeperator($value, $filteredValue)
+    public function testWithThousandSeparator($value, $filteredValue)
     {
         $this->filter->value('test')->numberFormat(2, '.', ',');
 
@@ -95,7 +95,7 @@ class NumberFormatTest extends \PHPUnit_Framework_TestCase
     /**
      * @return array
      */
-    public function getThousandSeperatorResult()
+    public function getThousandSeparatorResult()
     {
         return [
             ['', ''],
