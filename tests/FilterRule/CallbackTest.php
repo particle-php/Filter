@@ -1,5 +1,5 @@
 <?php
-namespace Particle\Tests\Filter\FilterRule;
+namespace Particle\Filter\Tests\FilterRule;
 
 use Particle\Filter\Filter;
 use Particle\Filter\FilterRule;

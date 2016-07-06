@@ -28,5 +28,10 @@
         "psr-4": {
             "Particle\\Filter\\": "src/"
         }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Particle\\Filter\\Test\\": "tests/"
+        }
     }
 }
