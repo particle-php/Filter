@@ -9,8 +9,11 @@
     processIsolation="false"
     stopOnFailure="false"
     syntaxCheck="false"
-    bootstrap="tests/bootstrap.php"
+    bootstrap="vendor/autoload.php"
 >
+    <php>
+        <ini name="date.timezone" value="UTC"/>
+    </php>
     <testsuites>
         <testsuite name="Particle Filter Test Suite">
             <directory suffix="Test.php">tests</directory>
