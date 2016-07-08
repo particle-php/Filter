@@ -7,6 +7,7 @@ filters, take a look at the callback filter-rule, or check out "Extending the Fi
 * [append](#append)($append)
 * [bool](#bool)()
 * [callback](#callback)($callable, $allowNotSet = false)
+* [cut](#cut)($start, $length = null)
 * [defaults](#defaults)($defaultValue)
 * [each](#each)($callable)
 * [encode](#encode)($toEncodingFormat = null, $fromEncodingFormat = null)
@@ -90,6 +91,17 @@ $result = $f->filter([]); // note that no year is set
 // array(1) { ["year"]=> string(4) "2016" }
 ```
 
+## Cut
+
+If you need to cut a string. Same usage as PHP substr.
+
+```php
+$f = new Filter;
+$f->value('slug')->cut(0, 28);
+$result = $f->filter(['slug' => 'my-very-super-extra-long-url-that-needs-to-be-cut]);
+// array(1) { ["slug"]=> string(28) "my-very-super-extra-long-url" }
+```
+
 ## Defaults
 
 When there is no data present for a given value key, you can default to a given value.
@@ -149,7 +161,7 @@ Make sure the value is a float.
 $f = new Filter;
 $f->value('value')->float();
 $result = $f->filter(['value' => '123.123']);
-// array(1) { ["value"]=> float(123.123) } 
+// array(1) { ["value"]=> float(123.123) }
 ```
 
 ## Int
@@ -160,7 +172,7 @@ Make sure the value is a int.
 $f = new Filter;
 $f->value('value')->int();
 $result = $f->filter(['value' => '123.123']);
-// array(1) { ["value"]=> int(123) } 
+// array(1) { ["value"]=> int(123) }
 ```
 
 ## Letters
@@ -200,7 +212,7 @@ $result = $f->filter([
  * array(2) {
  *     ["price"]=> string(4) "5.00"
  *     ["discount"]=> string(4) "2.93"
- * } 
+ * }
  */
 ```
 
