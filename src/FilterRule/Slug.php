@@ -32,7 +32,7 @@ class Slug extends FilterRule
     /**
      * @var string
      */
-    private $transliterator = "Any-Latin; Latin-ASCII; NFD; [:Nonspacing Mark:] Remove; NFC; [:Punctuation:] Remove; Lower();";
+    private $transliterator = 'Any-Latin; Latin-ASCII; NFD; [:Nonspacing Mark:] Remove; NFC; [:Punctuation:] Remove; Lower();';
 
     /**
      * @param string $fieldToSlugFrom
@@ -55,7 +55,7 @@ class Slug extends FilterRule
         }
 
         if (is_null($value)) {
-            return;
+            return $this->setEmpty();
         }
 
         $value = transliterator_transliterate($this->transliterator, $value);

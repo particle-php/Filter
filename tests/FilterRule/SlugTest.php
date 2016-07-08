@@ -52,4 +52,18 @@ class SlugTest extends \PHPUnit_Framework_TestCase
             ['', 'a-ae-ubermensch-pa-hoyeste-niva-i-a-lublu-php-fi', 'test', 'A æ Übérmensch på høyeste nivå! И я люблю PHP ! ﬁ'],
         ];
     }
+
+    /**
+     * Test that a slug based of a non existing key, does not exist.
+     */
+    public function testSlugFilterEmptyIfNotAvailable()
+    {
+        $this->filter->value('slug')->slug('title');
+
+        $result = $this->filter->filter([
+            'test' => 'test',
+        ]);
+
+        $this->assertEquals(['test' => 'test'], $result);
+    }
 }
