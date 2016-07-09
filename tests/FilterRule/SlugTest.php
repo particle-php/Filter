@@ -61,9 +61,9 @@ class SlugTest extends \PHPUnit_Framework_TestCase
         $this->filter->value('slug')->slug('title');
 
         $result = $this->filter->filter([
-            'test' => 'test',
+            'not-title' => 'Definitely not a title to slug',
         ]);
 
-        $this->assertEquals(['test' => 'test'], $result);
+        $this->assertSame(['not-title' => 'Definitely not a title to slug'], $result);
     }
 }
