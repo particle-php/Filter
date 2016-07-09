@@ -287,8 +287,17 @@ Here we'll slug the value from another field.
 ```php
 $f = new Filter;
 $f->value('slug')->slug('title');
-$result = $f->filter(['title' => 'Slug this title !', 'slug' => '']);
+$result = $f->filter(['title' => 'Slug this title !']);
 // array(2) { ["title"]=> string(17) "Slug this title !" ["slug"]=> string(15) "slug-this-title" }
+```
+
+If there is no value in the other field, the slug field won't appear in the filtered result :
+
+```php
+$f = new Filter;
+$f->value('slug')->slug('title');
+$result = $f->filter(['foo' => 'bar']);
+// array(1) { ["foo"]=> string(3) "bar" }
 ```
 
 ## String
