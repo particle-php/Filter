@@ -291,15 +291,6 @@ $result = $f->filter(['title' => 'Slug this title !', 'slug' => '']);
 // array(2) { ["title"]=> string(17) "Slug this title !" ["slug"]=> string(15) "slug-this-title" }
 ```
 
-If you don't set an empty `slug` value, nothing will be done as the field hasn't been set. If you don't want to provide it everytime, you can default the value to an empty string before calling slug.
-
-```php
-$f = new Filter;
-$f->value('slug')->defaults('')->slug('title');
-$result = $f->filter(['title' => 'Slug this title !']);
-// array(2) { ["title"]=> string(17) "Slug this title !" ["slug"]=> string(15) "slug-this-title" }
-```
-
 ## String
 
 Make sure the value is a string.
