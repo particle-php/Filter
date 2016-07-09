@@ -34,7 +34,7 @@ class SlugTest extends \PHPUnit_Framework_TestCase
             $field => $fieldValue,
         ]);
 
-        $this->assertEquals($filteredValue, $result['test']);
+        $this->assertSame($filteredValue, $result['test']);
     }
 
     /**
