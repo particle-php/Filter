@@ -300,7 +300,6 @@ $result = $f->filter(['title' => 'Slug this title !']);
 // array(2) { ["title"]=> string(17) "Slug this title !" ["slug"]=> string(15) "slug-this-title" }
 ```
 
-
 ## String
 
 Make sure the value is a string.
