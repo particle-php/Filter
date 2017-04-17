@@ -26,12 +26,12 @@ class FilterTest extends \PHPUnit_Framework_TestCase
         $this->filter->value('first_name')->trim();
 
         $result = $this->filter->filter([
-            'first_name' => ' john ',
+            'first_name' => ' jane ',
             'last_name' => ' doe ',
         ]);
 
         $expected = [
-            'first_name' => 'john',
+            'first_name' => 'jane',
             'last_name' => ' doe ',
         ];
 
@@ -47,12 +47,12 @@ class FilterTest extends \PHPUnit_Framework_TestCase
         $this->filter->all()->trim();
 
         $result = $this->filter->filter([
-            'first_name' => ' john ',
+            'first_name' => ' jane ',
             'last_name' => ' doe ',
         ]);
 
         $expected = [
-            'first_name' => 'john',
+            'first_name' => 'jane',
             'last_name' => 'doe',
         ];
 
@@ -67,11 +67,11 @@ class FilterTest extends \PHPUnit_Framework_TestCase
         $this->filter->value('first_name')->trim()->lower()->upperFirst();
 
         $result = $this->filter->filter([
-            'first_name' => ' JOHN ',
+            'first_name' => ' JANE ',
         ]);
 
         $expected = [
-            'first_name' => 'John',
+            'first_name' => 'Jane',
         ];
 
         $this->assertEquals($expected, $result);
@@ -86,11 +86,11 @@ class FilterTest extends \PHPUnit_Framework_TestCase
         $this->filter->value('first_name')->upperFirst();
 
         $result = $this->filter->filter([
-            'first_name' => ' JOHN ',
+            'first_name' => ' JANE ',
         ]);
 
         $expected = [
-            'first_name' => 'John',
+            'first_name' => 'Jane',
         ];
 
         $this->assertEquals($expected, $result);
@@ -104,12 +104,12 @@ class FilterTest extends \PHPUnit_Framework_TestCase
         $this->filter->values(['first_name', 'last_name'])->trim()->lower()->upperFirst();
 
         $result = $this->filter->filter([
-            'first_name' => ' JOHN ',
+            'first_name' => ' JANE ',
             'last_name' => ' DOE ',
         ]);
 
         $expected = [
-            'first_name' => 'John',
+            'first_name' => 'Jane',
             'last_name' => 'Doe',
         ];
 
@@ -124,12 +124,12 @@ class FilterTest extends \PHPUnit_Framework_TestCase
         $this->filter->values(['first_name', 'last_name']);
 
         $result = $this->filter->filter([
-            'first_name' => ' JOHN ',
+            'first_name' => ' JANE ',
             'last_name' => ' DOE ',
         ]);
 
         $expected = [
-            'first_name' => ' JOHN ',
+            'first_name' => ' JANE ',
             'last_name' => ' DOE ',
         ];
 
@@ -142,12 +142,12 @@ class FilterTest extends \PHPUnit_Framework_TestCase
     public function testNoChangeByDefault()
     {
         $result = $this->filter->filter([
-            'first_name' => ' JOHN ',
+            'first_name' => ' JANE ',
             'last_name' => ' DOE ',
         ]);
 
         $expected = [
-            'first_name' => ' JOHN ',
+            'first_name' => ' JANE ',
             'last_name' => ' DOE ',
         ];
 
@@ -162,17 +162,17 @@ class FilterTest extends \PHPUnit_Framework_TestCase
         $this->filter->all()->trim()->lower()->upperFirst();
 
         $result = $this->filter->filter([
-            'username' => ' JohnyJohn ',
+            'username' => ' JaneDoe ',
             'user' => [
-                'first_name' => ' JOHN ',
+                'first_name' => ' JANE ',
                 'last_name' => ' DOE ',
             ],
         ]);
 
         $expected = [
-            'username' => 'Johnyjohn',
+            'username' => 'Janedoe',
             'user' => [
-                'first_name' => 'John',
+                'first_name' => 'Jane',
                 'last_name' => 'Doe',
             ],
         ];
@@ -192,14 +192,14 @@ class FilterTest extends \PHPUnit_Framework_TestCase
 
         $result = $this->filter->filter([
             'user' => [
-                'first_name' => ' JOHN ',
+                'first_name' => ' JANE ',
                 'last_name' => ' DOE ',
             ],
         ]);
 
         $expected = [
             'user' => [
-                'first_name' => 'John',
+                'first_name' => 'Jane',
                 'last_name' => 'Doe',
             ],
         ];
@@ -221,7 +221,7 @@ class FilterTest extends \PHPUnit_Framework_TestCase
             'contract' => [
                 'details' => [
                     'user' => [
-                        'first_name' => ' JOHN ',
+                        'first_name' => ' JANE ',
                         'last_name' => ' DOE ',
                     ],
                 ],
@@ -232,7 +232,7 @@ class FilterTest extends \PHPUnit_Framework_TestCase
             'contract' => [
                 'details' => [
                     'user' => [
-                        'first_name' => 'John',
+                        'first_name' => 'Jane',
                         'last_name' => 'Doe',
                     ],
                 ],
@@ -252,7 +252,7 @@ class FilterTest extends \PHPUnit_Framework_TestCase
 
         $result = $this->filter->filter([
             'user' => [
-                'first_name' => '  JOHN ',
+                'first_name' => '  JANE ',
                 'last_name' => ' DOE  ',
             ],
             'newsletter' => 'yes',
@@ -260,7 +260,7 @@ class FilterTest extends \PHPUnit_Framework_TestCase
 
         $expected = [
             'user' => [
-                'first_name' => 'John',
+                'first_name' => 'Jane',
                 'last_name' => 'Doe',
             ],
             'newsletter' => true
@@ -279,13 +279,13 @@ class FilterTest extends \PHPUnit_Framework_TestCase
 
         $result = $this->filter->filter([
             'user' => [
-                'first_name' => '  JOHN ',
+                'first_name' => '  JANE ',
             ],
         ]);
 
         $expected = [
             'user' => [
-                'first_name' => 'John',
+                'first_name' => 'Jane',
             ],
         ];
 
