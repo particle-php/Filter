@@ -48,7 +48,7 @@ class FilterResource
      * Results rule that returns the value appended with a given value
      *
      * @param string $append
-     * @return Chain
+     * @return $this
      */
     public function append($append)
     {
@@ -82,11 +82,25 @@ class FilterResource
      *
      * @param int      $start
      * @param int|null $length
-     * @return Chain
+     * @return $this
      */
     public function cut($start, $length = null)
     {
         return $this->addRule(new FilterRule\Cut($start, $length));
+    }
+
+    /**
+     * Returns rule that decodes JSON code of a given value
+     *
+     * @param bool $assoc When `true`, decoded objects will be converted into associative arrays
+     * @param int $depth Decode recursion dept
+     * @param int $options Bitmask of JSON decode options
+     * @see http://php.net/manual/en/function.json-decode.php More information about the parameters
+     * @return $this
+     */
+    public function decodeJSON($assoc = false, $depth = 512, $options = 0)
+    {
+        return $this->addRule(new FilterRule\DecodeJSON($assoc, $depth, $options));
     }
 
     /**
@@ -190,7 +204,7 @@ class FilterResource
      * Results rule that returns the value prepended with a given value
      *
      * @param string $prepend
-     * @return Chain
+     * @return $this
      */
     public function prepend($prepend)
     {
