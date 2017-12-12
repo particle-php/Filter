@@ -104,7 +104,7 @@ $result = $f->filter(['slug' => 'my-very-super-extra-long-url-that-needs-to-be-c
 // array(1) { ["slug"]=> string(28) "my-very-super-extra-long-url" }
 ```
 
-## Decode JSON
+## DecodeJSON
 
 If you need to decode a JSON code. The usage is same as the PHP 
 [json_decode](http://php.net/manual/en/function.json-decode.php) function.
