@@ -13,7 +13,8 @@ use Particle\Filter\FilterRule;
 /**
  * Class DecodeJSON
  *
- * A filter that decodes the given value from JSON.
+ * A filter that decodes the given value from JSON. If a value is not a string, it is returned as is. If a value is not
+ * a correct JSON or if an encoded data is deeper than the recursion limit, `null` is returned.
  *
  * @package Particle\Filter\FilterRule
  */
@@ -25,7 +26,7 @@ class DecodeJSON extends FilterRule
     protected $assoc;
 
     /**
-     * @var int Decode recursion dept
+     * @var int Decode recursion depth
      */
     protected $depth;
 
@@ -57,7 +58,7 @@ class DecodeJSON extends FilterRule
      */
     public function filter($value)
     {
-        if (!is_scalar($value)) {
+        if (!is_string($value)) {
             return $value;
         }
 
