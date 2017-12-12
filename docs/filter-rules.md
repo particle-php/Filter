@@ -8,6 +8,7 @@ filters, take a look at the callback filter-rule, or check out "Extending the Fi
 * [bool](#bool)()
 * [callback](#callback)($callable, $allowNotSet = false)
 * [cut](#cut)($start, $length = null)
+* [decodeJSON](#decodeJSON)($assoc = false, $depth = 512, $options = 0)
 * [defaults](#defaults)($defaultValue)
 * [each](#each)($callable)
 * [encode](#encode)($toEncodingFormat = null, $fromEncodingFormat = null)
@@ -94,14 +95,26 @@ $result = $f->filter([]); // note that no year is set
 
 ## Cut
 
-If you need to cut a string. Same usage as PHP substr.
+If you need to cut a string. Same usage as PHP [substr](http://php.net/manual/en/function.substr.php).
 
 ```php
 $f = new Filter;
 $f->value('slug')->cut(0, 28);
-$result = $f->filter(['slug' => 'my-very-super-extra-long-url-that-needs-to-be-cut]);
+$result = $f->filter(['slug' => 'my-very-super-extra-long-url-that-needs-to-be-cut']);
 // array(1) { ["slug"]=> string(28) "my-very-super-extra-long-url" }
 ```
+
+## Decode JSON
+
+If you need to decode a JSON code. The usage is same as the PHP 
+[json_decode](http://php.net/manual/en/function.json-decode.php) function.
+
+```php
+$f = new Filter;
+$f->value('data')->decodeJSON(true);
+$result = $f->filter(['data' => '{"name": "Jack", "account": 1000}']);
+// array(1) {["data"] => array(2) {["name"] => string(4) "Jack", ["account"] => int(1000)}}
+``` 
 
 ## Defaults
 
