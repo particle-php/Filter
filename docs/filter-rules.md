@@ -114,7 +114,14 @@ $f = new Filter;
 $f->value('data')->decodeJSON();
 $result = $f->filter(['data' => '{"name": "Jack", "account": 1000}']);
 // array(1) {["data"] => array(2) {["name"] => string(4) "Jack", ["account"] => int(1000)}}
-``` 
+```
+
+Notes:
+
+* The filter decodes objects to associative arrays by default. Provide `false` as the first `decodeJSON` argument to get
+  objects.
+* The filter result is `null` if an invalid JSON string is provided.
+* The filter doesn't change a value if it is not a string.
 
 ## Defaults
 
