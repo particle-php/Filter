@@ -92,7 +92,8 @@ class FilterResource
     /**
      * Returns rule that decodes JSON code of a given value
      *
-     * @param bool $assoc When `true`, decoded objects will be converted into associative arrays
+     * @param bool $assoc When `true`, decoded objects will be converted into associative arrays (the default value is
+     *     set to `true` because both Filter and Validator can't deal with objects)
      * @param int $depth Decode recursion dept
      * @param int $options Bitmask of JSON decode options
      * @see http://php.net/manual/en/function.json-decode.php More information about the parameters
