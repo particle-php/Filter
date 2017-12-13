@@ -8,7 +8,7 @@ filters, take a look at the callback filter-rule, or check out "Extending the Fi
 * [bool](#bool)()
 * [callback](#callback)($callable, $allowNotSet = false)
 * [cut](#cut)($start, $length = null)
-* [decodeJSON](#decodeJSON)($assoc = false, $depth = 512, $options = 0)
+* [decodeJSON](#decodejson)($assoc = true, $depth = 512, $options = 0)
 * [defaults](#defaults)($defaultValue)
 * [each](#each)($callable)
 * [encode](#encode)($toEncodingFormat = null, $fromEncodingFormat = null)
@@ -16,7 +16,7 @@ filters, take a look at the callback filter-rule, or check out "Extending the Fi
 * [int](#int)()
 * [letters](#letters)()
 * [lower](#lower)()
-* [numberFormat](numberformat)($decimals, $decimalPoint, $thousandSeparator)
+* [numberFormat](#numberformat)($decimals, $decimalPoint, $thousandSeparator)
 * [numbers](#numbers)()
 * [prepend](#prepend)($prepend)
 * [regexReplace](#regexreplace)($searchRegex, $replace)
@@ -111,7 +111,7 @@ If you need to decode a JSON code. The usage is same as the PHP
 
 ```php
 $f = new Filter;
-$f->value('data')->decodeJSON(true);
+$f->value('data')->decodeJSON();
 $result = $f->filter(['data' => '{"name": "Jack", "account": 1000}']);
 // array(1) {["data"] => array(2) {["name"] => string(4) "Jack", ["account"] => int(1000)}}
 ``` 

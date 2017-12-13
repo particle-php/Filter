@@ -98,7 +98,7 @@ class FilterResource
      * @see http://php.net/manual/en/function.json-decode.php More information about the parameters
      * @return $this
      */
-    public function decodeJSON($assoc = false, $depth = 512, $options = 0)
+    public function decodeJSON($assoc = true, $depth = 512, $options = 0)
     {
         return $this->addRule(new FilterRule\DecodeJSON($assoc, $depth, $options));
     }
