@@ -45,9 +45,11 @@ class SlugTest extends \PHPUnit_Framework_TestCase
         return [
             ['', '', '', ''],
             ['Do not try this %27"--></style></script><script>alert("at home")</script>', 'do-not-try-this-27-style-script-script-alertat-home-script', '', ''],
-            ['This is a great stuff to slug !', 'this-is-a-great-stuff-to-slug', '', ''],
+            ['This is a great stuff to slug (or is it ?) !', 'this-is-a-great-stuff-to-slug-or-is-it', '', ''],
             ['That too with somê spéciàl châractèr$ from €ope !', 'that-too-with-some-special-character-from-europe', '', ''],
             ['A æ Übérmensch på høyeste nivå! И я люблю PHP ! ﬁ', 'a-ae-ubermensch-pa-hoyeste-niva-i-a-lublu-php-fi', '', ''],
+            ['Are $10 = to 10€ or is it ~', 'are-10-to-10eur-or-is-it', '', ''],
+            ['Give me a good | to smoke', 'give-me-a-good-to-smoke', '', ''],
             ['', 'this-is-a-great-stuff-to-slug', 'test', 'This is a great stuff to slug !'],
             ['', 'that-too-with-some-special-character-from-europe', 'test', 'That too with somê spéciàl châractèr$ from €ope !'],
             ['', 'a-ae-ubermensch-pa-hoyeste-niva-i-a-lublu-php-fi', 'test', 'A æ Übérmensch på høyeste nivå! И я люблю PHP ! ﬁ'],
