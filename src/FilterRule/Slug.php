@@ -60,7 +60,7 @@ class Slug extends FilterRule
 
         $value = transliterator_transliterate($this->transliterator, $value);
         $value = iconv("UTF-8", "ASCII//TRANSLIT//IGNORE", $value);
-        $value = preg_replace('/[-$?\s<>]+/', '-', $value);
+        $value = preg_replace('/[-$?\s<>()|~=]++/', '-', $value);
         $value = trim($value, '-');
         return strtolower($value);
     }
