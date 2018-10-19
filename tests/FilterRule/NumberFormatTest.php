@@ -2,8 +2,9 @@
 namespace Particle\Filter\Tests\FilterRule;
 
 use Particle\Filter\Filter;
+use PHPUnit\Framework\TestCase;
 
-class NumberFormatTest extends \PHPUnit_Framework_TestCase
+class NumberFormatTest extends TestCase
 {
     /**
      * @var Filter

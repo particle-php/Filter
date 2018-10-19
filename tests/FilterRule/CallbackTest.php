@@ -3,8 +3,9 @@ namespace Particle\Filter\Tests\FilterRule;
 
 use Particle\Filter\Filter;
 use Particle\Filter\FilterRule;
+use PHPUnit\Framework\TestCase;
 
-class CallbackTest extends \PHPUnit_Framework_TestCase
+class CallbackTest extends TestCase
 {
     /**
      * @var Filter

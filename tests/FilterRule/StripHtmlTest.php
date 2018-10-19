@@ -2,8 +2,9 @@
 namespace Particle\Filter\Tests\FilterRule;
 
 use Particle\Filter\Filter;
+use PHPUnit\Framework\TestCase;
 
-class StripHtmlTest extends \PHPUnit_Framework_TestCase
+class StripHtmlTest extends TestCase
 {
     /**
      * @var Filter

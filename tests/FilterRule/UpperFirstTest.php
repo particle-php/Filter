@@ -2,8 +2,9 @@
 namespace Particle\Filter\Tests\FilterRule;
 
 use Particle\Filter\Filter;
+use PHPUnit\Framework\TestCase;
 
-class UpperFirstTest extends \PHPUnit_Framework_TestCase
+class UpperFirstTest extends TestCase
 {
     /**
      * @var Filter
