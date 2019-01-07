@@ -2,8 +2,9 @@
 namespace Particle\Tests\Filter\FilterRule;
 
 use Particle\Filter\Filter;
+use PHPUnit\Framework\TestCase;
 
-class SlugTest extends \PHPUnit_Framework_TestCase
+class SlugTest extends TestCase
 {
     /**
      * @var Filter
