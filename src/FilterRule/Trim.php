@@ -40,7 +40,7 @@ class Trim extends FilterRule
      */
     public function filter($value)
     {
-        if ($value === null) {
+        if (!is_string($value)) {
             return $value;
         }
 

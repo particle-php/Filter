@@ -55,6 +55,7 @@ class TrimTest extends \PHPUnit_Framework_TestCase
             ['  !~! ', '!~!', null],
             ['	 tabtab 	', ' tabtab ', "\t"],
             [null, null, null],
+            [[], [], null]
         ];
     }
 }
