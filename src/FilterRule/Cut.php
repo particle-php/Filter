@@ -45,6 +45,10 @@ class Cut extends FilterRule
      */
     public function filter($value)
     {
+        if (!is_string($value)) {
+            return $value;
+        }
+
         if ($this->encodingFormat !== null) {
             return mb_substr($value, $this->start, $this->length, $this->encodingFormat);
         }

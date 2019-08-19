@@ -51,6 +51,7 @@ class CutTest extends \PHPUnit_Framework_TestCase
             ['text is kindaaaaaaaa longggggggg', 'gg', -2, null, null],
             ['Ce garçon est tombé par terre', 'Ce garçon est tombé', 0, 19, 'utf-8'],
             ['Τάχιστη αλώπηξ βαφής ψημένη γη', 'ψημένη', -9, 6, 'utf-8'],
+            [[], [], 0, 12, null]
         ];
     }
 }
