@@ -365,7 +365,7 @@ class FilterTest extends \PHPUnit_Framework_TestCase
                 'test3' => [
                     'test' => 'hi inner'
                 ],
-                'spam2' => 'spam' 
+                'spam2' => 'spam'
             ],
             'spam' => 'spam'
         ]);
