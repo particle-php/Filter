@@ -37,6 +37,8 @@ class Filter
      */
     protected $globalChain = null;
 
+    protected $whiteList = [];
+
     /**
      * Set a filter for a value on a specific key
      *
@@ -109,13 +111,74 @@ class Filter
      */
     public function filter(array $data)
     {
-        $data = $this->filterArrayWithGlobalChain($data);
+        $data = $this->filterArrayWithGlobalChain(
+            $this->applyWhiteList($data)
+        );
 
         $this->data = new Container($data);
 
         $this->filterChains();
 
         return $this->data->getArrayCopy();
+    }
+
+    /**
+     * Set a list of keys to be returned in the end
+     *
+     * @param array $keys
+     * @return void
+     */
+    public function whiteList(array $keys)
+    {
+        $this->whiteList = $keys;
+    }
+
+    /**
+     * Purge initial fields using white list
+     *
+     * @param array $data
+     * @return array
+     */
+    protected function applyWhiteList(array $data)
+    {
+        if (empty($this->whiteList)) {
+            return $data;
+        }
+
+        $allowed = [];
+        foreach ($this->whiteList as $key) {
+            if (strpos($key, '.') !== false) {
+                $allowed = $this->deepWhitelist($key, $allowed, $data);
+            } else {
+                $allowed[$key] = $data[$key];
+            }
+        }
+
+        return $allowed;
+    }
+
+    /**
+     * Uses dot-notation to purge initial data
+     *
+     * @param string $key
+     * @param array $result
+     * @param array $data
+     * @return array
+     */
+    protected function deepWhitelist($key, array $result, array $data)
+    {
+        $parts = explode('.', $key);
+
+        $ref = &$result;
+        $dataRef = &$data;
+        foreach ($parts as $part) {
+            $ref = &$ref[$part];
+            $dataRef = &$dataRef[$part];
+        }
+
+        $ref = $dataRef;
+
+        return $result;
     }
 
     /**

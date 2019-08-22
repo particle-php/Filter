@@ -326,4 +326,61 @@ class FilterTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals(['test2' => 'test', 'test4' => 'test'], $result);
     }
+
+    /**
+     * Ensure the filter only returns the keys we specify on white list
+     */
+    public function testFilterWithWhiteList()
+    {
+        $this->filter->whiteList(['first_name']);
+
+        $result = $this->filter->filter([
+            'first_name' => 'john',
+            'spam' => 'spam'
+        ]);
+
+        $this->assertEquals(['first_name' => 'john'], $result);
+    }
+
+    /**
+     * Ensure the filter only returns the keys we specify on white list,
+     * this time using dot notation
+     */
+    public function testFilterWithWhiteListSubArrays()
+    {
+        $this->filter->whiteList([
+            'first_name',
+            'test1',
+            'test2.test',
+            'test2.test3.test'
+        ]);
+
+        $result = $this->filter->filter([
+            'first_name' => 'john',
+            'test1' => [
+                'test' => 'hi'
+            ],
+            'test2' => [
+                'test' => 'hi test2',
+                'test3' => [
+                    'test' => 'hi inner'
+                ],
+                'spam2' => 'spam'
+            ],
+            'spam' => 'spam'
+        ]);
+
+        $this->assertEquals([
+            'first_name' => 'john',
+            'test1' => [
+                'test' => 'hi'
+            ],
+            'test2' => [
+                'test' => 'hi test2',
+                'test3' => [
+                    'test' => 'hi inner'
+                ]
+            ]
+        ], $result);
+    }
 }
