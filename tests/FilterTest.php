@@ -322,8 +322,18 @@ class FilterTest extends \PHPUnit_Framework_TestCase
                 ],
                 'test2' => null,
             ],
+            'test6' => '0',
+            'test7' => '0.0',
         ]);
 
-        $this->assertEquals(['test2' => 'test', 'test4' => 'test'], $result);
+        $this->assertEquals(
+            [
+                'test2' => 'test',
+                'test4' => 'test',
+                'test6' => '0',
+                'test7' => '0.0'
+            ],
+            $result
+        );
     }
 }

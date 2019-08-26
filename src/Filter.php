@@ -134,7 +134,9 @@ class Filter
             $data = $this->filterValueWithGlobalChain($value, $key, $data);
         }
 
-        return array_filter($data);
+        return array_filter($data, function ($value) {
+            return $value || is_numeric($value);
+        });
     }
 
     /**
