@@ -327,10 +327,6 @@ class FilterResource
      */
     protected function addRule(FilterRule $rule)
     {
-        if ($this->keys === null) {
-            $this->filter->addFilterRule($rule);
-        }
-
         if (is_array($this->keys)) {
             foreach ($this->keys as $key) {
                 $this->filter->addFilterRule($rule, $key);
